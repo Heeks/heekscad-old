@@ -1,0 +1,6 @@
+anonymmouse checkout:
+
+to clone heekscad and contained submodules, use:
+
+git clone --recursive git://github.com/Heeks/heekscad.git
+
