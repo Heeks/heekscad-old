@@ -1,5 +1,3 @@
 [submodule "heekscnc"]
 	path = heekscnc
-	url =  git://github.com/Heeks/heekscnc.git 
-	pushurl = git@github.com:Heeks/heekscnc.git
-        fetchRecurseSubmodules = true
+	url = git://github.com/Heeks/heekscnc.git
