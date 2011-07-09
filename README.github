@@ -1,6 +1,29 @@
 anonymmouse checkout:
 
-to clone heekscad and contained submodules, use:
+to just clone heekscad, use:
+
+git clone git://github.com/Heeks/heekscad.git
+
+This repo references several submodules. Currently contained submodules are:
+
+heekscnc
+heekscnc/libarea
+heekscnc/liactp
+heekscnc/oce
+
+To clone heekscad and all its contained submodules recursively, use:
 
 git clone --recursive git://github.com/Heeks/heekscad.git
 
+
+Submodules need to be updated explicitely. See "Updating Submodules" in
+http://chrisjean.com/2009/04/20/git-submodules-adding-using-removing-and-updating/ .
+
+Example: to update heekscnc:
+
+cd heekscnc
+git checkout master (once)
+git pull (on every desired update)
+
+
+-mah
