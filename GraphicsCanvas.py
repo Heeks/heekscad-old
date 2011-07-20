@@ -26,7 +26,7 @@ class myGLCanvas(wxGLCanvas):
       self.Resize()
       self.paint_callbacks = []
       self.context_menu_enabled = True
-        
+
    def OnSize(self, event):
        self.Resize()
        event.Skip()
@@ -48,13 +48,16 @@ class myGLCanvas(wxGLCanvas):
             item = wx.MenuItem(menu, 10000 + self.next_tool_id, text = tool.GetTitle(), help = tool.GetToolTip())
             str = tool.BitmapPath()
             if len(str)>0:
-               image = wx.Image(res_folder + '/bitmaps/' + str + '.png')
-               image.Rescale(24, 24)
-               item.SetBitmap(wx.BitmapFromImage(image))
+                try:
+                    image = wx.Image(res_folder + '/bitmaps/' + str + '.png')
+                    image.Rescale(24, 24)
+                    item.SetBitmap(wx.BitmapFromImage(image))
+                except:
+                    pass
             menu.AppendItem(item)
             self.next_tool_id = self.next_tool_id + 1
             self.tools.append(tool)
-        
+
    def OnMouse(self, event):
       if event.RightUp():
          if self.context_menu_enabled:
@@ -72,10 +75,10 @@ class myGLCanvas(wxGLCanvas):
       if self.viewport.m_need_update: self.Update()
       if self.viewport.m_need_refresh: self.Refresh()
       event.Skip()
-        
+
    def OnEraseBackground(self, event):
       pass # Do nothing, to avoid flashing on MSW
-        
+
    def Resize(self):
       s = self.GetClientSize()
       self.viewport.WidthAndHeightChanged(s.GetWidth(), s.GetHeight())

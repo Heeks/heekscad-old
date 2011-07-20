@@ -14,7 +14,7 @@ class CInputApply:public Tool{
 public:
 	void Run(){
 		CDoubleInput::m_success = true;
-		wxGetApp().ExitMainLoop();
+		ExitMainLoop();
 	}
 	const wxChar* GetTitle(){return _("Apply");}
 	wxString BitmapPath(){return _T("apply");}
@@ -25,7 +25,7 @@ CInputApply input_apply;
 
 class CInputCancel:public Tool{
 public:
-	void Run(){wxGetApp().ExitMainLoop();}
+	void Run(){ExitMainLoop();}
 	const wxChar* GetTitle(){return _("Cancel");}
 	wxString BitmapPath(){return _T("cancel");}
 	const wxChar* GetToolTip(){return _("Cancel operation");}
@@ -53,7 +53,7 @@ void CDoubleInput::OnMouse( wxMouseEvent& event )
 {
 	bool event_used = false;
 	if(LeftAndRightPressed(event, event_used))
-		wxGetApp().ExitMainLoop();
+		ExitMainLoop();
 }
 
 void CDoubleInput::GetProperties(std::list<Property *> *list)

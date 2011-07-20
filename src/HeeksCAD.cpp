@@ -3525,29 +3525,44 @@ void HeeksCADapp::get_2d_arc_segments(double xs, double ys, double xe, double ye
     }
 }
 
-int HeeksCADapp::PickObjects(const wxChar* str, long marking_filter, bool just_one)
+static long save_filter_for_StartPickObjects = 0;
+static bool save_just_one_for_EndPickObjects = false;
+static CInputMode* save_mode_for_EndPickObjects = NULL;
+
+void HeeksCADapp::StartPickObjects(const wxChar* str, long marking_filter, bool just_one)
 {
-	CInputMode* save_mode = input_mode_object;
+	save_mode_for_EndPickObjects = input_mode_object;
 	m_select_mode->m_prompt_when_doing_a_main_loop.assign(str);
 	m_select_mode->m_doing_a_main_loop = true;
-	bool save_just_one = m_select_mode->m_just_one;
+	save_just_one_for_EndPickObjects = m_select_mode->m_just_one;
 	m_select_mode->m_just_one = just_one;
 	SetInputMode(m_select_mode);
 
 	// set marking filter
-	long save_filter = m_marked_list->m_filter;
+	save_filter_for_StartPickObjects = m_marked_list->m_filter;
 	m_marked_list->m_filter = marking_filter;
+}
+
+int HeeksCADapp::EndPickObjects()
+{
+	// restore marking filter
+	m_marked_list->m_filter = save_filter_for_StartPickObjects;
+
+	m_select_mode->m_just_one = save_just_one_for_EndPickObjects;
+	m_select_mode->m_doing_a_main_loop = false;
+	SetInputMode(save_mode_for_EndPickObjects); // update tool bar
+
+	return 1;
+}
+
+int HeeksCADapp::PickObjects(const wxChar* str, long marking_filter, bool just_one)
+{
+	StartPickObjects(str, marking_filter, just_one);
 
 	// stay in an input loop until finished picking
 	OnRun();
 
-	// restore marking filter
-	m_marked_list->m_filter = save_filter;
-
-	m_select_mode->m_just_one = save_just_one;
-	m_select_mode->m_doing_a_main_loop = false;
-	SetInputMode(save_mode); // update tool bar
-	return 1;
+	return EndPickObjects();
 }
 
 int HeeksCADapp::OnRun()
@@ -4587,4 +4602,9 @@ unsigned int HeeksCADapp::GetIndex(HeeksObj *object)
 void HeeksCADapp::ReleaseIndex(unsigned int index)
 {
     if(m_marked_list)m_marked_list->ReleaseIndex(index);
+}
+
+void ExitMainLoop()
+{
+	wxGetApp().ExitMainLoop();
 }
