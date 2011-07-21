@@ -2,6 +2,9 @@
 // Copyright (c) 2009, Dan Heeks
 // This program is released under the BSD license. See the file COPYING for details.
 
+/*! \brief HeeksCAD Program:
+ *
+ * Perhaps someone smart could say something useful about this */
 #pragma once
 
 #include "../interface/HeeksColor.h"
@@ -77,6 +80,9 @@ enum SolidViewMode
 };
 
 class HeeksCADapp : public wxApp, public ObjList
+/*! \class The Application Class:
+ *
+ * Perhaps a cluefull person could say more about this */
 {
 private:
 	std::set<Observer*> observers;

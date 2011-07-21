@@ -1,0 +1,23 @@
+# ignore objects, anywhere in the tree.
+*.o
+*.so
+
+#ignore the bin directory
+bin/
+
+#ignore the stuff cmake creates
+CMakeFiles/
+*.cmake
+*Makefile
+CMakeCache.txt
+install_manifest.txt
+
+#ignore the packages
+_CPack_Packages/
+*.deb
+
+#ignore the translation binaries
+*HeeksCAD.mo
+
+#ignore the Doxygen generated files
+DOC/
