@@ -1,6 +1,31 @@
 // HeeksCAD.cpp
 // Copyright (c) 2009, Dan Heeks
 // This program is released under the BSD license. See the file COPYING for details.
+
+/** @mainpage HeeksCAD: Opensource 3D CAD and solid modeling solution.
+*   @par Description:
+*   - HeeksCAD is a free, open source, CAD application written by Dan Heeks, danheeks@gmail.com
+*   @par Features
+*   - Import solid models from STEP and IGES files. 
+*   - Draw construction geometry and lines and arcs. 
+*   - Create new primitive solids, or make solids by extruding a sketch or by making a lofted solid between sketches. 
+*   - Modify solids using blending, or boolean operations. 
+*   - Save IGES, STEP and STL. Printer plot the 2D geometry or to HPGL. 
+*   - Import and export dxf files; lines, arcs, ellipses, splines and polylines are supported. 
+*   - Use the geometric constraints solver to create accurate drawings from rough sketches.
+*   - HeeksCAD can be translated into any language. There are currently English, German, and Italian translations.
+*   - HeeksCAD has been built for Windows, Ubuntu, Debian, and OpenSUSE.
+*   - It is possible to make Add-In modules, see HeeksCNC, HeeksArt, and HeeksPython projects.
+*
+*   @par Dependencies:
+*   - Solid modeling is provided by Open CASCADE. 
+*   - Graphical user interface is made using wxWidgets.
+*
+*   @par License 
+*   - New BSD License. This means you can take all my work and use it for your own commercial application. Do what you want with it.
+*/
+
+
 #include "stdafx.h"
 #include "HeeksCAD.h"
 #include "../interface/Tool.h"
