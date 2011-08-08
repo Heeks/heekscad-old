@@ -111,15 +111,12 @@ msgstr "P"
 
 #: ../src/Constraint.cpp:304
 #, fuzzy
-msgid ""
-"\n"
-" obj1_id should be defined before obj2_id"
-msgstr "obj1_id by malo byť definované skôr ako obj2%id"
+msgid " obj1_id should be defined before obj2_id"
+msgstr " obj1_id by malo byť definované skôr ako obj2%id"
 
 #: ../src/Constraint.cpp:312 ../src/Constraint.cpp:332
 #, fuzzy
 msgid ""
-"\n"
 "obj1_id specified but does not exist in memory"
 msgstr "Špecifikovali ste obj1_id, ktoré sa nenachádza v pamäti"
 
