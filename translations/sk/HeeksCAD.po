@@ -1671,12 +1671,8 @@ msgid "Cone"
 msgstr "Kužel"
 
 #: ../src/HeeksFrame.cpp:1552
-msgid ""
-"There was a problem printing.\n"
-"Perhaps your current printer is not set correctly?"
-msgstr ""
-"Problém pri tlači\n"
-"Možno nie je vaša tlačiareň nastavená správne"
+msgid "There was a problem printing.\n Perhaps your current printer is not set correctly?"
+msgstr "Problém pri tlači\n Možno nie je vaša tlačiareň nastavená správne"
 
 #: ../src/HeeksFrame.cpp:1552 ../src/HeeksFrame.cpp:1554
 msgid "Printing"
@@ -1687,12 +1683,8 @@ msgid "You canceled printing"
 msgstr "Zrušili ste tlač"
 
 #: ../src/HeeksFrame.cpp:1573
-msgid ""
-"There was a problem previewing.\n"
-"Perhaps your current printer is not set correctly?"
-msgstr ""
-"Problém pri náhľade\n"
-"Možno nie je vaša tlačiareň nastavená správne"
+msgid "There was a problem previewing.\n Perhaps your current printer is not set correctly?"
+msgstr "Problém pri náhľade\n Možno nie je vaša tlačiareň nastavená správne"
 
 #: ../src/HeeksFrame.cpp:1573
 msgid "Previewing"
@@ -1715,9 +1707,8 @@ msgid "Save\tCtrl+S"
 msgstr "Ulož\tCtrl+S"
 
 #: ../src/HeeksFrame.cpp:1653
-#, fuzzy
 msgid "Save As"
-msgstr "Uložiť súbor"
+msgstr "Uložiť súbor ako (pod iným menom)"
 
 #: ../src/HeeksFrame.cpp:1655
 msgid "Print\tCtrl+P"
@@ -1752,9 +1743,8 @@ msgid "Save Settings"
 msgstr "Ulož nastavenia"
 
 #: ../src/HeeksFrame.cpp:1668
-#, fuzzy
 msgid "Exit\tCtrl+Q"
-msgstr "Tlač\tCtrl+P"
+msgstr "Koniec\tCtrl+Q"
 
 #: ../src/HeeksFrame.cpp:1673
 msgid "Undo\tCtrl+Z"
@@ -1777,14 +1767,13 @@ msgid "Paste\tCtrl+V"
 msgstr "Vlož\tCtrl+V"
 
 #: ../src/HeeksFrame.cpp:1680 ../src/Plugins.cpp:149
-#, fuzzy
 msgid "Delete"
-msgstr "Zruš\tDel"
+msgstr "Zrušiť/Zmazať"
 
 #: ../src/HeeksFrame.cpp:1682 ../src/HeeksFrame.cpp:1824
 #: ../src/SelectMode.cpp:63
 msgid "Select Mode"
-msgstr "Výberový režim"
+msgstr "Výber režimu/ Režim výberu"
 
 #: ../src/HeeksFrame.cpp:1686 ../src/HeeksFrame.cpp:1835
 msgid "Draw a sketch"
@@ -1804,21 +1793,19 @@ msgstr "Nakresli bod"
 
 #: ../src/HeeksFrame.cpp:1691 ../src/HGear.h:36
 msgid "Gear"
-msgstr ""
+msgstr "Pohon/súkolie/prevodovka"
 
 #: ../src/HeeksFrame.cpp:1694
 msgid "Add Text"
 msgstr "Pridaj text"
 
 #: ../src/HeeksFrame.cpp:1701
-#, fuzzy
 msgid "Pick 3 points"
-msgstr "Ukáž na nový koncový bod"
+msgstr "Vyberte 3 body"
 
 #: ../src/HeeksFrame.cpp:1703
-#, fuzzy
 msgid "Pick 1 point"
-msgstr "Ukáž na nový koncový bod"
+msgstr "Vyberte 1 bod"
 
 #: ../src/HeeksFrame.cpp:1707
 msgid "Previous view"
@@ -1929,9 +1916,8 @@ msgid "Fillet"
 msgstr "Rez"
 
 #: ../src/HeeksFrame.cpp:1744
-#, fuzzy
 msgid "Sectioning"
-msgstr "smer"
+msgstr "Rozdeľovanie na sekcie"
 
 #: ../src/HeeksFrame.cpp:1748
 msgid "Move Translate"
@@ -1963,7 +1949,7 @@ msgstr "Zmeň rozmery"
 
 #: ../src/HeeksFrame.cpp:1762
 msgid "Log"
-msgstr ""
+msgstr "Záznam o činnosti"
 
 #: ../src/HeeksFrame.cpp:1766
 msgid "Tool Bar"
@@ -1986,9 +1972,8 @@ msgid "Transformations Tool Bar"
 msgstr "Lišta nástrojov pre zmeny"
 
 #: ../src/HeeksFrame.cpp:1774
-#, fuzzy
 msgid "Validate Constraints"
-msgstr "hranice automatického riešenia"
+msgstr "Over správnosť hraníc"
 
 #: ../src/HeeksFrame.cpp:1781
 msgid "&File"
@@ -2012,7 +1997,7 @@ msgstr "&Teleso"
 
 #: ../src/HeeksFrame.cpp:1786
 msgid "&Set Origin"
-msgstr ""
+msgstr "&Nastav vzor"
 
 #: ../src/HeeksFrame.cpp:1787
 msgid "&Transform"
@@ -2024,7 +2009,7 @@ msgstr "&Okno"
 
 #: ../src/HeeksFrame.cpp:1792
 msgid "&Constraint Tester"
-msgstr ""
+msgstr "&Test hraníc/ohraničení"
 
 #: ../src/HeeksFrame.cpp:1814
 msgid "New file"
@@ -2059,24 +2044,20 @@ msgid "General Tools"
 msgstr "Všeobené nástroje"
 
 #: ../src/HeeksFrame.cpp:1836
-#, fuzzy
 msgid "Start drawing rectangles"
 msgstr "Kresli pravouhoľníky"
 
 #: ../src/HeeksFrame.cpp:1837
-#, fuzzy
 msgid "Start drawing obrounds"
-msgstr "Začni kresliť body"
+msgstr "Kresli zaoblené drážky na nastavovanie úchytu"
 
 #: ../src/HeeksFrame.cpp:1838
-#, fuzzy
 msgid "Start drawing polygons"
-msgstr "Začni kresliť body"
+msgstr "Kresli mnohouhoľníky"
 
 #: ../src/HeeksFrame.cpp:1839
-#, fuzzy
 msgid "Add a gear"
-msgstr "Pridaj guľu"
+msgstr "Pridaj prevodovku/súkolie.."
 
 #: ../src/HeeksFrame.cpp:1845
 msgid "Draw circles through 3 points"
@@ -2091,7 +2072,6 @@ msgid "Draw circles, centre and radius"
 msgstr "Nakresli kruhy pomocou zadania stredu a polomeru"
 
 #: ../src/HeeksFrame.cpp:1848
-#, fuzzy
 msgid "Draw ellipses"
 msgstr "Kresli elipsy"
 
@@ -2156,9 +2136,8 @@ msgid "Extrude a wire or face"
 msgstr "Vytvor teleso vytlačením vlákna alebo plochy"
 
 #: ../src/HeeksFrame.cpp:1900
-#, fuzzy
 msgid "Revolve a wire or face"
-msgstr "Vytvor teleso vytlačením vlákna alebo plochy"
+msgstr "Rozoznaj čiaru, alebo plochu"
 
 #: ../src/HeeksFrame.cpp:1906
 msgid "Cut one solid from another"
@@ -2189,12 +2168,8 @@ msgid "Zoom in to fit the extents of the drawing into the graphics window"
 msgstr "Detail označenej oblasti tak aby sa celý premietol na obrazovku"
 
 #: ../src/HeeksFrame.cpp:1929
-msgid ""
-"Zoom in to fit the extents of the drawing into the graphics window, but "
-"without rotating the view"
-msgstr ""
-"Detail označenej oblasti tak aby sa celý premietol na obrazovku, alebo bez "
-"otáčania"
+msgid "Zoom in to fit the extents of the drawing into the graphics window, but without rotating the view"
+msgstr"Detail označenej oblasti tak aby sa celý premietol na obrazovku, ale bez otáčania"
 
 #: ../src/HeeksFrame.cpp:1930
 msgid "Zoom in to a dragged window"
@@ -2206,8 +2181,7 @@ msgstr "Späť ba predchádzajňuci pohľad"
 
 #: ../src/HeeksFrame.cpp:1932
 msgid "Switch to full screen view ( press escape to return )"
-msgstr ""
-"Prepni sa do celosobrazovkovéhgo režimu (stačte Escpe na jeho zrušenie)"
+msgstr "Prepni sa do celosobrazovkovéhgo režimu (stačte Escape na jeho zrušenie)"
 
 #: ../src/HeeksFrame.cpp:1944
 msgid "View XY Isometric"
@@ -2223,7 +2197,7 @@ msgstr "Uhopte obejkt na priblíženiue aleboi vziadelnie sa"
 
 #: ../src/HeeksFrame.cpp:1952
 msgid "Drag to move view"
-msgstr ""
+msgstr "Uchopte, aby ste pohybovali pohľadom"
 
 #: ../src/HeeksFrame.cpp:1959 ../src/HeeksFrame.cpp:1977
 msgid "Viewing Tools"
@@ -2251,65 +2225,59 @@ msgstr "koncový uhol"
 
 #: ../src/HGear.cpp:429
 msgid "num teeth"
-msgstr ""
+msgstr "čísluj zuby"
 
 #: ../src/HGear.cpp:430
 msgid "module"
-msgstr ""
+msgstr "modul/doplnok"
 
 #: ../src/HGear.cpp:431
-#, fuzzy
 msgid "clearance"
-msgstr "výška pri rýchloposuve"
+msgstr "výška"
 
 #: ../src/HGear.cpp:432
 msgid "addendum offset"
-msgstr ""
+msgstr "dodatočné posunutie"
 
 #: ../src/HGear.cpp:433
 msgid "addendum multiplier"
-msgstr ""
+msgstr "dodatočné násobič"
 
 #: ../src/HGear.cpp:434
 msgid "dedendum multiplier"
-msgstr ""
+msgstr "násobič výšky"
 
 #: ../src/HGear.cpp:435
-#, fuzzy
 msgid "pressure angle"
-msgstr "štartovací uhol"
+msgstr "uhol tlaku"
 
 #: ../src/HGear.cpp:436
 msgid "spacing"
-msgstr ""
+msgstr "odsadenia/mostíky"
 
 #: ../src/HGear.cpp:437
 msgid "tip relief"
-msgstr ""
+msgstr "tvar reznej štrbiny"
 
 #: ../src/HGear.cpp:438
 msgid "depth"
 msgstr "hĺbka"
 
 #: ../src/HGear.cpp:439
-#, fuzzy
 msgid "cone half angle"
-msgstr "Horizontálny uhol"
+msgstr "polouhol kužeľa"
 
 #: ../src/HGear.cpp:440
-#, fuzzy
 msgid "inner ring diameter"
-msgstr "Režim kreslenia čiar"
+msgstr "Priemer vnúrorného kruhu"
 
 #: ../src/HGear.cpp:513
-#, fuzzy
 msgid "Make Sketches"
-msgstr "Vytvor výkres z kresby"
+msgstr "Vytvor výkres"
 
 #: ../src/HGear.cpp:522
-#, fuzzy
 msgid "Make One Tooth Sketches"
-msgstr "Vytvor trajektóriu"
+msgstr "Vytvor výkres jedného zubu"
 
 #: ../src/HILine.cpp:122 ../src/HLine.cpp:281 ../src/HLine.cpp:283
 msgid "Length"
@@ -2317,50 +2285,47 @@ msgstr "Dĺžka"
 
 #: ../src/HImage.cpp:155
 msgid "Picture - "
-msgstr "Obrázok-"
+msgstr "Obrázok- "
 
 #: ../src/HLine.cpp:51
-#, fuzzy
 msgid "Toggle Horizontal"
-msgstr "Horizontálny uhol"
+msgstr "Označ/vlož Horizontálne"
 
 #: ../src/HLine.cpp:53
 msgid "Set this line to be horizontal"
-msgstr ""
+msgstr "Nastav, aby čiara bola vodorovná (horizontálna)"
 
 #: ../src/HLine.cpp:64
 msgid "Toggle Vertical"
-msgstr ""
+msgstr "Označ/vlož Vertikáane"
 
 #: ../src/HLine.cpp:66
 msgid "Set this line to be vertical"
-msgstr ""
+msgstr "Nastav, aby čiara bola zvislá (vertikálna)"
 
 #: ../src/HLine.cpp:77
 msgid "Toggle Line Length"
-msgstr ""
+msgstr "Vlož dlĺžku čiary"
 
 #: ../src/HLine.cpp:79
 msgid "Set this lines length as constrained"
-msgstr ""
+msgstr "Nastav, aby dlĺžka čiary bola obmedzená"
 
 #: ../src/HLine.cpp:93
 msgid "Make Cylinder On Line"
-msgstr ""
+msgstr "Vytvor valec na zákalde čiary"
 
 #: ../src/HLine.cpp:107
 msgid "Make Cone On Line"
-msgstr ""
+msgstr "Vytvor kužel na záaklde čiary"
 
 #: ../src/HLine.cpp:125
-#, fuzzy
 msgid "Click Midpoint On Line"
-msgstr "Kliknite na bod na kuržnici"
+msgstr "Poklepte (kliknite) na prostredný bod čiary/úsečky"
 
 #: ../src/HLine.cpp:141
-#, fuzzy
 msgid "Click Start Of Line"
-msgstr "Ukáž začiatočný bod"
+msgstr "Poklepte (kliknite) na začiatočný bod čiary"
 
 #: ../src/HLine.cpp:157
 #, fuzzy
