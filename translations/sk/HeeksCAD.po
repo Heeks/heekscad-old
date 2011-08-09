@@ -296,7 +296,6 @@ msgid "Set this coordinate system as the active one"
 msgstr "Nastav súradnicový systém ako aktívny"
 
 #: ../src/CoordinateSystem.cpp:1298
-#, fuzzy
 msgid "Transform selected items to world coordinates"
 msgstr "Preveď vybrané položky do svetových súradníc"
 
@@ -343,18 +342,17 @@ msgstr "Natiahnutý kváader"
 
 #: ../src/Cuboid.cpp:97
 msgid "width ( x )"
-msgstr "šírka x"
+msgstr "šírka (rozmer v osi x)"
 
 #: ../src/Cuboid.cpp:98
 msgid "height( y )"
-msgstr "výška y"
+msgstr "výška (rozmer v osi y)"
 
 #: ../src/Cuboid.cpp:99
 msgid "depth ( z )"
-msgstr "hrúbka z"
+msgstr "hrúbka (rozmer v osi z)"
 
 #: ../src/Cylinder.cpp:75
-#, fuzzy
 msgid "Stretched Cylinder"
 msgstr "Natiahnutý Valec"
 
@@ -401,7 +399,6 @@ msgid "Press Esc key to cancel"
 msgstr "Stlačte klávesu ESC, aby ste zrušili akciu"
 
 #: ../src/DigitizeMode.cpp:95
-#, fuzzy
 msgid "Left button to accept position"
 msgstr "Ľavé tlačidlo potvrdí nastavenú pozíciu"
 
@@ -438,7 +435,6 @@ msgid "between two points"
 msgstr "medzi dvoma bodmi"
 
 #: ../src/DimensionDrawing.cpp:115 ../src/HDimension.cpp:430
-#, fuzzy
 msgid "between two points, XY only"
 msgstr "medzi dvoma bodmi (len v osiach X a Y)"
 
