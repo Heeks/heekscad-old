@@ -65,7 +65,6 @@ msgstr "Záložný_Súbor_Programu_HeeksCAD.heeks"
 
 #: ../src/AutoSave.cpp:29
 msgid "Do you want to recover using the automatic backup file?"
-msgstr ""
 "Chcete obnoviť predchádzajúci stav s využitím súboru automatickej záalohy"
 
 #: ../src/Cone.cpp:170
@@ -110,44 +109,28 @@ msgid "P"
 msgstr "P"
 
 #: ../src/Constraint.cpp:304
-#, fuzzy
 msgid " obj1_id should be defined before obj2_id"
 msgstr " obj1_id by malo byť definované skôr ako obj2%id"
 
 #: ../src/Constraint.cpp:312 ../src/Constraint.cpp:332
-#, fuzzy
-msgid ""
-"obj1_id specified but does not exist in memory"
+msgid "obj1_id specified but does not exist in memory"
 msgstr "Špecifikovali ste obj1_id, ktoré sa nenachádza v pamäti"
 
 #: ../src/Constraint.cpp:317
-#, fuzzy
-msgid ""
-"\n"
-"obj2_id specified but does not exist in memory"
+msgid "obj2_id specified but does not exist in memory"
 msgstr "Špecifikovali ste obj2_id, ktoré sa nenachádza v pamäti"
 
 #: ../src/Constraint.cpp:355
-#, fuzzy
-msgid ""
-"\n"
-" Two objects required for this constraint only one was specified"
-msgstr ""
-"Na definíciu tejto hranice  je nutné použiť dva objekty, ale vy ste "
-"špecifikovali len jeden"
+msgid " Two objects required for this constraint only one was specified"
+msgstr " Na definíciu tejto hranice  je nutné použiť dva objekty, ale vy ste špecifikovali len jeden"
 
 #: ../src/Constraint.cpp:367
-#, fuzzy
-msgid ""
-"\n"
-" A constraint type needs to be added to the list"
+msgid " A constraint type needs to be added to the list"
 msgstr "Typ hrancie musí byť pridaný do zoznamu"
 
 #: ../src/Constraint.cpp:378
 msgid "This is a woops and you shouldn't be reading this message"
-msgstr ""
-"Toto je neočakávaný problém a nikdy by nemala nastať situácia, že uvidíte "
-"túto správu"
+msgstr "Toto je neočakávaný problém a nikdy by nemala nastať situácia, že uvidíte túto správu"
 
 #: ../src/Constraint.cpp:471
 msgid "Object error in a single object constraint"
@@ -159,7 +142,7 @@ msgstr "Chybný objekt pre nastavenie hraníc pomocou dvoch objektov"
 
 #: ../src/Constraint.cpp:496
 msgid "Undefined Constraint?"
-msgstr "Nem=ate definované hranice?"
+msgstr "Nemáte definované hranice?"
 
 #: ../src/ConstraintTools.cpp:33
 msgid "Set Perpendicular"
@@ -167,7 +150,7 @@ msgstr "Nastvate zvyslý/kolmý smer"
 
 #: ../src/ConstraintTools.cpp:35
 msgid "Set these lines to be perpendicular"
-msgstr "Nastaviť, abz tieto čiary boli kolmé"
+msgstr "Nastaviť, aby tieto čiary boli kolmé"
 
 #: ../src/ConstraintTools.cpp:57
 msgid "Toggle Tangent"
@@ -178,12 +161,10 @@ msgid "Set line tangent to arc"
 msgstr "Nastaviť dotyčnicu k oblúku"
 
 #: ../src/ConstraintTools.cpp:79
-#, fuzzy
 msgid "Set Parallel"
 msgstr "Nastav, aby boli objekty rovnobežné"
 
 #: ../src/ConstraintTools.cpp:81
-#, fuzzy
 msgid "Set these lines to be parallel"
 msgstr "Nastav, aby boli čiary rovnobežné"
 
@@ -200,12 +181,10 @@ msgid "Set Colinear"
 msgstr "Nastav, aby boli body na jednej priamke"
 
 #: ../src/ConstraintTools.cpp:123
-#, fuzzy
 msgid "Set these lines to be colinear"
 msgstr "Nastav, aby tieto čiary ležali na jednej priamke"
 
 #: ../src/ConstraintTools.cpp:142
-#, fuzzy
 msgid "Set Equal Radius"
 msgstr "Nastav na rovnaký polomer"
 
@@ -226,7 +205,6 @@ msgid "Set Coincident"
 msgstr "Nastav, ako rovnaké"
 
 #: ../src/ConstraintTools.cpp:187
-#, fuzzy
 msgid "Set these points to be coincident"
 msgstr "Nastav body, ako rovnaké"
 
@@ -237,7 +215,6 @@ msgstr "Pridaj rozmer"
 
 #: ../src/ConstraintTools.cpp:211 ../src/ConstraintTools.cpp:255
 #: ../src/ConstraintTools.cpp:270
-#, fuzzy
 msgid "Add a dimension object"
 msgstr "Pridaj objekt rozmerov"
 
@@ -247,12 +224,10 @@ msgid "Add Angular Dimension"
 msgstr "Pridaj rozmer vo forme uhlu"
 
 #: ../src/ConstraintTools.cpp:239
-#, fuzzy
 msgid "Add an angular dimension object"
-msgstr "Pridaj objekz rozmeru vo forme uhlu"
+msgstr "Pridaj objeky rozmeru vo forme uhlu"
 
 #: ../src/ConstraintTools.cpp:292
-#, fuzzy
 msgid "Set Point On Line"
 msgstr "Nastav bod na čiare"
 
@@ -261,7 +236,6 @@ msgid "Set this point on line"
 msgstr "Nastav tento bod na čiare"
 
 #: ../src/ConstraintTools.cpp:316 ../src/ConstraintTools.cpp:340
-#, fuzzy
 msgid "Set Point On Midpoint"
 msgstr "Nastav bod v strede"
 
@@ -282,12 +256,10 @@ msgid "Set this point on arc"
 msgstr "Nastav tento bod na oblúku"
 
 #: ../src/ConstraintTools.cpp:388
-#, fuzzy
 msgid "Set Point On Circle"
 msgstr "Nastavte bod na kružnici"
 
 #: ../src/ConstraintTools.cpp:390
-#, fuzzy
 msgid "Set this point on circle"
 msgstr "Nastavte na bod na kružnici"
 
@@ -300,12 +272,10 @@ msgid "Cannot convert object type "
 msgstr "Nemôžem zmeniť typ objektu"
 
 #: ../src/ConversionTools.cpp:374
-#, fuzzy
 msgid " to edge"
 msgstr " na hrane"
 
 #: ../src/ConversionTools.cpp:383 ../src/ConversionTools.cpp:420
-#, fuzzy
 msgid "Error converting sketch to face"
 msgstr "Chyba pri transformácii výkresu na plochu"
 
@@ -315,7 +285,7 @@ msgstr "Fatálna chyba pri transformácii výkresu na plochu"
 
 #: ../src/ConversionTools.cpp:823
 msgid "Test Face, Sketches United"
-msgstr "Pokús  sa spojiť/zjednotiť výkresy a plochy "
+msgstr "Zisti, či je možné spojiť/zjednotiť výkresy a plochy "
 
 #: ../src/CoordinateSystem.cpp:1260
 msgid "Set position and orientation by picking 3 points"
