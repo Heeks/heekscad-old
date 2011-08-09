@@ -640,9 +640,8 @@ msgid "custom grippers just one axis"
 msgstr "užívateľské metódy na zachytenie udalostí pre jedinú os"
 
 #: ../src/Group.cpp:247
-#, fuzzy
 msgid "datum"
-msgstr "dátum"
+msgstr "údaje"
 
 #: ../src/Group.cpp:249 ../src/PropertiesCanvas.cpp:161
 #: ../src/PropertiesCanvas.cpp:193
@@ -660,7 +659,6 @@ msgid "z"
 msgstr "z"
 
 #: ../src/Group.cpp:295
-#, fuzzy
 msgid "Move datum"
 msgstr "Prestav údaje"
 
@@ -677,7 +675,6 @@ msgid "Move pz"
 msgstr "Prestav pz"
 
 #: ../src/HAngularDimension.cpp:288 ../src/HDimension.cpp:256
-#, fuzzy
 msgid "Toggle Dimension Constraint"
 msgstr "Označte ohraničenie rozmerov"
 
@@ -694,26 +691,22 @@ msgid "scale"
 msgstr "Rozmer"
 
 #: ../src/HArc.cpp:108
-#, fuzzy
 msgid "Toggle Radius"
 msgstr "Označte Polomer"
 
 #: ../src/HArc.cpp:110
 msgid "Set this arcs radius as constrained"
-msgstr "označ polomer tohto oblúku ako ohraničený"
+msgstr "Označte polomer tohto oblúku ako ohraničený"
 
 #: ../src/HArc.cpp:131
-#, fuzzy
 msgid "Click centre point"
 msgstr "Kliknite na bod v strede"
 
 #: ../src/HArc.cpp:153
-#, fuzzy
 msgid "Click first end point"
 msgstr "Kliknite na prvý koncový bod"
 
 #: ../src/HArc.cpp:175
-#, fuzzy
 msgid "Click second end point"
 msgstr "Kliknite na druhý koncový bod"
 
@@ -732,27 +725,22 @@ msgid "radius"
 msgstr "polomer"
 
 #: ../src/HCircle.cpp:904 ../src/Sketch.cpp:415
-#, fuzzy
 msgid "Click midpoint"
 msgstr "Poklepte (kliknite) na bod v strede"
 
 #: ../src/HCircle.cpp:929 ../src/Sketch.cpp:440
-#, fuzzy
 msgid "Click centre-top point"
-msgstr "Kliknite na bod horneo stredu"
+msgstr "Poklepte (kliknit) na bod horného stredu"
 
 #: ../src/HCircle.cpp:953 ../src/Sketch.cpp:464
-#, fuzzy
 msgid "Click centre-bottom point"
 msgstr "Kliknite na bod dolného stredu"
 
 #: ../src/HCircle.cpp:977 ../src/Sketch.cpp:488
-#, fuzzy
 msgid "Click centre-right point"
 msgstr "Kliknite na bod pravého stredu"
 
 #: ../src/HCircle.cpp:1001 ../src/Sketch.cpp:512
-#, fuzzy
 msgid "Click centre-left point"
 msgstr "Kliknite na bod ľavého stredu"
 
