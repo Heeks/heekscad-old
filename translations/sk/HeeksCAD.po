@@ -2325,38 +2325,35 @@ msgstr "Poklepte (kliknite) na prostredný bod čiary/úsečky"
 
 #: ../src/HLine.cpp:141
 msgid "Click Start Of Line"
-msgstr "Poklepte (kliknite) na začiatočný bod čiary"
+msgstr "Poklepte (kliknite) začiatočný bod čiary"
 
 #: ../src/HLine.cpp:157
-#, fuzzy
 msgid "Click End Of Line"
 msgstr "Kliknite na koncový bod čiary"
 
 #: ../src/HPoint.cpp:147
 msgid "Toggle Fixed"
-msgstr ""
+msgstr "Vloženie na pevné miesto"
 
 #: ../src/HPoint.cpp:149
 msgid "Set this point as fixed"
-msgstr ""
+msgstr "Nastavte bod, ako nepremiestniteľný"
 
 #: ../src/HPoint.cpp:166 ../src/HPoint.cpp:168
-#, fuzzy
 msgid "Click point location"
-msgstr "Vyberte miesto"
+msgstr "Poklepte(kliknite) na miesto, kde chcete vytvoriť bod"
 
 #: ../src/HPoint.cpp:182
 msgid "Enter offset in X,Y,Z format (with commas between them)"
-msgstr ""
+msgstr "Vložte posuntie (ofset) fo fomáate X,Y,Z (s ciarkmi medzi číslami)"
 
 #: ../src/HPoint.cpp:183
 msgid "Apply Offset To Selected Location"
-msgstr ""
+msgstr "Použite posunutie (ofset) na vybrané miesto"
 
 #: ../src/HPoint.cpp:222 ../src/HPoint.cpp:224
-#, fuzzy
 msgid "Offset from point"
-msgstr "Počiatočný bod"
+msgstr "Posunutie (ofset) zo súradníc body"
 
 #: ../src/HSpline.cpp:234
 msgid "Knot"
@@ -2368,80 +2365,72 @@ msgstr "Tyč"
 
 #: ../src/HText.cpp:201
 msgid "OpenGL (default) font"
-msgstr ""
+msgstr "Prednastavené písmo (font) z knižnice openGL"
 
 #: ../src/HText.cpp:213
 msgid "Font"
-msgstr ""
+msgstr "Písmo"
 
 #: ../src/HText.cpp:311
 msgid "Only a single orientation modifier is supported"
-msgstr ""
+msgstr "Podporovaný je len jeden nástroj na zmenu orientácie"
 
 #: ../src/HText.cpp:343
-#, fuzzy
 msgid "Make a Sketch"
 msgstr "Vytvor výkres z kresby"
 
 #: ../src/HText.cpp:345
 msgid "Convert the lines and arcs that make up this text into a sketch object."
-msgstr ""
+msgstr "Preveď čiary a oblúky, ktoré tvoria tento text na obkjekt typu výkres/krivka"
 
 #: ../src/HText.cpp:359
 msgid "Add Orientation Modifier"
-msgstr ""
+msgstr "Pridaj nástroj na zmenu orientácie"
 
 #: ../src/HText.cpp:361
 msgid "Add graphics to orient text"
-msgstr ""
+msgstr "Pridajte grafiku do zdobeneého textu"
 
 #: ../src/Input.cpp:108 ../src/TransformTools.cpp:56
 #: ../src/TransformTools.cpp:314
 msgid "number of copies"
-msgstr "počet kňopií"
+msgstr "počet kopií"
 
 #: ../src/Input.cpp:118 ../src/Input.cpp:119
-#, fuzzy
 msgid "Position to rotate about"
-msgstr "Kliknite na stred otáčania obejktu"
+msgstr "Kliknite na stred otáčania objektu"
 
 #: ../src/Input.cpp:119 ../src/Input.cpp:123
-#, fuzzy
 msgid "Select"
-msgstr "Výberový režim"
+msgstr "Vyberte"
 
 #: ../src/Input.cpp:147
-#, fuzzy
 msgid "Axis to rotate about"
-msgstr "Kliknite na stred otáčania obejktu"
+msgstr "Kliknite na os otáčania objektu"
 
 #: ../src/Input.cpp:151
-#, fuzzy
 msgid "Select a line"
-msgstr "Výberový režim"
+msgstr "Výberte čiaru"
 
 #: ../src/Input.cpp:179 ../src/RuledSurface.cpp:270
 msgid "angle"
 msgstr "uhol"
 
 #: ../src/Input.cpp:336
-#, fuzzy
 msgid "Pick Position"
-msgstr "Zistí polohu"
+msgstr "Vyberte si polohu"
 
 #: ../src/Input.cpp:369
-#, fuzzy
 msgid "Pick line for rotation axis"
-msgstr "Označte, čiaru, ktorá bude považovaná za zrkadlo"
+msgstr "Označte, čiaru, ktorá bude považovaná za os otáčania"
 
 #: ../src/InputModeCanvas.cpp:75
 msgid "Input Mode"
 msgstr "Zadávací režim"
 
 #: ../src/LineArcDrawing.cpp:67
-#, fuzzy
 msgid "set previous direction"
-msgstr "smer osi X"
+msgstr "Nastavte predcháadzajúci smer"
 
 #: ../src/LineArcDrawing.cpp:562
 msgid "Line drawing mode"
