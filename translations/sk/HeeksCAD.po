@@ -424,11 +424,11 @@ msgstr "Chyba! Tlačidlo ukončenia označovania by nemalo byt dostupné "
 
 #: ../src/DigitizeMode.cpp:456
 msgid "Stop Picking"
-msgstr "Označovanie pozastavené"
+msgstr "Pozastavte označovanie"
 
 #: ../src/DigitizeMode.cpp:458
 msgid "Finish picking"
-msgstr "Označovanie ukončené"
+msgstr "Ukončite označovanie"
 
 #: ../src/DimensionDrawing.cpp:114 ../src/HDimension.cpp:429
 msgid "between two points"
@@ -453,19 +453,16 @@ msgstr "pytagorovský"
 
 #: ../src/DimensionDrawing.cpp:122 ../src/HAngularDimension.cpp:375
 #: ../src/HDimension.cpp:436
-#, fuzzy
 msgid "horizontal"
 msgstr "Horizontálny"
 
 #: ../src/DimensionDrawing.cpp:123 ../src/HAngularDimension.cpp:376
 #: ../src/HDimension.cpp:437
-#, fuzzy
 msgid "vertical"
-msgstr "Vertikálny "
+msgstr "Vertikálny"
 
 #: ../src/DimensionDrawing.cpp:124 ../src/HAngularDimension.cpp:377
 #: ../src/HDimension.cpp:438
-#, fuzzy
 msgid "text mode"
 msgstr "textový režim"
 
@@ -498,18 +495,16 @@ msgid "set_draw_step"
 msgstr "nastav_ǩrok_kreslenia"
 
 #: ../src/Drawing.cpp:286
-#, fuzzy
 msgid "set_position"
 msgstr "nastav pozíciu"
 
 #: ../src/Edge.cpp:151
-#, fuzzy
 msgid "Blend edge"
 msgstr "Spojenie hrán"
 
 #: ../src/Edge.cpp:157 ../src/HeeksFrame.cpp:902
 msgid "Enter Blend Radius"
-msgstr "Vložte polomer spáajania hrán"
+msgstr "Vložte polomer, v ktorom končia hrany,ktoré sa spoja"
 
 #: ../src/Edge.cpp:157 ../src/HeeksFrame.cpp:902
 msgid "Radius"
@@ -520,7 +515,6 @@ msgid "Chamfer"
 msgstr "Úkos"
 
 #: ../src/Edge.cpp:177
-#, fuzzy
 msgid "Enter Chamfer Distance"
 msgstr "Vložte šírku úkosu "
 
@@ -529,12 +523,10 @@ msgid "Distance"
 msgstr "Vzdialenosť"
 
 #: ../src/Edge.cpp:192
-#, fuzzy
 msgid "Make a sketch from edge"
-msgstr "Vytvor nákres z hrany"
+msgstr "Vytvor nákres z hrany/hrán"
 
 #: ../src/Edge.cpp:224
-#, fuzzy
 msgid "Solid with edge chamfer"
 msgstr "Teleso s hranami s úkosom"
 
@@ -547,7 +539,6 @@ msgid "Error making fillet"
 msgstr "Chyba pri vytváraní drážky"
 
 #: ../src/Edge.cpp:242
-#, fuzzy
 msgid "A fatal error happened during Chamfer"
 msgstr "Fatálna chyba počas generovania úkosu"
 
@@ -565,25 +556,21 @@ msgstr "Typ povrchu"
 
 #: ../src/Face.cpp:220
 msgid "Make Coordinate System"
-msgstr "nový súradnicový systém"
+msgstr "Vytvor nový súradnicový systém"
 
 #: ../src/Face.cpp:233 ../src/Face.cpp:260
-#, fuzzy
 msgid "Face Coordinate System"
 msgstr "Súradnicový systém pre plochy"
 
 #: ../src/Face.cpp:247
-#, fuzzy
 msgid "Sketch On Face"
 msgstr "krivka na ploche"
 
 #: ../src/Face.cpp:279
-#, fuzzy
 msgid "Extrude Face"
-msgstr "Vytlač-Extrúduj plochu"
+msgstr "Vytlač/Extrúduj plochu"
 
 #: ../src/Face.cpp:293
-#, fuzzy
 msgid "Rotate to Face"
 msgstr "Otoč  plochu"
 
@@ -633,7 +620,7 @@ msgstr "posunutie"
 
 #: ../src/Face.cpp:682
 msgid "Error in CFace::GetNurbSurfaceParams"
-msgstr "Chzba v  metóde  GetNurbSurfaceParams triedy CFace"
+msgstr "Chyba v  metóde  GetNurbSurfaceParams triedy CFace"
 
 #: ../src/FaceTools.cpp:66 ../src/FaceTools.cpp:71 ../src/FaceTools.cpp:76
 msgid "Error in GetFaceNormalAtUV"
