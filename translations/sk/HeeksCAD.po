@@ -65,7 +65,7 @@ msgstr "Záložný_Súbor_Programu_HeeksCAD.heeks"
 
 #: ../src/AutoSave.cpp:29
 msgid "Do you want to recover using the automatic backup file?"
-"Chcete obnoviť predchádzajúci stav s využitím súboru automatickej záalohy"
+msgstr "Chcete obnoviť predchádzajúci stav s využitím súboru automatickej záalohy"
 
 #: ../src/Cone.cpp:170
 msgid "Stretched Cone"
@@ -1104,7 +1104,7 @@ msgstr "korelácia"
 
 #: ../src/HeeksCAD.cpp:3137
 msgid "Minimum correlation factor (0.0 (nothing like it) -> 1.0 (perfect match))"
-"Minimálny keoficinet korelácie (o 0.0(skoro všetko) do 1.0(100% zhoda)) "
+msgstr "Minimálny keoficinet korelácie (o 0.0(skoro všetko) do 1.0(100% zhoda)) "
 
 #: ../src/HeeksCAD.cpp:3138
 msgid "Maximum scale threshold (1.0 - must be same size, 1.5 (can be half as big again or 2/3 size)"
@@ -1253,7 +1253,7 @@ msgstr "Neber ohľad an chyby, ak je to možné"
 
 #: ../src/HeeksCAD.cpp:3188
 msgid "Layer Name Suffixes To Discard"
-msgstr " Prídavky (Sufixy) mena vrstvy sa zrušia""
+msgstr " Prídavky (Sufixy) mena vrstvy sa zrušia"
 
 #: ../src/HeeksCAD.cpp:3191
 msgid "STL"
