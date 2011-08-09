@@ -2968,7 +2968,7 @@ msgstr "nezadaná dĺžka"
 
 #: ../src/Sectioning.cpp:57
 msgid "Points must not be the same!"
-msgstr "Body nemôžu bzť zhodné!"
+msgstr "Body nemôžu byť zhodné!"
 
 #: ../src/Sectioning.cpp:447
 msgid "Sectioned Solid"
@@ -2976,7 +2976,7 @@ msgstr "Rozdelné teleso"
 
 #: ../src/Sectioning.cpp:455
 msgid "Sectioning failed!"
-msgstr "Rozdelenio zlyhalo"
+msgstr "Rozdelenie zlyhalo"
 
 #: ../src/Sectioning.cpp:469
 msgid "Pick point on axis"
@@ -2999,7 +2999,6 @@ msgid "( with Ctrl key for extra objects)"
 msgstr "(spolu s klávesou Ctrl vyberáte viac objektov)"
 
 #: ../src/SelectMode.cpp:72
-#, fuzzy
 msgid "( with Shift key for similar objects)"
 msgstr "(spolu s klávesou Ctrl vyberáte viac objektov)"
 
@@ -3041,17 +3040,15 @@ msgstr "Použite menu volieb, ak chcete skyť tohto pomocníka"
 
 #: ../src/SelectMode.cpp:94
 msgid "Press Return key to accept selection"
-msgstr ""
+msgstr "Stlačením klvávesy Enter potvrdít výber "
 
 #: ../src/SelectMode.cpp:551
-#, fuzzy
 msgid "Accept selection"
-msgstr "Tvorba výberu:"
+msgstr "Potvrdenie výberu"
 
 #: ../src/SelectMode.cpp:570
-#, fuzzy
 msgid "Cancel selection"
-msgstr "zruš operáciu"
+msgstr "Zrušenie výberu"
 
 #: ../src/SelectMode.cpp:582
 msgid "Pick Anything"
@@ -3070,19 +3067,16 @@ msgid "Set the selection filter to only edges"
 msgstr "Použiť výberový filter len na hrany"
 
 #: ../src/SelectMode.cpp:608
-#, fuzzy
 msgid "Pick Faces"
-msgstr "Vybrať hrany"
+msgstr "Vyberte hrany"
 
 #: ../src/SelectMode.cpp:610
-#, fuzzy
 msgid "Set the selection filter to only faces"
-msgstr "Použiť výberový filter len na hrany"
+msgstr "Použiť výberový filter len na plochy"
 
 #: ../src/SelectMode.cpp:621
-#, fuzzy
 msgid "End Sketch Mode"
-msgstr "Zmena režimu na kreslnie výkresov"
+msgstr "Ukončenie  režimu na kreslnie výkresov/kriviek"
 
 #: ../src/Shape.cpp:265
 msgid "Enter Offset Value, + for making bigger, - for making smaller"
@@ -3090,7 +3084,7 @@ msgstr "Vložte hodnotu offsetu + na zvačšenie, - na zmenšenie"
 
 #: ../src/Shape.cpp:265
 msgid "Offset value"
-msgstr "Hodnota offsetu"
+msgstr "Hodnota offsetu(posunutia)"
 
 #: ../src/Shape.cpp:277
 msgid "Result of 'Offset Shape'"
@@ -3098,20 +3092,19 @@ msgstr "Výskedok požitia offsetu na tvar"
 
 #: ../src/Shape.cpp:284 ../src/Sketch.cpp:359 ../src/Wire.cpp:60
 msgid "Error making offset"
-msgstr ""
+msgstr "Chzba pri posúvaní"
 
 #: ../src/Shape.cpp:288
 msgid "Offset Shape"
 msgstr "offsetový tvar"
 
 #: ../src/Shape.cpp:308
-#, fuzzy
 msgid "Stretched Shape"
-msgstr "Vynútť si použitie uzatvoreného tvaru"
+msgstr "Uzatvorený tvar"
 
 #: ../src/Shape.cpp:400
 msgid "Error with cut operation"
-msgstr ""
+msgstr "Chyba pri operácii umiestnenia výberu do schránky a jeho zmazania z nákresu"
 
 #: ../src/Shape.cpp:413
 msgid "Result of Fuse Operation"
@@ -3120,16 +3113,15 @@ msgstr "Výsledok operácie spojenia"
 #: ../src/Shape.cpp:421
 #, fuzzy
 msgid "Error with fuse operation"
-msgstr "Výsledok operácie spojenia"
+msgstr "Chyna pri operácii spájania"
 
 #: ../src/Shape.cpp:438
 msgid "Result of Common Operation"
 msgstr "Výsledok bežnej operácie"
 
 #: ../src/Shape.cpp:446
-#, fuzzy
 msgid "Error with common operation"
-msgstr "Výsledok bežnej operácie"
+msgstr "Chyba pri bežnej operácii"
 
 #: ../src/Shape.cpp:597
 msgid "Result of Cut Operation"
@@ -3141,42 +3133,39 @@ msgstr "Objekt typu STEP"
 
 #: ../src/Shape.cpp:782 ../src/Shape.cpp:876
 msgid "STEP import not done!"
-msgstr "Import objektu tzpu STEP nebol dokončený"
+msgstr "Import objektu typu STEP nebol dokončený"
 
 #: ../src/Shape.cpp:815
-#, fuzzy
 msgid "IGES shape"
-msgstr "súbory vo formáte IGES"
+msgstr "tvar vo formáte IGES"
 
 #: ../src/Shape.cpp:845
 msgid "sewed IGES solid"
-msgstr "Vložený ojekt typu IGES"
+msgstr "Vložené teleso typu IGES"
 
 #: ../src/Shape.cpp:854
 msgid "IGES import not done!"
-msgstr "Import objektu tzpu IGES nebol dokončený"
+msgstr "Import objektu typu IGES nebol dokončený"
 
 #: ../src/Shape.cpp:872
-#, fuzzy
 msgid "BREP solid"
-msgstr "Objekt typu STEP"
+msgstr "Teleso typu STEP"
 
 #: ../src/Shape.cpp:1082
 msgid "opacity"
-msgstr ""
+msgstr "Nepriesvitnosť"
 
 #: ../src/Shape.cpp:1088
 msgid "volume"
-msgstr ""
+msgstr "objem"
 
 #: ../src/Shape.cpp:1091
-#, fuzzy
 msgid "centre of gravity"
-msgstr "Stred a polomer"
+msgstr "ťažisko"
 
 #: ../src/Shape.cpp:1095
 msgid "calculate volume"
-msgstr ""
+msgstr "vypočítaj objem"
 
 #: ../src/Sketch.cpp:215
 msgid "Number of elements"
@@ -3199,22 +3188,20 @@ msgid "Convert sketch to face"
 msgstr "Skonvertuj trajektňoriu na plochu"
 
 #: ../src/Sketch.cpp:304
-#, fuzzy
 msgid "Convert sketch to wire"
-msgstr "Skonvertuj trajektňoriu na plochu"
+msgstr "Skonvertuj trajektňoriu na obrys"
 
 #: ../src/Sketch.cpp:343 ../src/Sketch.cpp:348
 msgid "Use negative for smaller and Positive for larger)"
-msgstr ""
+msgstr "Použite záporné číslo na zmenšenie a kladné na zväčšenie)"
 
 #: ../src/Sketch.cpp:344 ../src/Sketch.cpp:348
-#, fuzzy
 msgid "Enter the distance"
-msgstr "Vložte vzdialenosť úkosového nástroja"
+msgstr "Vložte vzdialenosť"
 
 #: ../src/Sketch.cpp:363
 msgid "Copy Parallel"
-msgstr "Režim práce zvnútra aj zvonku trajektórí"
+msgstr "Skopíruj rovnobežné objekty"
 
 #: ../src/Sketch.cpp:381 ../src/ConversionTools.h:31
 msgid "Split arcs to little lines"
@@ -3231,50 +3218,44 @@ msgstr "Vlož výsku ťahania"
 #: ../src/SketchTools.cpp:120 ../src/SketchTools.cpp:122
 #: ../src/SketchTools.h:94
 msgid "Pad Sketch"
-msgstr "3D výkres s podložkou"
+msgstr "Krivka/nákres s podložkou"
 
 #: ../src/SketchTools.cpp:129
-#, fuzzy
 msgid "Input pad depth"
-msgstr "Zadávací režim"
+msgstr "Vložte hĺbku podložky"
 
 #: ../src/SketchTools.cpp:134 ../src/SketchTools.cpp:136
 msgid "Pocket Sketch"
-msgstr "3D výkres bez podložky"
+msgstr "Trajektória modelovania 3D telesa"
 
 #: ../src/SketchTools.cpp:154 ../src/SketchTools.cpp:156
-#, fuzzy
 msgid "Make To Part"
-msgstr "Vytvor trajektóriu"
+msgstr "Vytvor časť"
 
 #: ../src/SketchTools.cpp:182 ../src/SketchTools.cpp:184
 #: ../src/SketchTools.cpp:274
-#, fuzzy
 msgid "Add To Part"
-msgstr "Pridaj text"
+msgstr "Pridaj do časti"
 
 #: ../src/SketchTools.cpp:203
-#, fuzzy
 msgid "Failed to convert sketch to wire"
-msgstr "Fatálna chyba pri transformácii výkresu na plochu"
+msgstr "Fatálna chyba pri transformácii výkresu na obrys"
 
 #: ../src/SketchTools.cpp:239
 msgid "Wire fix failed"
-msgstr ""
+msgstr "Oprava obrysu zlyhala"
 
 #: ../src/SketchTools.cpp:248
-#, fuzzy
 msgid "Failed to convert wire to sketch"
-msgstr "Fatálna chyba pri transformácii výkresu na plochu"
+msgstr "Chyba pri konverzii obrysu na výkres"
 
 #: ../src/SketchTools.cpp:266
 msgid "Failed to fix wire"
-msgstr ""
+msgstr "Oprava obrysu zlyhala"
 
 #: ../src/SketchTools.cpp:272
-#, fuzzy
 msgid "Fix Wire"
-msgstr "vlákno"
+msgstr "Oprava obrysu"
 
 #: ../src/SketchTools.cpp:345
 msgid "simplify sketch options"
@@ -3286,7 +3267,7 @@ msgstr "maximálna odchýlka"
 
 #: ../src/SketchTools.cpp:347
 msgid "cleanup tolerance (temporary)"
-msgstr ""
+msgstr "Tolerancia opráv a čistenia výkresu (dočasná)"
 
 #: ../src/SketchTools.cpp:348
 msgid "bspline min degree (eg: 3)"
@@ -3306,87 +3287,79 @@ msgstr "Usporiadaj body"
 
 #: ../src/SketchTools.cpp:383
 msgid "Force closed shape"
-msgstr "Vynútť si použitie uzatvoreného tvaru"
+msgstr "Vynútiť si použitie uzatvoreného tvaru"
 
 #: ../src/SketchTools.cpp:392
-#, fuzzy
 msgid "fix wire options"
-msgstr "voľby súborov"
+msgstr "Oprav parametre obrysu"
 
 #: ../src/SketchTools.cpp:393
-#, fuzzy
 msgid "reorder"
 msgstr "zmeň poradie"
 
 #: ../src/SketchTools.cpp:394
 msgid "fix small"
-msgstr ""
+msgstr "oprav malé nedostatky"
 
 #: ../src/SketchTools.cpp:395
 msgid "fix small precision"
-msgstr ""
+msgstr "oprav nízku presnosť"
 
 #: ../src/SketchTools.cpp:396
-#, fuzzy
 msgid "fix self intersection"
-msgstr "priesečník"
+msgstr "oprav stav, keď krivka pretína sama seba"
 
 #: ../src/SketchTools.cpp:397
 msgid "fix lacking"
-msgstr ""
+msgstr "Oprav nedostaky"
 
 #: ../src/SketchTools.cpp:398
-#, fuzzy
 msgid "fix degenerated"
-msgstr "Vygenerované"
+msgstr "Oprav zmeny tvaru"
 
 #: ../src/SketchTools.cpp:400
 msgid "modify topology"
-msgstr ""
+msgstr "Zmeň topológiu"
 
 #: ../src/SketchTools.cpp:401
 msgid "modify geometry"
-msgstr ""
+msgstr "Zmeń geometriu"
 
 #: ../src/SketchTools.cpp:402
 msgid "closed wire"
-msgstr ""
+msgstr "ozatvorený obrys (uzatvorená čiara)"
 
 #: ../src/SketchTools.cpp:403
 msgid "preference pcurve"
-msgstr ""
+msgstr "Možnosto objektu p-krivky"
 
 #: ../src/SketchTools.cpp:404
 msgid "fix gaps by ranges"
-msgstr ""
+msgstr "opra medzery podľa rozsahu"
 
 #: ../src/SketchTools.cpp:893
 msgid "Failed to create BSpline curve"
-msgstr ""
+msgstr "Je nemožné vytvoriť krivku typu B-splajn"
 
 #: ../src/SketchTools.cpp:937
 msgid "Replaced "
-msgstr ""
+msgstr "Nardaená/ý/é"
 
 #: ../src/SolidTools.cpp:57
-#, fuzzy
 msgid "Save solid file"
-msgstr "Uložiť súbor"
+msgstr "Uložiť súbor s opisom telesa"
 
 #: ../src/SolidTools.cpp:57
-#, fuzzy
 msgid "Solid Files"
-msgstr "Nástroje na prácu s telesami"
+msgstr "Súbory s opismi telies"
 
 #: ../src/SolidTools.cpp:82
-#, fuzzy
 msgid "Invalid solid file type chosen"
-msgstr "Zvolili ste nesprávny typ súboru"
+msgstr "Zvolili ste nesprávny typ súboru s opisom telesa"
 
 #: ../src/Sphere.cpp:76
-#, fuzzy
 msgid "Ellipsoid"
-msgstr "Elipsa"
+msgstr "Elipsoid"
 
 #: ../src/TransformTool.cpp:21
 msgid "Transform"
@@ -3445,14 +3418,12 @@ msgid "Drag with the left mouse button"
 msgstr "uchopte stlačením ľavého tlačidla myši"
 
 #: ../src/ViewPanning.cpp:55
-#, fuzzy
 msgid "Stop panning"
-msgstr "Kreslenie prerušené"
+msgstr "Sledovanie prerušené"
 
 #: ../src/ViewRotating.cpp:60
-#, fuzzy
 msgid "Stop rotating"
-msgstr "Kreslenie prerušené"
+msgstr "rotácia prerušená"
 
 #: ../src/ViewZooming.cpp:50
 msgid "Forward to zoom in, Back to zoom out"
@@ -3467,13 +3438,12 @@ msgid "Hold middle mouse button down to pan"
 msgstr "Držte stredn=e tlačidlo stlačené, abz bolo vidieť panorámu"
 
 #: ../src/ViewZooming.cpp:61
-#, fuzzy
 msgid "Stop zooming"
-msgstr "Označovanie pozastavené"
+msgstr "Zmešovanie/zväčšovanie pozastavené"
 
 #: ../src/Wire.cpp:33
 msgid "Result of Wire Offset"
-msgstr "Výsledok posunitia vlákna"
+msgstr "Výsledok posunutia vlákna"
 
 #: ../src/Wire.cpp:35
 msgid "Generated"
@@ -3496,9 +3466,8 @@ msgid "Offset Wire"
 msgstr "Posunutie vlákna"
 
 #: ../src/wxImageLoader.cpp:22
-#, fuzzy
 msgid "Failed to load resource image from "
-msgstr "Súbor nastavení nemožno načítať"
+msgstr "Nastavenie obrázku nemožno načítať zo súboru"
 
 #: ../src/ConversionTools.h:39 ../src/ConversionTools.h:48
 msgid "Make To Sketch"
@@ -3509,9 +3478,8 @@ msgid "Make selected lines and arcs into a new sketch"
 msgstr "Vytvor novú trajektóriu z vybranňých úsečiek a oblúkov"
 
 #: ../src/ConversionTools.h:50
-#, fuzzy
 msgid "Make selected edges into a new sketch"
-msgstr "Vytvor novú trajektóriu z vybranňých úsečiek a oblúkov"
+msgstr "Vytvor novú trajektóriu z vybranných hrán"
 
 #: ../src/ConversionTools.h:57
 msgid "Combine sketches"
@@ -3522,12 +3490,10 @@ msgid "Combine selected sketches"
 msgstr "Spoj vybrané trajektórie"
 
 #: ../src/ConversionTools.h:66
-#, fuzzy
 msgid "Unite sketches"
-msgstr "Pridaj trajektórie"
+msgstr "Zjednoť trajektórie"
 
 #: ../src/ConversionTools.h:68
-#, fuzzy
 msgid "Unite selected sketches"
 msgstr "Spoj vybrané trajektórie"
 
@@ -3550,7 +3516,7 @@ msgstr "Vytvor súrdnicový systém"
 
 #: ../src/ConversionTools.h:98
 msgid "Transform selected items using two coordinate systems"
-msgstr ""
+msgstr "Preveď vybrané položky s využitím dvoch súrodnicových systémov(z  jedného do druhého)"
 
 #: ../src/DimensionDrawing.h:32
 msgid "Dimension drawing"
@@ -3561,9 +3527,8 @@ msgid "Drawing"
 msgstr "Kreslenie"
 
 #: ../src/Face.h:85
-#, fuzzy
 msgid "Make a sketch from face"
-msgstr "Skonvertuj trajektňoriu na plochu"
+msgstr "Skonvertuj plochu na trajektňoriu"
 
 #: ../src/HILine.h:25
 msgid "Infinite Line"
@@ -3575,7 +3540,7 @@ msgstr "Zväčši uchytením okna"
 
 #: ../src/MenuSeparator.h:13
 msgid "MenuSeparator"
-msgstr ""
+msgstr "Odeľovač položiek menu"
 
 #: ../src/Pocket.h:17
 msgid "Pocket"
@@ -3598,31 +3563,26 @@ msgid "Edges"
 msgstr "Hrany"
 
 #: ../src/ShapeTools.h:30
-#, fuzzy
 msgid "Vertices"
-msgstr "Vlastnosti"
+msgstr "Vrcholy"
 
 #: ../src/SketchTools.h:92
-#, fuzzy
 msgid "Simplify Sketch to Lines"
-msgstr "Zjednoduš nastavenie výkresu"
+msgstr "Zjednoduš výkres na čiary"
 
 #: ../src/SketchTools.h:101
-#, fuzzy
 msgid "Simplify Sketch to BSplines"
-msgstr "Zjednoduš nastavenie výkresu"
+msgstr "Zjednoduš výkres na B-splajny"
 
 #: ../src/SolidTools.h:15
-#, fuzzy
 msgid "Save Solids"
-msgstr "Sjote telesá"
+msgstr "Uložte telesá"
 
 #: ../src/StlSolid.h:41
 msgid "STL Solid"
 msgstr "teleso typu STL"
 
 #: ../src/ViewPanning.h:12
-#, fuzzy
 msgid "View Pan"
 msgstr "Panoramtický pohľad"
 
@@ -3647,13 +3607,12 @@ msgid "Cancel operation"
 msgstr "zruš operáciu"
 
 #: ../interface/HeeksCADInterface.cpp:2023
-#, fuzzy
 msgid "Geometry"
-msgstr "&Tvar"
+msgstr "Tvar/Geometria"
 
 #: ../interface/HeeksCADInterface.cpp:2027
 msgid "Set Origin"
-msgstr ""
+msgstr "Navstav ako vzor"
 
 #: ../interface/HeeksObj.cpp:124
 msgid "object type"
@@ -3677,7 +3636,7 @@ msgstr "viditeľný"
 
 #: ../interface/HeeksObj.cpp:311
 msgid "Sketch Pointer == NULL in HeeksObjOccurrenceInSketch"
-msgstr ""
+msgstr "Smerník na trajektóriu je rovný NULL v metóde HeeksObjOccurrenceInSketch"
 
 #: ../interface/Property.h:41
 msgid "Unknown Property"
