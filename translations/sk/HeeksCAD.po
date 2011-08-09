@@ -1509,40 +1509,35 @@ msgstr "Podložka"
 
 #: ../src/HeeksCAD.cpp:4566 ../src/Part.h:15
 msgid "Part"
-msgstr ""
+msgstr "Časť"
 
 #: ../src/HeeksCAD.cpp:4567
-#, fuzzy
 msgid "PocketSolid"
-msgstr "Vyfrézovanie tvaru"
+msgstr "teleso na vyfréezovanie"
 
 #: ../src/HeeksCAD.cpp:4568
-#, fuzzy
 msgid "AngularDimension"
-msgstr "Rozmer"
+msgstr "Uhlový Rozmer"
 
 #: ../src/HeeksCAD.cpp:4569
-#, fuzzy
 msgid "OrientationModifier"
-msgstr "Poloha textu"
+msgstr "Náastroj na zmenu orientácie"
 
 #: ../src/HeeksCAD.cpp:4570
 msgid "Hole"
-msgstr ""
+msgstr "Diera"
 
 #: ../src/HeeksCAD.cpp:4571 ../src/Hole.h:21
-#, fuzzy
 msgid "Positions"
-msgstr "Pozíca"
+msgstr "Pozície"
 
 #: ../src/HeeksCAD.cpp:4572
-#, fuzzy
 msgid "ObjectMaximum"
-msgstr "Objekty"
+msgstr "Objekt najväčších rozmerov"
 
 #: ../src/HeeksFrame.cpp:104
 msgid "Trace Log"
-msgstr ""
+msgstr "Záznam o činnosti počas krokovania"
 
 #: ../src/HeeksFrame.cpp:148 ../src/HeeksFrame.cpp:1969
 msgid "Graphics"
@@ -1572,15 +1567,13 @@ msgid "Set toolbars to left"
 msgstr "Zarovnaj panely nástrojov do ľava"
 
 #: ../src/HeeksFrame.cpp:575
-#, fuzzy
 msgid "Pick three or more points to be splined"
-msgstr "Vložte dve alebo viac telies, budú spojené do jedného"
+msgstr "Vložte tri alebo viac bodov,ktoré  budú spojené pomocou splajnovej krivky"
 
 #: ../src/HeeksFrame.cpp:575 ../src/HeeksFrame.cpp:1692
 #: ../src/HeeksFrame.cpp:1856
-#, fuzzy
 msgid "Spline Through Points"
-msgstr "Nakresli kruh cez 3 zadané body"
+msgstr "Nakresli splajnovú krivky cez zadané body"
 
 #: ../src/HeeksFrame.cpp:707 ../src/HeeksFrame.cpp:724
 #: ../src/CoordinateSystem.h:32 ../interface/HeeksCADInterface.cpp:532
@@ -1592,11 +1585,8 @@ msgid "Import file"
 msgstr "Importuj súbor"
 
 #: ../src/HeeksFrame.cpp:873
-msgid ""
-"Pick two or more faces or solids, the first one will be cut by the others"
-msgstr ""
-"Označte dve alebo viac plôch, alebo dve alebo viac telies, prvá/prvé bude "
-"orezané ostatnými"
+msgid"Pick two or more faces or solids, the first one will be cut by the others"
+msgstr "Označte dve alebo viac plôch, alebo dve alebo viac telies, prvá/prvé bude  orezané ostatnými"
 
 #: ../src/HeeksFrame.cpp:873
 msgid "Subtract Solids"
@@ -1608,12 +1598,10 @@ msgstr "Vložte dve alebo viac telies, budú spojené do jedného"
 
 #: ../src/HeeksFrame.cpp:881
 msgid "Fuse Solids"
-msgstr "Sjote telesá"
+msgstr "Spojte telesá"
 
 #: ../src/HeeksFrame.cpp:889
-msgid ""
-"Pick two or more solids, only the shape that is contained by all of them "
-"will remain"
+msgid "Pick two or more solids, only the shape that is contained by all of them will remain"
 msgstr "Vložte dva alebo viac telies, výsledkom bude len prienik všetkých"
 
 #: ../src/HeeksFrame.cpp:889
@@ -1641,38 +1629,30 @@ msgid "Enter chamfer distance"
 msgstr "Vložte vzdialenosť úkosového nástroja"
 
 #: ../src/HeeksFrame.cpp:935
-#, fuzzy
 msgid "Pick two or more sketches, to create a lofted solid between"
-msgstr ""
-"Vložte dva alebo viac výkresov na vytvorenie telesa ťahaním\n"
-"medzi nimi Držte stlačený kláves Ctrl na oznčenie vic než \n"
-" jedného telesa"
+msgstr "Vložte dva alebo viac výkresov na vytvorenie telesa ťahaním medzi nimi. Držte stlačený kláves Ctrl na oznčenie viac než jedného telesa"
 
 #: ../src/HeeksFrame.cpp:935 ../src/HeeksFrame.cpp:943
 #: ../src/HeeksFrame.cpp:951
 #, fuzzy
 msgid "hold down Ctrl key to select more than one solid"
-msgstr ""
-"Vložte dva alebo viac výkresov na vytvorenie telesa pretláčaním\n"
-"Držte stlačený kláves Ctrl na oznčenie vic než jedného telesa"
+msgstr "podržte stalčený kláves CTRL, aby ste vybrali viac než jedno teleso"
 
 #: ../src/HeeksFrame.cpp:935
 msgid "Lofted Body"
 msgstr "Teleso vyniknuté ťahaním"
 
 #: ../src/HeeksFrame.cpp:943
-msgid ""
-"Pick one or more sketches, faces or circles, to create an extruded body from"
-msgstr ""
+msgid "Pick one or more sketches, faces or circles, to create an extruded body from"
+msgstr "Vyberte jedno alebo viac nákresov, plôch alebo kruhov/kružníc na vytvorenie 3D extrúdovaného(vytiahnutého) tvaru"
 
 #: ../src/HeeksFrame.cpp:943 ../src/HeeksFrame.cpp:951
 msgid "Extrude"
-msgstr "preláčanir"
+msgstr "Vytiahnutie(extrúdovanie)"
 
 #: ../src/HeeksFrame.cpp:951
-msgid ""
-"Pick one or more sketches, faces or circles, to create a revolved body from"
-msgstr ""
+msgid "Pick one or more sketches, faces or circles, to create a revolved body from"
+msgstr "Vyberte jedno alebo viac nákresov, plôch alebo kruhov/kružníc na vytvorenie tvaru otáčaním "
 
 #: ../src/HeeksFrame.cpp:977 ../src/Sphere.h:25
 msgid "Sphere"
