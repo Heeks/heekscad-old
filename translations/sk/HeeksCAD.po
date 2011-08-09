@@ -2430,7 +2430,7 @@ msgstr "Zadávací režim"
 
 #: ../src/LineArcDrawing.cpp:67
 msgid "set previous direction"
-msgstr "Nastavte predcháadzajúci smer"
+msgstr "Nastavte predchádzajúcu oreintáciu"
 
 #: ../src/LineArcDrawing.cpp:562
 msgid "Line drawing mode"
@@ -2469,76 +2469,64 @@ msgid "click on second point"
 msgstr "Kliknite na druhý bod"
 
 #: ../src/LineArcDrawing.cpp:583
-#, fuzzy
 msgid "Ellipse drawing mode"
-msgstr "Režim kreslenia čiar"
+msgstr "Režim kreslenia  elíps"
 
 #: ../src/LineArcDrawing.cpp:586
-#, fuzzy
 msgid "center and 2 points mode"
-msgstr "Režim zadania stredom a bodom na kružnici"
+msgstr "Režim zadania stredom a dvoma bodmi"
 
 #: ../src/LineArcDrawing.cpp:588 ../src/LineArcDrawing.cpp:642
 msgid "click on center point"
 msgstr "Kliknitew na bod stredu"
 
 #: ../src/LineArcDrawing.cpp:591
-#, fuzzy
 msgid "click on point on ellipse"
-msgstr "Kliknite na bod na kuržnici"
+msgstr "Kliknite na bod na elipse"
 
 #: ../src/LineArcDrawing.cpp:593
 msgid "(colinear or orthogonal to axis)"
-msgstr ""
+msgstr "(v mesre osi, alebo kolmo na os)"
 
 #: ../src/LineArcDrawing.cpp:595
-#, fuzzy
 msgid "click on another point on ellipse"
-msgstr "Kliknitew na bod stredu"
+msgstr "Kliknite na bod na elipse"
 
 #: ../src/LineArcDrawing.cpp:601
-#, fuzzy
 msgid "Spline drawing mode"
-msgstr "Režim kreslenia čiar"
+msgstr "Režim kreslenia"
 
 #: ../src/LineArcDrawing.cpp:606
-#, fuzzy
 msgid "cubic spline mode"
-msgstr "Režim kruhu"
+msgstr "Režim kubických splajnov"
 
 #: ../src/LineArcDrawing.cpp:609 ../src/LineArcDrawing.cpp:617
-#, fuzzy
 msgid "click on end point"
-msgstr "Kliknite na druhý bod"
+msgstr "Kliknite na koncový bod"
 
 #: ../src/LineArcDrawing.cpp:610 ../src/LineArcDrawing.cpp:624
-#, fuzzy
 msgid "click on first control point"
-msgstr "Kliknite na prvý bod"
+msgstr "Kliknite na prvý riadici bod"
 
 #: ../src/LineArcDrawing.cpp:611 ../src/LineArcDrawing.cpp:625
-#, fuzzy
 msgid "click on second control point"
-msgstr "Kliknite na druhý bod"
+msgstr "Kliknite na druhý riadici bod"
 
 #: ../src/LineArcDrawing.cpp:614
-#, fuzzy
 msgid "quartic spline mode"
-msgstr "Režim kruhu"
+msgstr "Režim kvadratického splajnu"
 
 #: ../src/LineArcDrawing.cpp:618
-#, fuzzy
 msgid "click on control point"
-msgstr "Kliknitew na bod stredu"
+msgstr "Kliknitew na riadici bod "
 
 #: ../src/LineArcDrawing.cpp:621
 msgid "rational spline mode"
-msgstr ""
+msgstr "režim splajnu  roumného rádu"
 
 #: ../src/LineArcDrawing.cpp:626
-#, fuzzy
 msgid "click on next control point or endpoint"
-msgstr "Kliknite na druhý bod"
+msgstr "Kliknite na ďalší riadici bod, alebo koncový bod"
 
 #: ../src/LineArcDrawing.cpp:634
 msgid "Circle drawing mode"
@@ -2561,19 +2549,16 @@ msgid "click on third point"
 msgstr "Kliknite na tretí bod"
 
 #: ../src/LineArcDrawing.cpp:657
-#, fuzzy
 msgid "two points mode"
-msgstr "Režim zadania troma bodmi na kružnici"
+msgstr "Režim zadania dvoma bodmi"
 
 #: ../src/LineArcDrawing.cpp:665
-#, fuzzy
 msgid "centre with radius mode"
-msgstr "Stred a polomer"
+msgstr "Režim zadania stredu a polomeru"
 
 #: ../src/LineArcDrawing.cpp:667
-#, fuzzy
 msgid "click on centre point"
-msgstr "Kliknitew na bod stredu"
+msgstr "Kliknite na bod stredu"
 
 #: ../src/LineArcDrawing.cpp:749
 msgid "draw lines"
@@ -2593,7 +2578,7 @@ msgstr "Režim kreslenia"
 
 #: ../src/LineArcDrawing.cpp:760
 msgid "(press 'a' for arcs)"
-msgstr "Stalčte klávesu a, aby ste kreslili oblúk"
+msgstr "(Stlačte klávesu a, aby ste kreslili oblúk)"
 
 #: ../src/LineArcDrawing.cpp:767
 msgid "centre and point"
@@ -2641,7 +2626,7 @@ msgstr "Zmaž vyznačené položky"
 
 #: ../src/MarkedList.cpp:298
 msgid "Copy"
-msgstr ""
+msgstr "Kopíruj"
 
 #: ../src/MarkedList.cpp:300
 msgid "Copies the selected items to the clipboard"
@@ -2652,9 +2637,8 @@ msgid "Paste Into"
 msgstr "Vožiť na"
 
 #: ../src/MarkedList.cpp:315
-#, fuzzy
 msgid "Paste"
-msgstr "Vožiť na"
+msgstr "Vložiť"
 
 #: ../src/MarkedList.cpp:317
 msgid "Paste items from the clipboard to the drawing"
@@ -2679,48 +2663,45 @@ msgstr "Preuš zmeny vobjekte"
 
 #: ../src/OrientationModifier.cpp:105
 msgid "Normally spaced"
-msgstr ""
+msgstr "Bežne odsadné/s bežným royostupom/mostíkom"
 
 #: ../src/OrientationModifier.cpp:107
 msgid "Spacing"
-msgstr ""
+msgstr "Odsadenie/medzera"
 
 #: ../src/OrientationModifier.cpp:110
 msgid "Number of Rotations (negative for reverse direction)"
-msgstr ""
+msgstr "Počet otočení (záaporné číslo pre opačný smer)"
 
 #: ../src/OrientationModifier.cpp:111
 msgid "Sketch rotates text"
-msgstr ""
+msgstr "Kreba/krivka otáača text"
 
 #: ../src/OrientationModifier.cpp:120 ../src/OrientationModifier.cpp:126
 msgid "Left"
-msgstr "Vľavo-vnútri"
+msgstr "Vľavo"
 
 #: ../src/OrientationModifier.cpp:121
-#, fuzzy
 msgid "Centre"
 msgstr "Stred"
 
 #: ../src/OrientationModifier.cpp:122 ../src/OrientationModifier.cpp:127
 msgid "Right"
-msgstr "Vpravo-vonku"
+msgstr "Vpravo"
 
 #: ../src/OrientationModifier.cpp:128
 msgid "Top"
-msgstr ""
+msgstr "Hore"
 
 #: ../src/OrientationModifier.cpp:129
-#, fuzzy
 msgid "Bottom"
-msgstr "Pohľad zdola v osiach XZ"
+msgstr "Dole"
 
 #: ../src/OrientationModifier.cpp:132
 msgid "Justification"
-msgstr ""
+msgstr "Zarovnanie"
 
 #: ../src/Pad.cpp:101 ../src/Pocket.cpp:102
-#, fuzzy
 msgid "Height"
 msgstr "výška"
 
@@ -2746,7 +2727,7 @@ msgstr "súbory zdieľaných knižnňic"
 
 #: ../src/Plugins.cpp:117
 msgid "Choose shared library file"
-msgstr "Vyberet si súbor zdieľanej knižnice"
+msgstr "Vyberte si súbor zdieľanej knižnice"
 
 #: ../src/Plugins.cpp:137
 msgid "HeeksCAD plugin libraries"
@@ -2754,7 +2735,7 @@ msgstr "Knižncie zásuvných modulov HeeksCADu"
 
 #: ../src/Plugins.cpp:147
 msgid "New"
-msgstr ""
+msgstr "Nový"
 
 #: ../src/Plugins.cpp:148
 msgid "Edit"
@@ -2833,19 +2814,16 @@ msgid "Down"
 msgstr "Dole"
 
 #: ../src/RegularShapesDrawing.cpp:493
-#, fuzzy
 msgid "Rectangle drawing"
-msgstr "Kreslenie bežných tvarov"
+msgstr "Kreslenie obdĺžnikov"
 
 #: ../src/RegularShapesDrawing.cpp:496
-#, fuzzy
 msgid "Polygon drawing"
-msgstr "Krelsnenie bodu"
+msgstr "Kreslenenie mnohouhoľníkov"
 
 #: ../src/RegularShapesDrawing.cpp:499
-#, fuzzy
 msgid "Obround drawing"
-msgstr "Krelsnenie bodu"
+msgstr "Kreslenenie zaoblených líšt(obdĺžnik so zaoblenými hranami) na nastavenie"
 
 #: ../src/RegularShapesDrawing.cpp:502
 msgid "Regular shapes drawing"
@@ -2869,44 +2847,39 @@ msgstr "Počet strán mnohouhoľníka"
 
 #: ../src/RegularShapesDrawing.cpp:523
 msgid "excribed circle"
-msgstr ""
+msgstr " vonkajší kruh"
 
 #: ../src/RegularShapesDrawing.cpp:524
 msgid "inscribed circle"
-msgstr ""
+msgstr "vnúrorný kruh"
 
 #: ../src/RegularShapesDrawing.cpp:525
 msgid "polygon mode"
-msgstr ""
+msgstr "Režim mnohouhoľníkov"
 
 #: ../src/RS274X.cpp:190
 msgid "pcb"
-msgstr ""
+msgstr "doska plošných spojov (PCB)"
 
 #: ../src/RS274X.cpp:190
 msgid "_width_"
-msgstr ""
+msgstr "_šírka_"
 
 #: ../src/RS274X.cpp:190
-#, fuzzy
 msgid "_height_"
-msgstr "výška"
+msgstr "_výška_"
 
 #: ../src/RS274X.cpp:2601
-msgid ""
-"# This file converts the RAW image file generated by the HeeksCAD import of\n"
-msgstr ""
+msgid "# This file converts the RAW image file generated by the HeeksCAD import of\n"
+msgstr "# Tento súbor konvertuje súbor vo formáte obrázkov RAW, ktorý bol  genrovaný programom HeeksCAD pri načítaní a importe zo súboru\n" 
 
 #: ../src/RS274X.cpp:2602
-msgid ""
-"# a GERBER format data file into a GIF format file.   This just makes it\n"
-msgstr ""
+msgid "# a GERBER format data file into a GIF format file.   This just makes it\n"
+msgstr "# format súboru typu GERBER na formát súboru GIF. Len toto sa stane\n"
 
 #: ../src/RS274X.cpp:2603
-msgid ""
-"# more convenient for viewing\n"
-"\n"
-msgstr ""
+msgid "# more convenient for viewing\n"
+msgstr "Vhodnejšií/vhodnejšie na prehliafdanie\n"
 
 #: ../src/RuledSurface.cpp:22
 msgid "pick some sketches"
@@ -2926,66 +2899,58 @@ msgstr "vytiahnuté teleso"
 
 #: ../src/RuledSurface.cpp:137
 msgid "Pipe"
-msgstr ""
+msgstr "Rúra"
 
 #: ../src/RuledSurface.cpp:142
 msgid "Error making pipe"
-msgstr ""
+msgstr "Chyba pri vytváraní rúry"
 
 #: ../src/RuledSurface.cpp:192
-#, fuzzy
 msgid "Make extrusion"
 msgstr "vytiahnutie 2D obrazca na 3D teleso"
 
 #: ../src/RuledSurface.cpp:212
-#, fuzzy
 msgid "taper outward angle"
-msgstr "štartovací uhol"
+msgstr "uhol kužeľovitého vzhľadu"
 
 #: ../src/RuledSurface.cpp:234 ../src/RuledSurface.cpp:298
 msgid "pick sketches, faces or circles"
-msgstr ""
+msgstr "Vyberrte nákresy, plochz a kruhy/kružnice"
 
 #: ../src/RuledSurface.cpp:265
-#, fuzzy
 msgid "Input revolution angle"
-msgstr "otočenie"
+msgstr "Vložte uhol otočenia"
 
 #: ../src/RuledSurface.cpp:275
-#, fuzzy
 msgid "Makes a solid"
-msgstr "Tvorba výberu:"
+msgstr "Vytváara teleso"
 
 #: ../src/RuledSurface.cpp:329
-#, fuzzy
 msgid "Error making ruled solid"
-msgstr "Fatálna chyba pri tvorbe telesa s rozmerom"
+msgstr "Chyba pri tvorbe telesa podľa daných pravidiel"
 
 #: ../src/RuledSurface.cpp:334
 msgid "Fatal error making ruled solid"
-msgstr "Fatálna chyba pri tvorbe telesa s rozmerom"
+msgstr "Fatálna chyba pri tvorbe telesa podľa daných pravidiel"
 
 #: ../src/RuledSurface.cpp:387
-#, fuzzy
 msgid "Error making extruded solid"
-msgstr "Fatálna chzba pri tvorbe teleska vytlačením"
+msgstr "Fatálna chyba pri tvorbe telesa vytlačením"
 
 #: ../src/RuledSurface.cpp:391
 msgid "Fatal error making extruded solid"
-msgstr "Fatálna chzba pri tvorbe teleska vytlačením"
+msgstr "Fatálna chyba pri tvorbe telesa vytlačením"
 
 #: ../src/RuledSurface.cpp:418
-#, fuzzy
 msgid "Error making revolved solid"
-msgstr "Fatálna chyba pri tvorbe telesa s rozmerom"
+msgstr "Chyba pri tvorbe telesa otáčaním"
 
 #: ../src/RuledSurface.cpp:422
 #, fuzzy
 msgid "Fatal error making revolved solid"
-msgstr "Fatálna chyba pri tvorbe telesa s rozmerom"
+msgstr "Fatálna chyba pri tvorbe telesa otáčaním"
 
 #: ../src/Ruler.cpp:280
-#, fuzzy
 msgid "ResetRuler"
 msgstr "Vynuluj pravítko"
 
@@ -2994,44 +2959,36 @@ msgid "Reset the ruler"
 msgstr "Vynuluj pravítko"
 
 #: ../src/Ruler.cpp:331
-#, fuzzy
 msgid "width"
-msgstr "šírka x"
+msgstr "šírka"
 
 #: ../src/Ruler.cpp:333
-#, fuzzy
 msgid "empty_length"
-msgstr "dĺžka"
+msgstr "nezadaná dĺžka"
 
 #: ../src/Sectioning.cpp:57
-#, fuzzy
 msgid "Points must not be the same!"
-msgstr "Kužel nemôže mať rovnaké oba polomery rezov"
+msgstr "Body nemôžu bzť zhodné!"
 
 #: ../src/Sectioning.cpp:447
-#, fuzzy
 msgid "Sectioned Solid"
-msgstr "OPtočené telesop"
+msgstr "Rozdelné teleso"
 
 #: ../src/Sectioning.cpp:455
-#, fuzzy
 msgid "Sectioning failed!"
-msgstr "výberový filter"
+msgstr "Rozdelenio zlyhalo"
 
 #: ../src/Sectioning.cpp:469
-#, fuzzy
 msgid "Pick point on axis"
-msgstr "Vyberte miesto na osi X"
+msgstr "Vyberte bod na osi"
 
 #: ../src/Sectioning.cpp:477
-#, fuzzy
 msgid "Pick secondary point on axis"
-msgstr "Vyberte miesto na osi X"
+msgstr "Vyberte druhý bod osi X"
 
 #: ../src/Sectioning.cpp:486
-#, fuzzy
 msgid "Pick objects to section"
-msgstr "Označte objekty, ktorým budete meniť veľkosť"
+msgstr "Označte objekty, ktorý poslúžia na rozdelenie"
 
 #: ../src/SelectMode.cpp:70
 msgid "Left button for selecting objects"
