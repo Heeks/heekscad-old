@@ -762,7 +762,6 @@ msgid "use view units"
 msgstr "použite jednotky pre pohľad"
 
 #: ../src/HDimension.cpp:445
-#, fuzzy
 msgid "inches"
 msgstr "palce/palcov"
 
@@ -771,7 +770,6 @@ msgid "units"
 msgstr "jednotky"
 
 #: ../src/HDimension.cpp:452 ../src/HDimension.cpp:454
-#, fuzzy
 msgid "dimension value"
 msgstr "rozmer"
 
@@ -780,42 +778,40 @@ msgid "Untitled"
 msgstr "Bez mena"
 
 #: ../src/HeeksCAD.cpp:1106
-msgid ""
-"OpenCascade failures occured during DXF read processing.  Would you like to "
-"import again and ignore the errors?"
-msgstr ""
+msgid"OpenCascade failures occured during DXF read processing.  Would you like to import again and ignore the errors?"
+msgstr "Knižnica OpenCascade hlási chyby pri načítavaní a spracovaní súboru typu DXF. Chcete opakovať načítanie/import súboru s ignorovaním týchto chýb?"
 
 #: ../src/HeeksCAD.cpp:1106
 msgid "DXF Read"
-msgstr "Čítanie súboru vo formáate DXF"
+msgstr "Čítanie súboru vo formáte DXF"
 
 #: ../src/HeeksCAD.cpp:1120
 msgid "OpenCascade failure occured during DXF read processing"
-msgstr ""
+msgstr "Knižnica OpenCascade hlási chyby pri načítavaní a spracovaní súboru typu DXF"
 
 #: ../src/HeeksCAD.cpp:1128
 msgid "Select how the file is to be interpreted"
-msgstr ""
+msgstr "Vyberte, akým spôsobom má byť súbor spracovaný/interpretovaný"
 
 #: ../src/HeeksCAD.cpp:1129
 msgid "RS274X file interpretation"
-msgstr ""
+msgstr "Interpretovanie súboru podľa normy RS-274X (extended Gerber format)"
 
 #: ../src/HeeksCAD.cpp:1133
 msgid "Produce trace isolation sketches"
-msgstr ""
+msgstr "Vytvorte krivky, ktoré ohraničia tvary"
 
 #: ../src/HeeksCAD.cpp:1134
 msgid "Produce trace centre-line sketches"
-msgstr ""
+msgstr "Vytvorte krivky, pre vloženie osí"
 
 #: ../src/HeeksCAD.cpp:1135
 msgid "Produce mirrored trace isolation sketches"
-msgstr ""
+msgstr "Vytvorte  krivky na oddelenie zrkadlo obrátených kriviek"
 
 #: ../src/HeeksCAD.cpp:1136
 msgid "Produce mirrored trace centre-line sketches"
-msgstr ""
+msgstr "Vytvorte  krivky na oddelenie zrkadlo obrátených kriviek pre vloženie osí"
 
 #: ../src/HeeksCAD.cpp:1214 ../src/HeeksFrame.cpp:1815
 msgid "Open file"
@@ -827,7 +823,7 @@ msgstr "Zvolili ste nesprávny typ súboru"
 
 #: ../src/HeeksCAD.cpp:1226 ../src/HeeksCAD.cpp:1296 ../src/HeeksCAD.cpp:1733
 msgid "expecting"
-msgstr "čakacia"
+msgstr "očakávaná"
 
 #: ../src/HeeksCAD.cpp:1425 ../src/HeeksCAD.cpp:1490 ../src/HeeksCAD.cpp:1520
 #: ../src/HeeksCAD.cpp:1548
@@ -847,23 +843,20 @@ msgid "Show Full Screen"
 msgstr "Spustiť celoobrazovkový režim"
 
 #: ../src/HeeksCAD.cpp:2069
-#, fuzzy
 msgid "Move here"
-msgstr "Zmeň rozmery"
+msgstr "Presuň sem"
 
 #: ../src/HeeksCAD.cpp:2069
-#, fuzzy
 msgid "Copy here"
-msgstr "guľa"
+msgstr "Skopíruj sem"
 
 #: ../src/HeeksCAD.cpp:2103
 msgid "Set world coordinate system active"
 msgstr "Nastav hlavný súradnicový systém ako aktívny"
 
 #: ../src/HeeksCAD.cpp:2155
-#, fuzzy
 msgid "Add points at intersections"
-msgstr "priesečník"
+msgstr "Pridajte body v miestach, kde sa nachádzajú priesečníky"
 
 #: ../src/HeeksCAD.cpp:2998 ../src/SelectMode.cpp:89
 msgid "view options"
@@ -887,7 +880,7 @@ msgstr "žiadna pomoc"
 
 #: ../src/HeeksCAD.cpp:3009
 msgid "input mode title"
-msgstr "meno vkladacieho eržimu"
+msgstr "meno vkladacieho režimu"
 
 #: ../src/HeeksCAD.cpp:3010
 msgid "full help"
@@ -919,124 +912,107 @@ msgstr "Kláves Ctrl uskutoční rotáciu"
 
 #: ../src/HeeksCAD.cpp:3020
 msgid "show datum"
-msgstr "zobraz dátum"
+msgstr "zobraz údaje"
 
 #: ../src/HeeksCAD.cpp:3021
 msgid "datum is solid"
-msgstr "Dátum považuj za teleso"
+msgstr "Údaje považuj za teleso"
 
 #: ../src/HeeksCAD.cpp:3022
 msgid "datum size"
-msgstr "Rozmer úfaja"
+msgstr "Rozmer údaju"
 
 #: ../src/HeeksCAD.cpp:3023
 msgid "datum size is pixels not mm"
-msgstr "roznmer ňudaja v mm"
+msgstr "roznmer údaju v mm"
 
 #: ../src/HeeksCAD.cpp:3024
 msgid "show ruler"
 msgstr "ukáž pravítko"
 
 #: ../src/HeeksCAD.cpp:3027
-#, fuzzy
 msgid "single color"
-msgstr "zoslabiť farbu"
+msgstr "jediná farbu/jednofarebné"
 
 #: ../src/HeeksCAD.cpp:3028
 msgid "top color and bottom color"
-msgstr ""
+msgstr "Farby popredia a pozadia"
 
 #: ../src/HeeksCAD.cpp:3029
 msgid "left color and right color"
-msgstr ""
+msgstr "Farby napravo a naľavo"
 
 #: ../src/HeeksCAD.cpp:3030
-#, fuzzy
 msgid "four corner colors"
-msgstr "miera zaoblôenia rohov"
+msgstr "Farba štyroch rohov"
 
 #: ../src/HeeksCAD.cpp:3031
 msgid "sky and ground"
-msgstr ""
+msgstr "Nebo a zem"
 
 #: ../src/HeeksCAD.cpp:3032
-#, fuzzy
 msgid "background mode"
-msgstr "farba pozadia"
+msgstr "režim pozadia"
 
 #: ../src/HeeksCAD.cpp:3037
 msgid "background color"
 msgstr "farba pozadia"
 
 #: ../src/HeeksCAD.cpp:3041
-#, fuzzy
 msgid "top background color"
-msgstr "farba pozadia"
+msgstr "najvyššia farba pozadia"
 
 #: ../src/HeeksCAD.cpp:3042
-#, fuzzy
 msgid "bottom background color"
-msgstr "farba pozadia"
+msgstr "najnižšia farba pozadia"
 
 #: ../src/HeeksCAD.cpp:3046
-#, fuzzy
 msgid "left background color"
-msgstr "farba pozadia"
+msgstr "farba pozadia vľavo"
 
 #: ../src/HeeksCAD.cpp:3047
-#, fuzzy
 msgid "right background color"
-msgstr "farba pozadia"
+msgstr "farba pozadia vpravo "
 
 #: ../src/HeeksCAD.cpp:3051
-#, fuzzy
 msgid "top left background color"
-msgstr "farba pozadia"
+msgstr "farba pozadia vľavo hore"
 
 #: ../src/HeeksCAD.cpp:3052
-#, fuzzy
 msgid "bottom left background color"
-msgstr "farba pozadia"
+msgstr "farba pozadia vľavo dole"
 
 #: ../src/HeeksCAD.cpp:3053
-#, fuzzy
 msgid "top right background color"
-msgstr "farba pozadia"
+msgstr "farba pozadia vpravo hore"
 
 #: ../src/HeeksCAD.cpp:3054
-#, fuzzy
 msgid "bottom right background color"
-msgstr "farba pozadia"
+msgstr "farba pozadia vpravo dole"
 
 #: ../src/HeeksCAD.cpp:3058
-#, fuzzy
 msgid "sky top color"
-msgstr "farba nástroja"
+msgstr "farba nástroja na obrysy"
 
 #: ../src/HeeksCAD.cpp:3059
-#, fuzzy
 msgid "sky middle color"
-msgstr "rôzne farby"
+msgstr "farba nástroja na tvorbu výplne"
 
 #: ../src/HeeksCAD.cpp:3060
-#, fuzzy
 msgid "sky bottom color"
-msgstr "farba nástroja"
+msgstr "farba nástroja v dolnej časti výplne"
 
 #: ../src/HeeksCAD.cpp:3061
-#, fuzzy
 msgid "ground top color"
-msgstr "farba pozadia"
+msgstr "farba pozadia v hornej časti"
 
 #: ../src/HeeksCAD.cpp:3062
-#, fuzzy
 msgid "ground middle color"
-msgstr "farba pozadia"
+msgstr "farba pozadia výplne"
 
 #: ../src/HeeksCAD.cpp:3063
-#, fuzzy
 msgid "ground bottom color"
-msgstr "farba pozadia"
+msgstr "farba pozadia v dolnej časti"
 
 #: ../src/HeeksCAD.cpp:3069
 msgid "no grid"
@@ -1059,9 +1035,8 @@ msgid "grid mode"
 msgstr "režim zobrazenej mriežky"
 
 #: ../src/HeeksCAD.cpp:3075
-#, fuzzy
 msgid "face selection color"
-msgstr "definícia farby"
+msgstr "definícia farby krivky"
 
 #: ../src/HeeksCAD.cpp:3076
 msgid "perspective"
@@ -1073,38 +1048,35 @@ msgstr "Veľkosť ikon nástrojov"
 
 #: ../src/HeeksCAD.cpp:3106
 msgid "flat on screen dimension text"
-msgstr ""
+msgstr "Zobraz text na kótach"
 
 #: ../src/HeeksCAD.cpp:3107
 msgid "Allow OpenGL stippling"
-msgstr ""
+msgstr "Povoľ vyfarbovanie pomocou technológie OpenGL"
 
 #: ../src/HeeksCAD.cpp:3110
-#, fuzzy
 msgid "faces and edges"
-msgstr "Periódy vzorkovania a rýchlosti"
+msgstr "Plochy a hrany"
 
 #: ../src/HeeksCAD.cpp:3111
 msgid "edges only"
-msgstr ""
+msgstr "len hrany"
 
 #: ../src/HeeksCAD.cpp:3112
 msgid "faces only"
-msgstr ""
+msgstr "len plochy"
 
 #: ../src/HeeksCAD.cpp:3113
 msgid "solid view mode"
-msgstr ""
+msgstr "Režim zobtrazenie telies"
 
 #: ../src/HeeksCAD.cpp:3115
-#, fuzzy
 msgid "input uses modal dialog"
-msgstr "meno vkladacieho eržimu"
+msgstr "Vstupné okno vzužije modálny dialóg "
 
 #: ../src/HeeksCAD.cpp:3116
-#, fuzzy
 msgid "dragging moves objects"
-msgstr "Odstráň objekty"
+msgstr "Uchopeníe umožní presun objektov"
 
 #: ../src/HeeksCAD.cpp:3120
 msgid "digitizing"
@@ -1131,27 +1103,20 @@ msgid "correlation"
 msgstr "korelácia"
 
 #: ../src/HeeksCAD.cpp:3137
-msgid ""
-"Minimum correlation factor (0.0 (nothing like it) -> 1.0 (perfect match))"
-msgstr ""
+msgid "Minimum correlation factor (0.0 (nothing like it) -> 1.0 (perfect match))"
 "Minimálny keoficinet korelácie (o 0.0(skoro všetko) do 1.0(100% zhoda)) "
 
 #: ../src/HeeksCAD.cpp:3138
-msgid ""
-"Maximum scale threshold (1.0 - must be same size, 1.5 (can be half as big "
-"again or 2/3 size)"
-msgstr ""
-"majvššia zmena vaeľkosti pre zhodu (o 1.0 (Nmusí byť rovnaký rozmer) do 1.5 "
-"(môže byť od 2/3 do 3/2)"
+msgid "Maximum scale threshold (1.0 - must be same size, 1.5 (can be half as big again or 2/3 size)"
+msgstr "najvššia zmena veľkosti (1.0 -musí byť rovnaký rozmer, do 1.5 (môže byť od 2/3 do 3/2)"
 
 #: ../src/HeeksCAD.cpp:3139
 msgid "Number of sample points"
 msgstr "Počet bodov vzorkovania"
 
 #: ../src/HeeksCAD.cpp:3140
-#, fuzzy
 msgid "Correlate by color"
-msgstr "aktuálne vybraná farba"
+msgstr "Korelácia podľa farby"
 
 #: ../src/HeeksCAD.cpp:3143
 msgid "drawing"
@@ -1175,17 +1140,16 @@ msgstr "Roziel medzi plochou a nákresom"
 
 #: ../src/HeeksCAD.cpp:3148
 msgid "Use old solid fuse ( to prevent coplanar faces )"
-msgstr ""
+msgstr "Použite strý spôsob zlučovania teleis (aby sa zabránilo vzniku viacerých obrysov v rovnakej rovine)"
 
 #: ../src/HeeksCAD.cpp:3149 ../src/RuledSurface.cpp:202
-#, fuzzy
 msgid "Extrude makes a solid"
-msgstr "vytiahnuté teleso"
+msgstr "Vytiahnutie/extrúdovanie vytvorí teleso"
 
 #: ../src/HeeksCAD.cpp:3150
-#, fuzzy
+
 msgid "Solid revolution angle"
-msgstr "otočenie"
+msgstr "Uhol otočenia telesa"
 
 #: ../src/HeeksCAD.cpp:3161
 msgid "selection filter"
@@ -1229,7 +1193,7 @@ msgstr "teleso"
 
 #: ../src/HeeksCAD.cpp:3171
 msgid "stl_solid"
-msgstr ""
+msgstr "štandradné(stl)_teleso"
 
 #: ../src/HeeksCAD.cpp:3172
 msgid "wire"
@@ -1260,16 +1224,14 @@ msgid "ruler"
 msgstr "pravítko"
 
 #: ../src/HeeksCAD.cpp:3179
-#, fuzzy
 msgid "pad"
-msgstr "zle"
+msgstr "podložka"
 
 #: ../src/HeeksCAD.cpp:3180
 msgid "part"
-msgstr ""
+msgstr "časť"
 
 #: ../src/HeeksCAD.cpp:3181
-#, fuzzy
 msgid "pocket"
 msgstr "Vyfrézovanie tvaru"
 
@@ -1291,25 +1253,23 @@ msgstr "Neber ohľad an chyby, ak je to možné"
 
 #: ../src/HeeksCAD.cpp:3188
 msgid "Layer Name Suffixes To Discard"
-msgstr ""
+msgstr " Prídavky (Sufixy) mena vrstvy sa zrušia""
 
 #: ../src/HeeksCAD.cpp:3191
 msgid "STL"
-msgstr ""
+msgstr "podľa štabadrdu STL"
 
 #: ../src/HeeksCAD.cpp:3192
-#, fuzzy
 msgid "stl save facet tolerance"
-msgstr "telerancia presnosti"
+msgstr "telerancia presnosti ukladanie podľa štanbdardu STL-"
 
 #: ../src/HeeksCAD.cpp:3194
 msgid "auto save interval (in minutes)"
 msgstr "interval automatického ukladania (v minútach)"
 
 #: ../src/HeeksCAD.cpp:3196
-#, fuzzy
 msgid "save constraints to file"
-msgstr "ulož zmeny do súboru"
+msgstr "ulož zmeny hraníc do súboru"
 
 #: ../src/HeeksCAD.cpp:3201
 msgid "font options"
@@ -1329,53 +1289,51 @@ msgstr "Vzdialenosť znakov v percentách"
 
 #: ../src/HeeksCAD.cpp:3207
 msgid "logging"
-msgstr ""
+msgstr "Zaznamenávanie činnosti"
 
 #: ../src/HeeksCAD.cpp:3210
 msgid "FatalError"
-msgstr ""
+msgstr "Fatálna chyba"
 
 #: ../src/HeeksCAD.cpp:3211
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: ../src/HeeksCAD.cpp:3212
-#, fuzzy
 msgid "Warning"
-msgstr "Tvorba NC programu/rezného plánu"
+msgstr "Varovanie"
 
 #: ../src/HeeksCAD.cpp:3213
 msgid "Message"
-msgstr ""
+msgstr "Správa"
 
 #: ../src/HeeksCAD.cpp:3214
-#, fuzzy
 msgid "Status"
-msgstr "Stavový riadok"
+msgstr "Stav"
 
 #: ../src/HeeksCAD.cpp:3215
 msgid "Info"
-msgstr ""
+msgstr "Informácia"
 
 #: ../src/HeeksCAD.cpp:3216
 msgid "Debug"
-msgstr ""
+msgstr "Ladenie"
 
 #: ../src/HeeksCAD.cpp:3217
 msgid "Trace"
-msgstr ""
+msgstr "Krokovanie"
 
 #: ../src/HeeksCAD.cpp:3219
 msgid "log level"
-msgstr ""
+msgstr "Úroveň podrobnosti záznamu činnosti"
 
 #: ../src/HeeksCAD.cpp:3221
 msgid "use repetition counting"
-msgstr ""
+msgstr "Použite počítadlo(počítanie) opakovaní"
 
 #: ../src/HeeksCAD.cpp:3222
 msgid "use timestamps"
-msgstr ""
+msgstr "použite časové značky"
 
 #: ../src/HeeksCAD.cpp:3282 ../src/HeeksCAD.cpp:3287
 msgid "Known Files"
@@ -1407,20 +1365,19 @@ msgstr "súbory vo formáte DXF "
 
 #: ../src/HeeksCAD.cpp:3282
 msgid "RX274X/Gerber files"
-msgstr ""
+msgstr "súbory vo formáte RX274X/Gerber súbory"
 
 #: ../src/HeeksCAD.cpp:3282
 msgid "Picture files"
 msgstr "súbory s obrázkami"
 
 #: ../src/HeeksCAD.cpp:3287 ../src/SolidTools.cpp:57
-#, fuzzy
 msgid "CPP files"
-msgstr "Súbory s NC programom/rezným plánom"
+msgstr "Súbory jazyka c++ (CPP)"
 
 #: ../src/HeeksCAD.cpp:3287 ../src/SolidTools.cpp:57
 msgid "OpenCAMLib python files"
-msgstr ""
+msgstr "Súbory jazyka Python z knižnice OpenCAMLib"
 
 #: ../src/HeeksCAD.cpp:3331
 msgid "Unmark"
@@ -1461,9 +1418,8 @@ msgid "Arc"
 msgstr "oblúk"
 
 #: ../src/HeeksCAD.cpp:4541
-#, fuzzy
 msgid "ILine"
-msgstr "Čiara"
+msgstr "Čiara typu I"
 
 #: ../src/HeeksCAD.cpp:4542 ../src/HCircle.h:34
 msgid "Circle"
@@ -1474,7 +1430,6 @@ msgid "Gripper"
 msgstr "Držadlo/úchyt"
 
 #: ../src/HeeksCAD.cpp:4544 ../src/Vertex.h:33
-#, fuzzy
 msgid "Vertex"
 msgstr "hrana mnohouhoľníka"
 
@@ -1488,7 +1443,7 @@ msgstr "Plocha"
 
 #: ../src/HeeksCAD.cpp:4547
 msgid "Loop"
-msgstr ""
+msgstr "Slučka, uzatvorená krivka"
 
 #: ../src/HeeksCAD.cpp:4548 ../src/DynamicSolid.h:23 ../src/Solid.h:26
 #: ../interface/HeeksCADInterface.cpp:2025
@@ -1496,13 +1451,12 @@ msgid "Solid"
 msgstr "Teleso"
 
 #: ../src/HeeksCAD.cpp:4549
-#, fuzzy
 msgid "StlSolid"
-msgstr "Teleso"
+msgstr "Teleso podľa štandardu STL"
 
 #: ../src/HeeksCAD.cpp:4550 ../src/Wire.h:14
 msgid "Wire"
-msgstr "vlákno"
+msgstr "vlákno/ kábel "
 
 #: ../src/HeeksCAD.cpp:4551 ../src/Sketch.cpp:41 ../src/Sketch.h:43
 msgid "Sketch"
@@ -1513,7 +1467,6 @@ msgid "Image"
 msgstr "Obrázok"
 
 #: ../src/HeeksCAD.cpp:4553
-#, fuzzy
 msgid "CoordinateSystem"
 msgstr "Súradnicový systém"
 
@@ -1543,18 +1496,16 @@ msgid "Spline"
 msgstr "Spline"
 
 #: ../src/HeeksCAD.cpp:4561
-#, fuzzy
 msgid "CorrelationTool"
-msgstr "korelácia"
+msgstr "Nástroj na prácu s využitím korelácie"
 
 #: ../src/HeeksCAD.cpp:4563 ../src/Constraint.h:66
 msgid "Constraint"
-msgstr ""
+msgstr "hranica"
 
 #: ../src/HeeksCAD.cpp:4565 ../src/Pad.h:17
-#, fuzzy
 msgid "Pad"
-msgstr "zle"
+msgstr "Podložka"
 
 #: ../src/HeeksCAD.cpp:4566 ../src/Part.h:15
 msgid "Part"
