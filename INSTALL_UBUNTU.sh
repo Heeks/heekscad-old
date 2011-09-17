@@ -10,7 +10,11 @@ BUILDPREREQS="libwxbase2.8-dev cmake \
 # The next two lines can be commented out after the initial run.
 sudo apt-get update
 sudo apt-get install -y $BUILDPREREQS
-sudo git clone --recursive git://github.com/Heeks/heekscad.git
+
+cd ${BUILDPATH}
+if [! -d heekscad]; then 
+  git clone --recursive git://github.com/Heeks/heekscad.git
+fi
 
 cd ${BUILDPATH}/heekscad/heekscnc/oce
 if [ -d build]; then
