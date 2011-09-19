@@ -1,9 +1,9 @@
 #!/bin/sh
-# heekscad-install.sh -- Downloads, builds and installs HeeksCAD from svn
+# INSTALL_UBUNTU.sh -- Downloads, builds and installs HeeksCAD and related projects for ubuntu
 DIR="$( cd "$( dirname "$0" )" && pwd )"  # find out the current directory
 BUILDPATH=$DIR             # Location of HeeksCAD build dir
 BUILDPREREQS="libwxbase2.8-dev cmake \
-  build-essential libwxgtk2.8 libwxgtk2.8-dev ftgl-dev\
+  build-essential libwxgtk2.8 libwxgtk2.8-dev ftgl-dev \
   libgtkglext1-dev python-dev cmake libboost-python-dev"
 
 # Install build prerequisites
@@ -12,30 +12,35 @@ sudo apt-get update
 sudo apt-get install -y $BUILDPREREQS
 
 cd ${BUILDPATH}
-if [! -d heekscad]; then 
+if [ ! -d heekscad ]; then 
   git clone --recursive git://github.com/Heeks/heekscad.git
 fi
 
 cd ${BUILDPATH}/heekscad/heekscnc/oce
-if [ -d build]; then
+if [ -d build ]; then
   cd build
 else
   mkdir build
   cd build
 fi
 cmake ..
-make -j8
+#make -j8
+make 
 sudo make install
 
 cd ${BUILDPATH}/heekscad/
 cmake .
-make -j8 package
+
+#make package -j8  #For faster build on multi-core machines, uncomment this line and comment out the next
+make package 
 sudo dpkg -i heekscad_*.deb
 
 # Install HeeksCNC
 cd ${BUILDPATH}/heekscad/heekscnc/
 cmake .
-make -j8 package
+
+#make package -j8 #For faster build on multi-core machines, uncomment this line and comment out the next
+make package 
 sudo dpkg -i heekscnc_*.deb
 
 # Install libarea
@@ -43,20 +48,23 @@ sudo dpkg -i heekscnc_*.deb
 #Get the libarea files from the SVN repository, build, and install
 cd ${BUILDPATH}/heekscad/heekscnc/libarea/
 make clean
-make -j8
+
+#make -j8 #For faster build on multi-core machines, uncomment this line and comment out the next
+make
 sudo make install
 sudo ln -s .libs/area.so ${BUILDPATH}/heekscad/heekscnc/area.so
 
-# Install libactp
-#cd ${BUILDPATH}/heekscad/heekscnc/libactp/PythonLib
-#make clean
-#make
-#sudo make install
-#sudo ln -s .libs/actp.so ${BUILDPATH}/heekscad/heekscnc/actp.so
-
 # Install opencamlib
-cd ${BUILDPATH}/heekscad/heekscnc/opencamlib/src
-cmake .
-make -j8
-# make doc        # Creates PDF file needed by make install
-sudo make install
+cd ${BUILDPATH}/heekscad/heekscnc/opencamlib/
+if [ -d build]; then
+cd build
+else
+mkdir build
+ cd build
+fi
+cmake ../src
+
+#make -j8 package #For faster build on multi-core machines, uncomment this line and comment out the next
+make package
+sudo dpkg -i opencamlib_*.deb
+
