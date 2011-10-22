@@ -50,6 +50,7 @@ cd ${BUILDPATH}/heekscad/heekscnc/libarea/
 make clean
 
 #make -j8 #For faster build on multi-core machines, uncomment this line and comment out the next
+cmake .
 make
 sudo make install
 sudo ln -s .libs/area.so ${BUILDPATH}/heekscad/heekscnc/area.so
@@ -60,7 +61,7 @@ if [ -d build]; then
 cd build
 else
 mkdir build
- cd build
+cd build
 fi
 cmake ../src
 
