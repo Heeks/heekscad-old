@@ -1,0 +1,47 @@
+These are the build and installation instructions on Fedora
+===========================================================
+
+System Dependencies
+-------------------
+
+Dependancies guessed from INSTALL_UBUNTU.sh:
+
+    yum install cmake python-devel wxGTK-devel boost-python boost-devel \
+                wxBase ftgl-devel
+
+Dependency: heekscnc/oce
+------------------------
+
+System installation:
+
+    cd heekscnc/oce
+    mkdir build
+    cd build
+    cmake ..
+    nice make -j3
+    make install (as root)
+
+Local installation: use ccmake instead of cmake, and change the
+OCE_INSTALL_PREFIX variable to something local
+
+If you want to make a package, you can use (with alien from
+http://github.com/mildred/alien):
+
+    make DESTDIR=`pwd`/local-oce-git install
+    alien --to-rpm local-oce-git
+    rpm -ivh local-oce-git-1-2.noarch.rpm (as root)
+
+Then return to the root directory:
+
+    cd ../../..
+
+heekscad
+--------
+
+    cmake -D CPACK_GENERATOR=RPM .
+    nice make -j3
+    nice make -j3 DESTDIR=`pwd`/local-heekscad-git install
+    alien --to-rpm local-heekscad-git
+    rpm -ivh local-heekscad-git-1-2.noarch.rpm (as root)
+
+
