@@ -15,13 +15,15 @@ extern bool ConvertWireToSketch(const TopoDS_Wire& wire, HeeksObj* sketch, doubl
 extern bool ConvertEdgeToSketch2(const TopoDS_Edge& edge, HeeksObj* sketch, double deviation, bool reverse = false);
 extern HeeksObj* SplitArcsIntoLittleLines(HeeksObj* sketch);
 extern bool ConvertSketchToEdges(HeeksObj *object, std::list< std::vector<TopoDS_Edge> > &edges);
+extern TopoDS_Wire EdgesToWire(const std::vector<TopoDS_Edge> &edges);
+extern bool SketchToWires(HeeksObj* sketch, std::list<TopoDS_Wire> &wire_list);
 
-class ConvertSketchesToFace: public Tool
+class ConvertAreasToSketches: public Tool
 {
 public:
 	void Run();
-	const wxChar* GetTitle(){return _("Convert sketch to face");}
-	wxString BitmapPath(){return _T("la2face");}
+	const wxChar* GetTitle(){return _("Convert areas to sketches");}
+	wxString BitmapPath(){return _T("sketch");}
 };
 
 class SketchesArcsToLines: public Tool
@@ -32,13 +34,63 @@ public:
 	wxString BitmapPath(){return _T("splitarcs");}
 };
 
-class MakeLineArcsToSketch: public Tool
+class ConvertToArea: public Tool
+{
+public:
+	void Run();
+	const wxChar* GetTitle(){return _("Convert to Area");}
+	wxString BitmapPath(){return _T("area");}
+};
+
+class AreaUnion: public Tool
+{
+public:
+	void Run();
+	const wxChar* GetTitle(){return _("Unite Areas");}
+	wxString BitmapPath(){return _T("areaunite");}
+};
+
+
+class AreaCut: public Tool
+{
+public:
+	void Run();
+	const wxChar* GetTitle(){return _("Cut Areas");}
+	wxString BitmapPath(){return _T("areacut");}
+};
+
+
+class AreaIntersect: public Tool
+{
+public:
+	void Run();
+	const wxChar* GetTitle(){return _("Intersect Areas");}
+	wxString BitmapPath(){return _T("areaintersect");}
+};
+
+class AreaXor: public Tool
+{
+public:
+	void Run();
+	const wxChar* GetTitle(){return _("Xor Areas");}
+	wxString BitmapPath(){return _T("areaxor");}
+};
+
+class ConvertSketchesToFace: public Tool
+{
+public:
+	void Run();
+	const wxChar* GetTitle(){return _("Convert sketch to face");}
+	wxString BitmapPath(){return _T("la2face");}
+};
+
+class MakeToSketch: public Tool
 {
 public:
 	void Run();
 	const wxChar* GetTitle(){return _("Make To Sketch");}
 	wxString BitmapPath(){return _T("makesketch");}
-	const wxChar* GetToolTip(){return _("Make selected lines and arcs into a new sketch");}
+	const wxChar* GetToolTip(){return _("Make selected objects into a new sketch");}
 };
 
 class MakeEdgesToSketch: public Tool

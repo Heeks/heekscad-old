@@ -245,7 +245,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHsc "
 				Optimization="0"
-				AdditionalIncludeDirectories=".\;&quot;$(CASROOT)\inc&quot;;&quot;$(WXWIN)\include&quot;;&quot;$(WXWIN)&quot;;&quot;$(WXWIN)\lib\vc_dll\mswud&quot;;&quot;$(WXWIN)\include\msvc&quot;"
+				AdditionalIncludeDirectories=".\;&quot;$(CASROOT)\inc&quot;;&quot;$(WXWIN)\include&quot;;&quot;$(WXWIN)&quot;;&quot;$(WXWIN)\lib\vc_dll\mswud&quot;;&quot;$(WXWIN)\include\msvc&quot;;&quot;$(LIBAREA_PATH)&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;WNT;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;HEEKSCAD;STRICT;USE_GENERIC_TREECTRL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -275,11 +275,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="opengl32.lib glu32.lib TKVrml.lib TKStl.lib TKBRep.lib TKIGES.lib TKShHealing.lib TKSTEP.lib TKSTEP209.lib TKSTEPAttr.lib TKSTEPBase.lib TKXSBase.lib TKShapeSchema.lib FWOSPlugin.lib PTKernel.lib TKBool.lib TKCAF.lib TKCDF.lib TKDraw.lib TKernel.lib TKFeat.lib TKFillet.lib TKG2d.lib TKG3d.lib TKGeomAlgo.lib TKGeomBase.lib TKHLR.lib TKMath.lib TKOffset.lib TKPCAF.lib TKPrim.lib TKPShape.lib TKService.lib TKTopAlgo.lib TKV2d.lib TKV3d.lib TKMesh.lib TKAdvTools.lib TKCPPExt.lib TKBO.lib TKXDESTEP.lib TKXCAF.lib TKXCAFSchema.lib TKDCAF.lib TKLCAF.lib TKPLCAF.lib wxmsw28ud_core.lib wxmsw28ud_aui.lib wxmsw28ud_gl.lib wxbase28ud.lib"
+				AdditionalDependencies="opengl32.lib glu32.lib TKVrml.lib TKStl.lib TKBRep.lib TKIGES.lib TKShHealing.lib TKSTEP.lib TKSTEP209.lib TKSTEPAttr.lib TKSTEPBase.lib TKXSBase.lib TKShapeSchema.lib FWOSPlugin.lib PTKernel.lib TKBool.lib TKCAF.lib TKCDF.lib TKDraw.lib TKernel.lib TKFeat.lib TKFillet.lib TKG2d.lib TKG3d.lib TKGeomAlgo.lib TKGeomBase.lib TKHLR.lib TKMath.lib TKOffset.lib TKPCAF.lib TKPrim.lib TKPShape.lib TKService.lib TKTopAlgo.lib TKV2d.lib TKV3d.lib TKMesh.lib TKAdvTools.lib TKBO.lib TKXDESTEP.lib TKXCAF.lib TKXCAFSchema.lib TKDCAF.lib TKLCAF.lib TKPLCAF.lib wxmsw28ud_core.lib wxmsw28ud_aui.lib wxmsw28ud_gl.lib wxbase28ud.lib"
 				OutputFile="..\HeeksCAD.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(WXWIN)\lib\vc_dll&quot;;&quot;$(CASROOT)\win32\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(WXWIN)\lib\vc_dll&quot;;&quot;$(CASROOT)\win32\vc8\lib&quot;"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\vc_mswd/HeeksCAD.pdb"
 				SubSystem="2"
@@ -345,7 +345,7 @@
 				AdditionalOptions="/EHsc "
 				Optimization="0"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".\;&quot;$(CASROOT)\inc&quot;;&quot;$(WXWIN)\include&quot;;&quot;$(WXWIN)&quot;;&quot;$(WXWIN)\lib\vc_dll\mswu&quot;;&quot;$(WXWIN)\include\msvc&quot;"
+				AdditionalIncludeDirectories=".\;&quot;$(CASROOT)\inc&quot;;&quot;$(WXWIN)\include&quot;;&quot;$(WXWIN)&quot;;&quot;$(WXWIN)\lib\vc_dll\mswu&quot;;&quot;$(WXWIN)\include\msvc&quot;;&quot;$(LIBAREA_PATH)&quot;"
 				PreprocessorDefinitions="WIN32;__WXMSW__;_WINDOWS;NOPCH;WNT;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;_CRT_SECURE_NO_DEPRECATE;_SECURE_SCL=0;_SECURE_ATL =0;HEEKSCAD;USE_GENERIC_TREECTRL"
 				StringPooling="false"
 				RuntimeLibrary="2"
@@ -375,11 +375,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="opengl32.lib glu32.lib TKVrml.lib TKStl.lib TKBRep.lib TKIGES.lib TKShHealing.lib TKSTEP.lib TKSTEP209.lib TKSTEPAttr.lib TKSTEPBase.lib TKXSBase.lib TKShapeSchema.lib FWOSPlugin.lib PTKernel.lib TKBool.lib TKCAF.lib TKCDF.lib TKDraw.lib TKernel.lib TKFeat.lib TKFillet.lib TKG2d.lib TKG3d.lib TKGeomAlgo.lib TKGeomBase.lib TKHLR.lib TKMath.lib TKOffset.lib TKPCAF.lib TKPrim.lib TKPShape.lib TKService.lib TKTopAlgo.lib TKV2d.lib TKV3d.lib TKMesh.lib TKAdvTools.lib TKCPPExt.lib TKBO.lib TKXDESTEP.lib TKXCAF.lib TKXCAFSchema.lib TKDCAF.lib TKLCAF.lib TKPLCAF.lib wxmsw28u_core.lib wxmsw28u_aui.lib wxmsw28u_gl.lib wxbase28u.lib"
+				AdditionalDependencies="opengl32.lib glu32.lib TKVrml.lib TKStl.lib TKBRep.lib TKIGES.lib TKShHealing.lib TKSTEP.lib TKSTEP209.lib TKSTEPAttr.lib TKSTEPBase.lib TKXSBase.lib TKShapeSchema.lib FWOSPlugin.lib PTKernel.lib TKBool.lib TKCAF.lib TKCDF.lib TKDraw.lib TKernel.lib TKFeat.lib TKFillet.lib TKG2d.lib TKG3d.lib TKGeomAlgo.lib TKGeomBase.lib TKHLR.lib TKMath.lib TKOffset.lib TKPCAF.lib TKPrim.lib TKPShape.lib TKService.lib TKTopAlgo.lib TKV2d.lib TKV3d.lib TKMesh.lib TKAdvTools.lib TKBO.lib TKXDESTEP.lib TKXCAF.lib TKXCAFSchema.lib TKDCAF.lib TKLCAF.lib TKPLCAF.lib wxmsw28u_core.lib wxmsw28u_aui.lib wxmsw28u_gl.lib wxbase28u.lib"
 				OutputFile="..\HeeksCAD.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(WXWIN)\lib\vc_dll&quot;;&quot;$(CASROOT)\win32\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(WXWIN)\lib\vc_dll&quot;;&quot;$(CASROOT)\win32\vc8\lib&quot;"
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile=".\vc_msw/HeeksCAD.pdb"
 				SubSystem="2"
@@ -466,6 +466,198 @@
 			>
 		</File>
 		<File
+			RelativePath="$(LIBAREA_PATH)\Arc.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Arc.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Area.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Area.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\AreaClipper.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\AreaOrderer.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\AreaOrderer.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\AreaPocket.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
 			RelativePath=".\AutoSave.cpp"
 			>
 		</File>
@@ -494,6 +686,90 @@
 			>
 		</File>
 		<File
+			RelativePath="$(LIBAREA_PATH)\Box2D.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Circle.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Circle.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\clipper.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\clipper.hpp"
+			>
+		</File>
+		<File
 			RelativePath=".\Cone.cpp"
 			>
 		</File>
@@ -502,28 +778,40 @@
 			>
 		</File>
 		<File
-			RelativePath=".\ConstrainedObject.cpp"
+			RelativePath="$(LIBAREA_PATH)\kurve\Construction.cpp"
 			>
-		</File>
-		<File
-			RelativePath=".\ConstrainedObject.h"
-			>
-		</File>
-		<File
-			RelativePath=".\Constraint.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Constraint.h"
-			>
-		</File>
-		<File
-			RelativePath=".\ConstraintTools.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\ConstraintTools.h"
-			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath=".\ConversionTools.cpp"
@@ -555,6 +843,46 @@
 		</File>
 		<File
 			RelativePath=".\Cuboid.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Curve.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Curve.h"
 			>
 		</File>
 		<File
@@ -678,7 +1006,35 @@
 			>
 		</File>
 		<File
-			RelativePath="..\sketchsolve\src\errorfuncs.cpp"
+			RelativePath=".\ExitMainLoop.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Face.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Face.h"
+			>
+		</File>
+		<File
+			RelativePath=".\FaceTools.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\FaceTools.h"
+			>
+		</File>
+		<File
+			RelativePath=".\FastCurves.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\FastCurves.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\kurve\Finite.cpp"
 			>
 			<FileConfiguration
 				Name="Debug|Win32"
@@ -714,35 +1070,15 @@
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath=".\Face.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Face.h"
-			>
-		</File>
-		<File
-			RelativePath=".\FaceTools.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\FaceTools.h"
-			>
-		</File>
-		<File
-			RelativePath=".\FastCurves.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\FastCurves.h"
-			>
-		</File>
-		<File
 			RelativePath=".\Geom.cpp"
 			>
 		</File>
 		<File
 			RelativePath=".\Geom.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\kurve\geometry.h"
 			>
 		</File>
 		<File
@@ -847,6 +1183,22 @@
 		</File>
 		<File
 			RelativePath=".\HArc.h"
+			>
+		</File>
+		<File
+			RelativePath=".\HArea.cpp"
+			>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath=".\HArea.h"
 			>
 		</File>
 		<File
@@ -978,14 +1330,6 @@
 			>
 		</File>
 		<File
-			RelativePath=".\Hole.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Hole.h"
-			>
-		</File>
-		<File
 			RelativePath=".\HPoint.cpp"
 			>
 		</File>
@@ -1040,6 +1384,42 @@
 		<File
 			RelativePath=".\Intersector.h"
 			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\kurve\kurve.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath="..\interface\LeftAndRight.cpp"
@@ -1134,12 +1514,40 @@
 			>
 		</File>
 		<File
-			RelativePath=".\matrix.cpp"
+			RelativePath="$(LIBAREA_PATH)\kurve\Matrix.cpp"
 			>
-		</File>
-		<File
-			RelativePath=".\MatrixFactorization.cpp"
-			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath=".\MultiPoly.cpp"
@@ -1190,14 +1598,6 @@
 			>
 		</File>
 		<File
-			RelativePath=".\OCCSolver.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\OCCSolver.h"
-			>
-		</File>
-		<File
 			RelativePath=".\odcombo.cpp"
 			>
 			<FileConfiguration
@@ -1236,6 +1636,42 @@
 		<File
 			RelativePath=".\odcombo.h"
 			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\kurve\offset.cpp"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Unicode Release|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="0"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath=".\OptionsCanvas.cpp"
@@ -1291,6 +1727,10 @@
 		</File>
 		<File
 			RelativePath=".\Pocket.h"
+			>
+		</File>
+		<File
+			RelativePath="$(LIBAREA_PATH)\Point.h"
 			>
 		</File>
 		<File
@@ -1554,10 +1994,6 @@
 			>
 		</File>
 		<File
-			RelativePath=".\sketchinterface.cpp"
-			>
-		</File>
-		<File
 			RelativePath=".\SketchTools.cpp"
 			>
 		</File>
@@ -1579,90 +2015,6 @@
 		</File>
 		<File
 			RelativePath=".\SolidTools.h"
-			>
-		</File>
-		<File
-			RelativePath="..\sketchsolve\src\solve.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Unicode Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Unicode Release|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\sketchsolve\src\solve.h"
-			>
-		</File>
-		<File
-			RelativePath="..\sketchsolve\src\solveimpl.cpp"
-			>
-			<FileConfiguration
-				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Unicode Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Unicode Release|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath=".\SolveSketch.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\SolveSketch.h"
 			>
 		</File>
 		<File
@@ -1775,10 +2127,6 @@
 		</File>
 		<File
 			RelativePath=".\svg.h"
-			>
-		</File>
-		<File
-			RelativePath="..\sketchsolve\src\timer.h"
 			>
 		</File>
 		<File

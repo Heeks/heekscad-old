@@ -27,19 +27,20 @@ class ObjectCanvas;
 #define HEEKSOBJ_OWNER Owner()
 #else
 #define HEEKSOBJ_OWNER m_owner
-#define OLDLINES
 #endif
 
 // NOTE: If adding to this enumeration, please also add the verbose description to the HeeksCADType() routine
 enum{
 	UnknownType,
 	DocumentType,
+	GripperType,
 	PointType,
 	LineType,
 	ArcType,
 	ILineType,
 	CircleType,
-	GripperType,
+	SketchType,
+	AreaType,
 	VertexType,
 	EdgeType,
 	FaceType,
@@ -47,13 +48,10 @@ enum{
 	SolidType,
 	StlSolidType,
 	WireType,
-	SketchType,
-	ImageType,
 	CoordinateSystemType,
 	TextType,
 	DimensionType,
 	RulerType,
-	XmlType,
     EllipseType,
 	SplineType,
 	GroupType,
@@ -67,6 +65,8 @@ enum{
 	HoleType,
 	HolePositionsType,
 	GearType,
+	ImageType,
+	XmlType,
 	ObjectMaximumType,
 };
 
@@ -94,7 +94,8 @@ enum{
 #define MARKING_FILTER_PART					0x00040000
 #define MARKING_FILTER_POCKETSOLID			0x00080000
 #define MARKING_FILTER_GEAR					0x00100000
-#define MARKING_FILTER_UNKNOWN				0x00200000
+#define MARKING_FILTER_AREA					0x00200000
+#define MARKING_FILTER_UNKNOWN				0x00400000
 
 #ifdef HEEKSCAD
 #define GET_ICON(X,Y) x = (X); y = (Y); texture_number = wxGetApp().m_icon_texture_number
@@ -180,6 +181,7 @@ public:
 	virtual void OnAdd(){}
 	virtual void OnRemove();
 	virtual bool CanBeRemoved(){return true;}
+	virtual bool CanBeDragged(){return true;}
 	virtual bool CanBeCopied(){return true;}
 	virtual HeeksObj* GetFirstChild(){return NULL;}
 	virtual HeeksObj* GetNextChild(){return NULL;}
@@ -223,6 +225,9 @@ public:
 	virtual void SetIdPreservation(const bool flag) { m_preserving_id = flag; }
 	virtual void ToString(char* buf, unsigned int* rlen, unsigned int len);
 	virtual unsigned int GetIndex();
+	virtual bool UsesCustomSubNames(){return false;}
 protected:
 	virtual void GetGripperPositions(std::list<GripData> *list, bool just_for_endof);
+public:
+	virtual void OnChangeViewUnits(const double units){}
 };

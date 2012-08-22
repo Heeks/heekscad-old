@@ -469,6 +469,11 @@ static void PyOnOpenButton()
 	wxGetApp().OnOpenButton();
 }
 
+static void PyOnOpenButton()
+{
+	wxGetApp().OnOpenButton();
+}
+
 static bool PyOpenFile(const char* str)
 {
 	return wxGetApp().OpenFile(Ctt(str));
@@ -578,10 +583,8 @@ BOOST_PYTHON_MODULE(HeeksCAD)
     bp::def("glColor3ub", GLColor3ub);
     bp::def("GetFirstBody", GetFirstBody, bp::return_value_policy<bp::reference_existing_object>());
     bp::def("GetNextBody", GetNextBody, bp::return_value_policy<bp::reference_existing_object>());
-	bp::def("StartPickObjects", StartPickObjects);
-	bp::def("EndPickObjects", EndPickObjects);
-	bp::def("StartPickFaces", StartPickFaces);
-	bp::def("EndPickFaces", EndPickFaces);
+
+	bp::def("PickObjects", PickObjects);
 	bp::def("OnOpenButton", PyOnOpenButton);
 	bp::def("OpenFile", PyOpenFile);
 	bp::def("SetExitMainLoopCallback", SetExitMainLoop);

@@ -81,6 +81,7 @@ public:
 	virtual bool GetArcCentre(HeeksObj* object, double* c);
 	virtual bool GetArcRadius(HeeksObj* object, double* r);
 	virtual bool GetArcAxis(HeeksObj* object, double* a);
+	virtual double GetArcIncludedAngle(HeeksObj* object);
 	virtual double CircleGetRadius(HeeksObj* object);
 	virtual void get_2d_arc_segments(double xs, double ys, double xe, double ye, double xc, double yc, bool dir, bool want_start, double pixels_per_mm, void(*callbackfunc)(const double* xy));
 	virtual bool GetSegmentVector(HeeksObj* object, double fraction, double* v);
@@ -167,7 +168,7 @@ public:
 	virtual void SetViewBox(const double* b);
 	virtual void ViewExtents(bool rotate);
 	virtual void XYZView(bool recalculate_gl_lists);
-	virtual void SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1, double* scale = NULL);
+	virtual void SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1, double* scale = NULL, bool binary = true);
 
 	// sketches
 	virtual SketchOrderType GetSketchOrder(HeeksObj* sketch);
@@ -309,6 +310,7 @@ public:
 	virtual double GetViewUnits();
 	virtual void SetViewUnits(double units, bool write_to_config);
 	virtual void SplineToBiarcs(HeeksObj* spline, std::list<HeeksObj*> &new_spans, double tolerance);
+	virtual HeeksObj* SketchSplineToBiarcs(HeeksObj* sketch, double tolerance);
 	virtual HeeksObj* NewSplineFromPoints(unsigned int num_points, const double* d3); // list of 3 doubles
 
 	// Geometry functions
@@ -386,4 +388,10 @@ public:
 	// Index functions
 	virtual unsigned int GetIndex(HeeksObj *object);
 	virtual void ReleaseIndex(unsigned int index);
+
+	virtual void Exit();
+	virtual void SetAlternativeFileOpenWildCardString(const wxChar* s);
+
+	// Area functions
+	virtual void ObjectAreaString(HeeksObj* object, wxString &s);
 };

@@ -17,13 +17,14 @@
 #include "Group.h"
 #include "MultiPoly.h"
 #include "Polygon.h"
+#include "HArea.h"
 
 #include <sstream>
 #include <vector>
 #include <algorithm>
 #include <functional>
 
-static MakeLineArcsToSketch make_line_arcs_to_sketch;
+static MakeToSketch make_to_sketch;
 static ConvertSketchesToFace convert_sketches_to_face;
 static SketchesArcsToLines sketches_arcs_to_lines;
 static CombineSketches combine_sketches;
@@ -34,11 +35,17 @@ static GroupSelected group_selected;
 static UngroupSelected ungroup_selected;
 static MakeEdgesToSketch make_edges_to_sketch;
 static TransformToCoordSys transform_to_coordsys;
+static ConvertToArea convert_to_area;
+static AreaUnion union_area;
+static AreaCut cut_area;
+static AreaIntersect intersect_area;
+static AreaXor xor_area;
 
 void GetConversionMenuTools(std::list<Tool*>* t_list){
 	// Tools for multiple selected items.
 	bool lines_or_arcs_etc_in_marked_list = false;
 	int sketches_in_marked_list = 0;
+	int areas_in_marked_list = 0;
 	bool group_in_marked_list = false;
 	bool edges_in_marked_list = false;
 	bool ConvertSketchesToFace_added = false;
@@ -60,6 +67,9 @@ void GetConversionMenuTools(std::list<Tool*>* t_list){
 			case SketchType:
 				sketches_in_marked_list++;
 				break;
+			case AreaType:
+				areas_in_marked_list++;
+				break;
 			case GroupType:
 				group_in_marked_list = true;
 				break;
@@ -73,9 +83,13 @@ void GetConversionMenuTools(std::list<Tool*>* t_list){
 		}
 	}
 
+	if(lines_or_arcs_etc_in_marked_list || areas_in_marked_list)
+	{
+		t_list->push_back(&make_to_sketch);
+	}
+
 	if(lines_or_arcs_etc_in_marked_list)
 	{
-		t_list->push_back(&make_line_arcs_to_sketch);
 		t_list->push_back(&convert_sketches_to_face);
 		ConvertSketchesToFace_added = true;
 	}
@@ -93,9 +107,18 @@ void GetConversionMenuTools(std::list<Tool*>* t_list){
 #endif
 	}
 
+	if(areas_in_marked_list > 1)
+	{
+		t_list->push_back(&union_area);
+		t_list->push_back(&cut_area);
+		t_list->push_back(&intersect_area);
+		t_list->push_back(&xor_area);
+	}
+
 	if(wxGetApp().m_marked_list->list().size() > 1)t_list->push_back(&group_selected);
 	if(group_in_marked_list)t_list->push_back(&ungroup_selected);
 	if(edges_in_marked_list)t_list->push_back(&make_edges_to_sketch);
+	if(lines_or_arcs_etc_in_marked_list || (sketches_in_marked_list > 0))t_list->push_back(&convert_to_area);
 
 	if(second_coord_sys)
 	{
@@ -181,7 +204,7 @@ void SortEdges( std::vector<TopoDS_Edge> & edges )
 
 bool ConvertLineArcsToWire2(const std::list<HeeksObj *> &list, TopoDS_Wire &wire)
 {
-	std::list<TopoDS_Edge> edges;
+	std::vector<TopoDS_Edge> edges;
 	std::list<HeeksObj*> list2;
 	std::list<HeeksObj*>::const_iterator It;
 	for(It = list.begin(); It != list.end(); It++){
@@ -216,15 +239,7 @@ bool ConvertLineArcsToWire2(const std::list<HeeksObj *> &list, TopoDS_Wire &wire
 	}
 
 	if(edges.size() > 0){
-		BRepBuilderAPI_MakeWire wire_maker;
-		std::list<TopoDS_Edge>::iterator It;
-		for(It = edges.begin(); It != edges.end(); It++)
-		{
-			TopoDS_Edge &edge = *It;
-			wire_maker.Add(edge);
-		}
-
-		wire = wire_maker.Wire();
+		wire = EdgesToWire(edges);
 		return true;
 	}
 
@@ -304,13 +319,17 @@ bool ConvertSketchToEdges(HeeksObj *object, std::list< std::vector<TopoDS_Edge> 
 									edges.back().push_back(edge.Edge());
 									done = true;
 								}
-							} // End while
+							}
+							else
+							{
+								break;
+							}
 
 							if (! done)
 							{
 								return(false);
 							}
-                        }
+						} // End while
                     }
                     break;
                 case ArcType:
@@ -388,6 +407,33 @@ bool ConvertSketchToEdges(HeeksObj *object, std::list< std::vector<TopoDS_Edge> 
     return(true);
 }
 
+TopoDS_Wire EdgesToWire(const std::vector<TopoDS_Edge> &edges)
+{
+	BRepBuilderAPI_MakeWire wire_maker;
+	for(std::vector<TopoDS_Edge>::const_iterator It = edges.begin(); It != edges.end(); It++)
+	{
+		const TopoDS_Edge &edge = *It;
+		wire_maker.Add(edge);
+	}
+
+	return wire_maker.Wire();
+}
+
+bool SketchToWires(HeeksObj* sketch, std::list<TopoDS_Wire> &wire_list)
+{
+    std::list< std::vector<TopoDS_Edge> > edges_list;
+
+    if (!ConvertSketchToEdges(sketch, edges_list))
+        return false;
+
+	for(std::list< std::vector<TopoDS_Edge> >::iterator It = edges_list.begin(); It != edges_list.end(); It++)
+	{
+		std::vector<TopoDS_Edge> &edges = *It;
+		wire_list.push_back(EdgesToWire(edges));
+	}
+	return true;
+}
+
 bool ConvertEdgesToFaceOrWire(const std::vector<TopoDS_Edge> &edges, std::list<TopoDS_Shape> &face_or_wire, bool face_not_wire)
 {
 	// It's not enough to add the edges to the wire in an arbitrary order.  If the adjacent edges
@@ -397,22 +443,17 @@ bool ConvertEdgesToFaceOrWire(const std::vector<TopoDS_Edge> &edges, std::list<T
 	// So, please call SortEdges before getting to here.
 	try
 	{
-		BRepBuilderAPI_MakeWire wire_maker;
-		for(std::vector<TopoDS_Edge>::const_iterator It = edges.begin(); It != edges.end(); It++)
-		{
-			const TopoDS_Edge &edge = *It;
-			wire_maker.Add(edge);
-		}
+		TopoDS_Wire wire = EdgesToWire(edges);
 
 		if(face_not_wire)
 		{
-			BRepBuilderAPI_MakeFace make_face(wire_maker.Wire());
-			if(make_face.IsDone() == Standard_False)face_or_wire.push_back(wire_maker.Wire());
+			BRepBuilderAPI_MakeFace make_face(wire);
+			if(make_face.IsDone() == Standard_False)face_or_wire.push_back(wire);
 			else face_or_wire.push_back(make_face.Face());
 		}
 		else
 		{
-			face_or_wire.push_back(wire_maker.Wire());
+			face_or_wire.push_back(wire);
 		}
 	}
 	catch (Standard_Failure) {
@@ -566,12 +607,21 @@ bool ConvertEdgeToSketch2(const TopoDS_Edge& edge, HeeksObj* sketch, double devi
 
 		case GeomAbs_BSplineCurve:
 			{
-				BRepAdaptor_Curve curve(edge);
 				std::list<HeeksObj*> new_spans;
-				HSpline::ToBiarcs(curve.BSpline(), new_spans, deviation);
-				for(std::list<HeeksObj*>::iterator It = new_spans.begin(); It != new_spans.end(); It++)
+				HSpline::ToBiarcs(curve.BSpline(), new_spans, deviation, curve.FirstParameter(), curve.LastParameter());
+				if(sense)
 				{
-					sketch->Add(*It, NULL);
+					for(std::list<HeeksObj*>::iterator It = new_spans.begin(); It != new_spans.end(); It++)
+						sketch->Add(*It, NULL);
+				}
+				else
+				{
+					for(std::list<HeeksObj*>::reverse_iterator It = new_spans.rbegin(); It != new_spans.rend(); It++)
+					{
+						HeeksObj* object = *It;
+						CSketch::ReverseObject(object);
+						sketch->Add(object, NULL);
+					}
 				}
 			}
 			break;
@@ -609,7 +659,8 @@ bool ConvertEdgeToSketch2(const TopoDS_Edge& edge, HeeksObj* sketch, double devi
 	return true;
 }
 
-void ConvertSketchesToFace::Run(){
+void ConvertSketchesToFace::Run()
+{
 	std::list< std::vector<TopoDS_Edge> > individual_edges;
 	std::list<HeeksObj*>::const_iterator It;
 	for(It = wxGetApp().m_marked_list->list().begin(); It != wxGetApp().m_marked_list->list().end(); It++){
@@ -665,7 +716,39 @@ void ConvertSketchesToFace::Run(){
 	}
 }
 
-void MakeLineArcsToSketch::Run(){
+static void AddLineOrArc(CSketch* sketch, Span &span)
+{
+	if(span.m_v.m_type == 0)
+	{
+		HLine* new_object = new HLine(gp_Pnt(span.m_p.x, span.m_p.y, 0), gp_Pnt(span.m_v.m_p.x, span.m_v.m_p.y, 0), &wxGetApp().current_color);
+		sketch->Add(new_object, NULL);
+	}
+	else
+	{
+		gp_Dir axis = (span.m_v.m_type > 0) ? gp_Dir(0, 0, 1):gp_Dir(0, 0, -1);
+		double radius = span.m_p.dist(span.m_v.m_c);
+		gp_Circ c(gp_Ax2(gp_Pnt(span.m_v.m_c.x, span.m_v.m_c.y, 0), axis), radius);
+		HArc* new_object = new HArc(gp_Pnt(span.m_p.x, span.m_p.y, 0), gp_Pnt(span.m_v.m_p.x, span.m_v.m_p.y, 0), c, &wxGetApp().current_color);
+		sketch->Add(new_object, NULL);
+	}
+}
+
+static void AddLinesOrArcs(CSketch* sketch, CArea &area)
+{
+	for(std::list<CCurve>::iterator It2 = area.m_curves.begin(); It2 != area.m_curves.end(); It2++)
+	{
+		CCurve& curve = *It2;
+		std::list<Span> spans;
+		curve.GetSpans(spans);
+		for(std::list<Span>::iterator It3 = spans.begin(); It3 != spans.end(); It3++)
+		{
+			Span& span = *It3;
+			AddLineOrArc(sketch, span);
+		}
+	}
+}
+
+void MakeToSketch::Run(){
 	std::list<HeeksObj*> objects_to_delete;
 
 	CSketch* sketch = new CSketch();
@@ -683,6 +766,11 @@ void MakeLineArcsToSketch::Run(){
 					HeeksObj* new_object = object->MakeACopy();
 					objects_to_delete.push_back(object);
 					sketch->Add(new_object, NULL);
+				}
+				break;
+			case AreaType:
+				{
+					AddLinesOrArcs(sketch, ((HArea*)object)->m_area);
 				}
 				break;
 			default:
@@ -771,6 +859,176 @@ void SketchesArcsToLines::Run(){
 	}
 
 	wxGetApp().Remove(objects_to_delete);
+}
+
+static CArea* area_to_add_to = NULL;
+static CCurve* curve_to_add_to = NULL;
+
+static void MakeNewCurveIfNecessary(HeeksObj* object)
+{
+	if(curve_to_add_to)
+	{
+		// does this object join the end of the current curve
+		double s[3];
+		if(!object->GetStartPoint(s) || (Point(s[0], s[1]) != curve_to_add_to->m_vertices.back().m_p))
+		{
+			// it doesn't join. we need a new curve
+			curve_to_add_to = NULL;
+		}
+	}
+
+	if(curve_to_add_to == NULL)
+	{
+		// make a new curve
+		area_to_add_to->m_curves.push_back(CCurve());
+		curve_to_add_to = &(area_to_add_to->m_curves.back());
+
+		// add the start point of this object
+		double s[3];
+		if(object->GetStartPoint(s))
+		{
+			curve_to_add_to->append(Point(s[0], s[1]));
+		}
+	}
+}
+
+static void AddObjectToArea(HeeksObj* object)
+{
+	switch(object->GetType())
+	{
+	case SketchType:
+		{
+			for(HeeksObj* child = ((CSketch*)object)->GetFirstChild(); child; child = ((CSketch*)object)->GetNextChild())
+			{
+				AddObjectToArea(child);
+			}
+		}
+		break;
+
+	case LineType:
+		{
+			MakeNewCurveIfNecessary(object);
+			double e[3];
+			if(object->GetEndPoint(e))curve_to_add_to->append(Point(e[0], e[1]));
+		}
+		break;
+	case ArcType:
+		{
+			MakeNewCurveIfNecessary(object);
+			double e[3], c[3];
+			if(object->GetEndPoint(e) && object->GetCentrePoint(c))
+			{
+				int dir = (((HArc*)object)->m_axis.Direction().Z() > 0.0) ? 1:-1;
+				curve_to_add_to->append(CVertex(dir, Point(e[0], e[1]), Point(c[0], c[1])));
+			}
+		}
+		break;
+	case CircleType:
+		{
+			// add a couple of arcs
+			double c[3];
+			if(object->GetCentrePoint(c))
+			{
+				MakeNewCurveIfNecessary(object);
+				Point pc(c[0], c[1]);
+				double radius = ((HCircle*)object)->GetCircle().Radius();
+				Point p0 = pc + Point(radius, 0.0);
+				Point p1 = pc + Point(-radius, 0.0);
+				curve_to_add_to->append(p0);
+				curve_to_add_to->append(CVertex(1, p1, pc));
+				curve_to_add_to->append(CVertex(1, p0, pc));
+			}
+		}
+
+		break;
+	case EllipseType:
+		// to do - add some arcs
+		break;
+	case SplineType:
+		// to do - add some arcs
+		break;
+	}
+}
+
+void ConvertToArea::Run(){
+	std::list<HeeksObj*> copy_of_marked_list = wxGetApp().m_marked_list->list();
+	std::list<HeeksObj*> objects_to_delete;
+
+	CArea area;
+	area_to_add_to = &area;
+	curve_to_add_to = NULL;
+
+	for(std::list<HeeksObj*>::const_iterator It = copy_of_marked_list.begin(); It != copy_of_marked_list.end(); It++){
+		HeeksObj* object = *It;
+		AddObjectToArea(object);
+		objects_to_delete.push_back(object);
+	}
+
+	HArea* new_object = new HArea(area);
+	wxGetApp().Add(new_object, NULL);
+
+	wxGetApp().Remove(objects_to_delete);
+}
+
+static void AreaToolRun(int type)
+{
+	std::list<HeeksObj*> copy_of_marked_list = wxGetApp().m_marked_list->list();
+	std::list<HeeksObj*> objects_to_delete;
+
+	CArea area;
+	bool area_found = false;
+
+	for(std::list<HeeksObj*>::const_iterator It = copy_of_marked_list.begin(); It != copy_of_marked_list.end(); It++){
+		HeeksObj* object = *It;
+		if(object->GetType() == AreaType)
+		{
+			if(area_found)
+			{
+				switch(type)
+				{
+				case 1:
+					area.Union(((HArea*)object)->m_area);
+					break;
+				case 2:
+					area.Subtract(((HArea*)object)->m_area);
+					break;
+				case 3:
+					area.Intersect(((HArea*)object)->m_area);
+					break;
+				case 4:
+					area.Xor(((HArea*)object)->m_area);
+					break;
+				}
+			}
+			else
+			{
+				area = ((HArea*)object)->m_area;
+				area_found = true;
+			}
+			objects_to_delete.push_back(object);
+		}
+	}
+
+	HArea* new_object = new HArea(area);
+	wxGetApp().Add(new_object, NULL);
+
+	wxGetApp().Remove(objects_to_delete);
+}
+
+void AreaUnion::Run(){
+	AreaToolRun(1);
+}
+
+void AreaCut::Run(){
+	AreaToolRun(2);
+}
+
+void AreaIntersect::Run(){
+	AreaToolRun(3);
+}
+
+void AreaXor::Run(){
+	AreaToolRun(4);
 }
 
 void CombineSketches::Run(){
