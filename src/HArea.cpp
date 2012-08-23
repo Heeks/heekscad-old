@@ -19,7 +19,7 @@
 #include "Drawing.h"
 #include "DigitizeMode.h"
 #include "../interface/MarkedObject.h"
-#include "Arc.h"
+#include "../libarea/Arc.h"
 #include "HeeksConfig.h"
 
 HArea::HArea(const HArea &a){

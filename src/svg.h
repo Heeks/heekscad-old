@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-// svg.h
-// Copyright (c) 2009, Dan Heeks
-// This program is released under the BSD license. See the file COPYING for details.
-
-struct TwoPoints
-{
-	gp_Pnt ppnt;
-	gp_Pnt pcpnt;
-};
-
-// derive a class from this and implement it's virtual functions
-class CSvgRead{
-private:
-	std::list<gp_Trsf> m_transform_stack;
 // svg.h
 // Copyright (c) 2009, Dan Heeks
 // This program is released under the BSD license. See the file COPYING for details.

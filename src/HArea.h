@@ -5,7 +5,7 @@
 #pragma once
 
 #include "../interface/HeeksObj.h"
-#include "Area.h"
+#include "../libarea/Area.h"
 
 class HArea: public HeeksObj{
 	static void WriteVertex(const CVertex& vertex, TiXmlNode *root);

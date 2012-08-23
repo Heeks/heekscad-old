@@ -139,7 +139,7 @@ public:
 	virtual bool CanEditString(void)const{return false;}
 	virtual void OnEditString(const wxChar* str){}
 	virtual void KillGLLists(void){};
-	virtual HeeksObj *MakeACopy()const{return NULL;}
+	virtual HeeksObj *MakeACopy()const = 0;
 	virtual HeeksObj *MakeACopyWithID();
 	virtual void ReloadPointers(){}
 	virtual void Disconnect(std::list<HeeksObj*>parents){}

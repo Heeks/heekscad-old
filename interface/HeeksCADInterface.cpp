@@ -53,7 +53,7 @@
 #include "ViewZooming.h"
 #include "ViewPanning.h"
 #include "Sectioning.h"
-#include "Area.h"
+#include "../libarea/Area.h"
 #include "HArea.h"
 
 double CHeeksCADInterface::GetTolerance()
