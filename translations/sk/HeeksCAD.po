@@ -1,3 +1,4 @@
+
 # Slovak translation of HeeksCAD.
 # Copyright (C) 2009 THE HeeksCAD'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the HeeksCAD package.

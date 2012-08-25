@@ -2,6 +2,9 @@
 // Copyright (c) 2009, Dan Heeks
 // This program is released under the BSD license. See the file COPYING for details.
 
+/*! \brief HeeksCAD Program:
+ *
+ * Perhaps someone smart could say something useful about this */
 #pragma once
 
 #include "../interface/HeeksColor.h"
@@ -77,6 +80,9 @@ enum SolidViewMode
 };
 
 class HeeksCADapp : public wxApp, public ObjList
+/*! \class The Application Class:
+ *
+ * Perhaps a cluefull person could say more about this */
 {
 private:
 	std::set<Observer*> observers;
@@ -126,13 +132,13 @@ public:
 	bool digitize_tangent;
 	double digitizing_radius; // for ambiguous arcs and circles
 	bool draw_to_grid;
-	bool autosolve_constraints;
 	bool useOldFuse;
 	double digitizing_grid;
 	bool mouse_wheel_forward_away; // true for forwards/backwards = zoom out / zoom in, false for reverse
 	bool ctrl_does_rotate; // true - rotate on Ctrl, pan when not Ctrl      false - rotate when not Ctrl, pan when Ctrl
 	bool m_allow_opengl_stippling;
 	SolidViewMode m_solid_view_mode;
+	bool m_stl_save_as_binary;
 
 	//gp_Trsf digitizing_matrix;
 	CoordinateSystem *m_current_coordinate_system;
@@ -215,8 +221,6 @@ public:
 	int m_auto_save_interval;	// In minutes
 	std::auto_ptr<CAutoSave> m_pAutoSave;
 
-	bool m_save_constraints;
-
 	bool m_isModified;
 	bool m_isModifiedValid;
 
@@ -247,6 +251,8 @@ public:
 
 	void RegisterHeeksTypesConverter( HeeksTypesConverter_t );
 	void UnregisterHeeksTypesConverter( HeeksTypesConverter_t );
+
+	wxString m_alternative_open_wild_card_string;
 
 	//WxApp override
 	int OnRun();
@@ -298,10 +304,14 @@ public:
 	static void OpenDXFFile(const wxChar *filepath);
 	static void OpenRS274XFile(const wxChar *filepath);
 	bool OpenImageFile(const wxChar *filepath);
+
+	void OnNewButton();
 	void OnOpenButton();
 	bool OpenFile(const wxChar *filepath, bool import_not_open = false, HeeksObj* paste_into = NULL, HeeksObj* paste_before = NULL, bool retain_filename = true );
 	void SaveDXFFile(const wxChar *filepath);
-	void SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1.0, double* scale = NULL);
+	void SaveSTLFileBinary(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1.0, double* scale = NULL);
+	void SaveSTLFileAscii(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1.0, double* scale = NULL);
+	void SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1.0, double* scale = NULL, bool binary = true);
 	void SaveCPPFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1.0);
 	void SavePyFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance = -1.0);
 	void SaveXMLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, bool for_clipboard = false);
@@ -355,7 +365,7 @@ public:
 	void ResetIDs();
 	bool InputInt(const wxChar* prompt, const wxChar* value_name, int &value);
 	bool InputDouble(const wxChar* prompt, const wxChar* value_name, double &value);
-	bool InputAngleWithPlane(double &angle, double *axis = NULL, double *pos = NULL, int *number_of_copies = NULL);
+	bool InputAngleWithPlane(double &angle, double *axis = NULL, double *pos = NULL, int *number_of_copies = NULL, double *axial_shift = NULL);
 	bool InputLength(const wxChar* prompt, const wxChar* value_name, double &value);
 	void ShowModalOptions();
 	void SectioningDialog();

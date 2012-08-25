@@ -1,6 +1,31 @@
 // HeeksCAD.cpp
 // Copyright (c) 2009, Dan Heeks
 // This program is released under the BSD license. See the file COPYING for details.
+
+/** @mainpage HeeksCAD: Opensource 3D CAD and solid modeling solution.
+*   @par Description:
+*   - HeeksCAD is a free, open source, CAD application written by Dan Heeks, danheeks@gmail.com
+*   @par Features
+*   - Import solid models from STEP and IGES files. 
+*   - Draw construction geometry and lines and arcs. 
+*   - Create new primitive solids, or make solids by extruding a sketch or by making a lofted solid between sketches. 
+*   - Modify solids using blending, or boolean operations. 
+*   - Save IGES, STEP and STL. Printer plot the 2D geometry or to HPGL. 
+*   - Import and export dxf files; lines, arcs, ellipses, splines and polylines are supported. 
+*   - Use the geometric constraints solver to create accurate drawings from rough sketches.
+*   - HeeksCAD can be translated into any language. There are currently English, German, and Italian translations.
+*   - HeeksCAD has been built for Windows, Ubuntu, Debian, and OpenSUSE.
+*   - It is possible to make Add-In modules, see HeeksCNC, HeeksArt, and HeeksPython projects.
+*
+*   @par Dependencies:
+*   - Solid modeling is provided by Open CASCADE. 
+*   - Graphical user interface is made using wxWidgets.
+*
+*   @par License 
+*   - New BSD License. This means you can take all my work and use it for your own commercial application. Do what you want with it.
+*/
+
+
 #include "stdafx.h"
 #include "HeeksCAD.h"
 #include "../interface/Tool.h"
@@ -66,6 +91,7 @@
 #include "OrientationModifier.h"
 #include "MenuSeparator.h"
 #include "HGear.h"
+#include "HArea.h"
 
 using namespace std;
 
@@ -111,7 +137,7 @@ HeeksCADapp::HeeksCADapp(): ObjList()
 	_CrtSetAllocHook(MyAllocHook);
 #endif
 
-	m_version_number = _T("0 18 0");
+	m_version_number = _T("0 21 0");
 	m_geom_tol = 0.000001;
 	TiXmlBase::SetRequiredDecimalPlaces( DecimalPlaces(m_geom_tol) );	 // Ensure we write XML in enough accuracy to be useful when re-read.
 
@@ -142,9 +168,6 @@ HeeksCADapp::HeeksCADapp(): ObjList()
 	digitize_screen = false;
 	digitizing_radius = 5.0;
 	draw_to_grid = true;
-#ifdef MULTIPLE_OWNERS
-	autosolve_constraints = false;
-#endif
 	digitizing_grid = 1.0;
 	grid_mode = 3;
 	m_rotate_mode = 1;
@@ -196,6 +219,7 @@ HeeksCADapp::HeeksCADapp(): ObjList()
 	m_icon_texture_number = 0;
 	m_extrude_to_solid = true;
 	m_revolve_angle = 360.0;
+	m_stl_save_as_binary = true;
 
 
     {
@@ -284,9 +308,6 @@ bool HeeksCADapp::OnInit()
 	config.Read(_T("DrawCoords"), &digitize_coords, true);
 	config.Read(_T("DrawScreen"), &digitize_screen, false);
 	config.Read(_T("DrawToGrid"), &draw_to_grid, true);
-#ifdef MULTIPLE_OWNERS
-	config.Read(_T("AutoSolveConstraints"), &autosolve_constraints, false);
-#endif
 	config.Read(_T("UseOldFuse"), &useOldFuse, false);
 	config.Read(_T("DrawGrid"), &digitizing_grid);
 	config.Read(_T("DrawRadius"), &digitizing_radius);
@@ -367,10 +388,6 @@ bool HeeksCADapp::OnInit()
 	config.Read(_T("DxfMakeSketch"), &HeeksDxfRead::m_make_as_sketch, true);
 	config.Read(_T("DxfIgnoreErrors"), &HeeksDxfRead::m_ignore_errors, false);
 
-#ifdef MULTIPLE_OWNERS
-	config.Read(_T("SaveConstraints"), &m_save_constraints, true);
-#endif
-
 	config.Read(_T("ViewUnits"), &m_view_units);
 	config.Read(_T("FaceToSketchDeviation"), &(FaceToSketchTool::deviation));
 
@@ -393,6 +410,7 @@ bool HeeksCADapp::OnInit()
 
 	config.Read(_T("InputUsesModalDialog"), &m_input_uses_modal_dialog, true);
 	config.Read(_T("DraggingMovesObjects"), &m_dragging_moves_objects, true);
+	config.Read(_T("STLSaveBinary"), &m_stl_save_as_binary, true);
 
 	HDimension::ReadFromConfig(config);
 	LoadSketchToolsSettings();
@@ -509,9 +527,6 @@ void HeeksCADapp::WriteConfig()
 	config.Write(_T("DrawCoords"), digitize_coords);
 	config.Write(_T("DrawScreen"), digitize_screen);
 	config.Write(_T("DrawToGrid"), draw_to_grid);
-#ifdef MULTIPLE_OWNERS
-	config.Write(_T("AutoSolveConstraints"), autosolve_constraints);
-#endif
 	config.Write(_T("UseOldFuse"), useOldFuse);
 	config.Write(_T("DrawGrid"), digitizing_grid);
 	config.Write(_T("DrawRadius"), digitizing_radius);
@@ -546,9 +561,6 @@ void HeeksCADapp::WriteConfig()
 	config.Write(_T("AllowOpenGLStippling"), m_allow_opengl_stippling);
 	config.Write(_T("DxfMakeSketch"), HeeksDxfRead::m_make_as_sketch);
 	config.Write(_T("DxfIgnoreErrors"), HeeksDxfRead::m_ignore_errors);
-#ifdef MULTIPLE_OWNERS
-	config.Write(_T("SaveConstraints"), m_save_constraints);
-#endif
 	config.Write(_T("FaceToSketchDeviation"), FaceToSketchTool::deviation);
 
 	config.Write(_T("MinCorrelationFactor"), m_min_correlation_factor);
@@ -562,6 +574,7 @@ void HeeksCADapp::WriteConfig()
 	config.Write(_T("ExtrudeToSolid"), m_extrude_to_solid);
 	config.Write(_T("RevolveAngle"), m_revolve_angle);
 	config.Write(_T("SolidViewMode"), m_solid_view_mode);
+	config.Write(_T("STLSaveBinary"), m_stl_save_as_binary);
 
 	HDimension::WriteToConfig(config);
 
@@ -844,11 +857,9 @@ void HeeksCADapp::InitializeXMLFunctions()
 		xml_read_fn_map.insert( std::pair< std::string, HeeksObj*(*)(TiXmlElement* pElem) > ( "Ellipse", HEllipse::ReadFromXMLElement ) );
 		xml_read_fn_map.insert( std::pair< std::string, HeeksObj*(*)(TiXmlElement* pElem) > ( "Spline", HSpline::ReadFromXMLElement ) );
 		xml_read_fn_map.insert( std::pair< std::string, HeeksObj*(*)(TiXmlElement* pElem) > ( "Group", CGroup::ReadFromXMLElement ) );
-#ifdef MULTIPLE_OWNERS
-		xml_read_fn_map.insert( std::pair< std::string, HeeksObj*(*)(TiXmlElement* pElem) > ( "Constraint", Constraint::ReadFromXMLElement ) );
-#endif
 		xml_read_fn_map.insert( std::pair< std::string, HeeksObj*(*)(TiXmlElement* pElem) > ( "OrientationModifier", COrientationModifier::ReadFromXMLElement ) );
 		xml_read_fn_map.insert( std::pair< std::string, HeeksObj*(*)(TiXmlElement* pElem) > ( "Gear", HGear::ReadFromXMLElement ) );
+		xml_read_fn_map.insert( std::pair< std::string, HeeksObj*(*)(TiXmlElement* pElem) > ( "Area", HArea::ReadFromXMLElement ) );
 	}
 }
 
@@ -1191,6 +1202,21 @@ bool HeeksCADapp::OpenImageFile(const wxChar *filepath)
 	return false;
 }
 
+void HeeksCADapp::OnNewButton()
+{
+	int res = CheckForModifiedDoc();
+	if(res != wxCANCEL)
+	{
+		OnBeforeNewOrOpen(false, res);
+		Reset();
+		OnNewOrOpen(false, res);
+		ClearHistory();
+		SetLikeNewFile();
+		SetFrameTitle();
+		Repaint();
+	}
+}
+
 void HeeksCADapp::OnOpenButton()
 {
 	wxString default_directory = wxGetCwd();
@@ -1376,7 +1402,7 @@ static void WriteDXFEntity(HeeksObj* object, CDxfWrite& dxf_file, const wxString
 			double maj_r = e->m_majr;
 			double min_r = e->m_minr;
 			double rot = e->GetRotation();
-			dxf_file.WriteEllipse(c, maj_r, min_r, rot, 0, 2 * Pi, dir, Ttc(layer_name.c_str()));
+			dxf_file.WriteEllipse(c, maj_r, min_r, rot, 0, 2 * M_PI, dir, Ttc(layer_name.c_str()));
                 }
 		break;
         case CircleType:
@@ -1478,7 +1504,76 @@ static void write_cpp_triangle(const double* x, const double* n)
 	}
 }
 
-void HeeksCADapp::SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance, double* scale)
+class NineFloatsThreeFloats
+{
+public:
+	float x[9];
+	float n[3];
+};
+static std::list<NineFloatsThreeFloats> binary_triangles;
+
+static void write_binary_triangle(const double* x, const double* n)
+{
+	NineFloatsThreeFloats t;
+	for(int i = 0; i<9; i++)t.x[i] = (float)(x[i]);
+	for(int i = 0; i<3; i++)t.n[i] = (float)(n[i]);
+	binary_triangles.push_back(t);
+}
+
+void HeeksCADapp::SaveSTLFileBinary(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance, double* scale)
+{
+#ifdef __WXMSW__
+	ofstream ofs(filepath, ios::binary);
+#else
+	ofstream ofs(Ttc(filepath), ios::binary);
+#endif
+
+	// write 80 characters ( could be anything )
+	char header[80] = "Binary STL file made with HeeksCAD                                     ";
+	ofs.write(header, 80);
+
+	// get all the triangles
+	for(std::list<HeeksObj*>::const_iterator It = objects.begin(); It != objects.end(); It++)
+	{
+		HeeksObj* object = *It;
+		object->GetTriangles(write_binary_triangle, facet_tolerance < 0 ? m_stl_facet_tolerance : facet_tolerance);
+	}
+
+	// write the number of facets
+	unsigned int num_facets = binary_triangles.size();
+	ofs.write((char*)(&num_facets), 4);
+
+	for(std::list<NineFloatsThreeFloats>::iterator It = binary_triangles.begin(); It != binary_triangles.end(); It++)
+	{
+		NineFloatsThreeFloats t = *It;
+
+		gp_Pnt p0(t.x[0], t.x[1], t.x[2]);
+		gp_Pnt p1(t.x[3], t.x[4], t.x[5]);
+		gp_Pnt p2(t.x[6], t.x[7], t.x[8]);
+		gp_Vec v1(p0, p1);
+		gp_Vec v2(p0, p2);
+		float n[3] = {0.0f, 0.0f, 1.0f};
+		try
+		{
+			gp_Vec norm = (v1 ^ v2).Normalized();
+			n[0] = (float)(norm.X());
+			n[1] = (float)(norm.Y());
+			n[2] = (float)(norm.Z());
+		}
+		catch(...)
+		{
+		}
+
+		ofs.write((char*)(n), 12);
+		ofs.write((char*)(t.x), 36);
+		short attr = 0;
+		ofs.write((char*)(&attr), 2);
+	}
+
+	binary_triangles.clear();
+}
+
+void HeeksCADapp::SaveSTLFileAscii(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance, double* scale)
 {
 #ifdef __WXMSW__
 	ofstream ofs(filepath);
@@ -1506,6 +1601,12 @@ void HeeksCADapp::SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar 
 	scale_for_write_triangle = NULL;
 
 	ofs<<"endsolid"<<endl;
+}
+
+void HeeksCADapp::SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance, double* scale, bool binary)
+{
+	if(binary)SaveSTLFileBinary(objects, filepath, facet_tolerance, scale);
+	else SaveSTLFileAscii(objects, filepath, facet_tolerance, scale);
 }
 
 void HeeksCADapp::SaveCPPFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance)
@@ -1582,21 +1683,11 @@ void HeeksCADapp::SaveXMLFile(const std::list<HeeksObj*>& objects, const wxChar 
 
 	// loop through all the objects writing them
 	CShape::m_solids_found = false;
-#ifdef MULTIPLE_OWNERS
-	Constraint::BeginSave();
-#endif
 	for(std::list<HeeksObj*>::const_iterator It = objects.begin(); It != objects.end(); It++)
 	{
 		HeeksObj* object = *It;
 		object->WriteXML(root);
 	}
-
-#ifdef MULTIPLE_OWNERS
-	// write the constraints to the root-if check box is selected
-	if (m_save_constraints){
-	Constraint::EndSave(root);
-	}
-#endif
 
 	// write a step file for all the solids
 	if(CShape::m_solids_found){
@@ -1715,7 +1806,7 @@ bool HeeksCADapp::SaveFile(const wxChar *filepath, bool use_dialog, bool update_
 	}
 	else if(wf.EndsWith(_T(".stl")))
 	{
-		SaveSTLFile(m_objects, filepath);
+		SaveSTLFile(m_objects, filepath, -1.0, NULL, m_stl_save_as_binary);
 	}
 	else if(wf.EndsWith(_T(".cpp")))
 	{
@@ -2186,7 +2277,7 @@ void HeeksCADapp::GetDropDownTools(std::list<Tool*> &f_list, const wxPoint &poin
 
 	m_marked_list->GetTools(marked_object, f_list, &new_point, true);
 
-	GenerateIntersectionMenuOptions( f_list );
+	if(!wxGetApp().m_no_creation_mode)GenerateIntersectionMenuOptions( f_list );
 
 	temp_f_list.clear();
 	if(input_mode_object)input_mode_object->GetTools(&temp_f_list, &new_point);
@@ -2550,14 +2641,6 @@ void on_grid(bool onoff, HeeksObj* object)
 	wxGetApp().Repaint();
 }
 
-#ifdef MULTIPLE_OWNERS
-void on_autosolve(bool onoff, HeeksObj* object)
-{
-	wxGetApp().autosolve_constraints = onoff;
-	wxGetApp().Repaint();
-}
-#endif
-
 void on_useOldFuse(bool onoff, HeeksObj* object)
 {
 	wxGetApp().useOldFuse = onoff;
@@ -2671,6 +2754,11 @@ void on_set_light_push_matrix(bool value, HeeksObj* object)
 void on_set_reverse_mouse_wheel(bool value, HeeksObj* object)
 {
 	wxGetApp().mouse_wheel_forward_away = !value;
+}
+
+void on_set_stl_save_binary(bool value, HeeksObj* object)
+{
+	wxGetApp().m_stl_save_as_binary = value;
 }
 
 void on_set_reverse_zooming(bool value, HeeksObj* object)
@@ -2901,16 +2989,10 @@ void on_set_timestamps(bool value, HeeksObj* object){
 	wxGetApp().m_frame->SetLogLogTimestamps(value);
 }
 
-#ifdef MULTIPLE_OWNERS
-void on_save_constraints(bool onoff, HeeksObj* object)
-{
-  wxGetApp().m_save_constraints = onoff;
-}
-#endif
-
 static void on_set_units(int value, HeeksObj* object)
 {
 	wxGetApp().m_view_units = (value == 0) ? 1.0:25.4;
+	wxGetApp().OnChangeViewUnits(wxGetApp().m_view_units);
 
 	// Notify any registered handler routines.
 	for (HeeksCADapp::UnitsChangedHandlers_t::iterator itHandler = wxGetApp().m_units_changed_handlers.begin();
@@ -3128,9 +3210,6 @@ void HeeksCADapp::GetOptions(std::list<Property *> *list)
 	digitizing->m_list.push_back(new PropertyCheck(_("screen"), digitize_screen, NULL, on_relative));
 	digitizing->m_list.push_back(new PropertyLength(_("grid size"), digitizing_grid, NULL, on_grid_edit));
 	digitizing->m_list.push_back(new PropertyCheck(_("snap to grid"), draw_to_grid, NULL, on_grid));
-#ifdef MULTIPLE_OWNERS
-	digitizing->m_list.push_back(new PropertyCheck(_("autosolve constraints"), autosolve_constraints, NULL, on_autosolve));
-#endif
 	list->push_back(digitizing);
 
 	PropertyList* correlation_properties = new PropertyList(_("correlation"));
@@ -3190,11 +3269,9 @@ void HeeksCADapp::GetOptions(std::list<Property *> *list)
 	file_options->m_list.push_back(dxf_options);
 	PropertyList* stl_options = new PropertyList(_("STL"));
 	stl_options->m_list.push_back(new PropertyDouble(_("stl save facet tolerance"), m_stl_facet_tolerance, NULL, on_stl_facet_tolerance));
+	stl_options->m_list.push_back( new PropertyCheck(_("STL save binary"), m_stl_save_as_binary, NULL, on_set_stl_save_binary));
 	file_options->m_list.push_back(stl_options);
 	file_options->m_list.push_back(new PropertyInt(_("auto save interval (in minutes)"), m_auto_save_interval, NULL, on_set_auto_save_interval));
-#ifdef MULTIPLE_OWNERS
-	file_options->m_list.push_back(new PropertyCheck(_("save constraints to file"), m_save_constraints, NULL, on_save_constraints));
-#endif
 	list->push_back(file_options);
 
 	// Font options
@@ -3258,6 +3335,9 @@ static wxString known_file_ext;
 const wxChar* HeeksCADapp::GetKnownFilesWildCardString(bool open)const
 {
 	if(open){
+		if(m_alternative_open_wild_card_string.Len() > 0)
+			return m_alternative_open_wild_card_string.c_str();
+
 		wxList handlers = wxImage::GetHandlers();
 		wxString imageExtStr;
 		wxString imageExtStr2;
@@ -3498,6 +3578,7 @@ void HeeksCADapp::get_2d_arc_segments(double xs, double ys, double xe, double ye
 	int segments = (int)(pixels_per_mm * radius * fabs(d_angle) / 6.28318530717958 + 1);
 
     double theta = d_angle / (double)segments;
+	while(theta>1.0){segments*=2;theta = d_angle / (double)segments;}
     double tangetial_factor = tan(theta);
     double radial_factor = 1 - cos(theta);
 
@@ -3695,6 +3776,8 @@ void HeeksCADapp::OnNewOrOpen(bool open, int res)
 			(*fnOnNewOrOpen)(open ? 1:0, res);
 		}
 	}
+
+	ObserversOnChange(&m_objects, NULL, NULL);
 }
 
 void HeeksCADapp::OnBeforeNewOrOpen(bool open, int res)
@@ -3764,7 +3847,7 @@ void HeeksCADapp::InsertRecentFileItem(const wxChar* filepath)
 int HeeksCADapp::CheckForModifiedDoc()
 {
 	// returns wxCANCEL if not OK to continue opening file
-	if(IsModified())
+	if(!m_no_creation_mode && IsModified())
 	{
 		wxString str = wxString(_("Save changes to file")) + _T(" ") + m_filepath;
 		int res = wxMessageBox(str, wxMessageBoxCaptionStr, wxCANCEL|wxYES_NO|wxCENTRE);
@@ -4602,9 +4685,4 @@ unsigned int HeeksCADapp::GetIndex(HeeksObj *object)
 void HeeksCADapp::ReleaseIndex(unsigned int index)
 {
     if(m_marked_list)m_marked_list->ReleaseIndex(index);
-}
-
-void ExitMainLoop()
-{
-	wxGetApp().ExitMainLoop();
 }

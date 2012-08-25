@@ -5,8 +5,9 @@
 #pragma once
 
 #ifdef MULTIPLE_OWNERS
-#include "ConstrainedObject.h"
-class HCircle: public ConstrainedObject{
+#include "../interface/ObjList.h"
+class HPoint;
+class HCircle: public ObjList{
 #else
 #include "HPoint.h"
 class HCircle: public HeeksObj{
@@ -32,6 +33,7 @@ public:
 	void glCommands(bool select, bool marked, bool no_color);
 	void GetBox(CBox &box);
 	const wxChar* GetTypeString(void)const{return _("Circle");}
+	int GetIDGroupType()const{return SketchType;}
 	HeeksObj *MakeACopy(void)const;
 	const wxBitmap &GetIcon();
 	void ModifyByMatrix(const double *mat);

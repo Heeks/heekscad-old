@@ -50,6 +50,8 @@ CSelectMode::CSelectMode(){
 	control_key_initially_pressed = false;
 	window_box_exists = false;
 	m_doing_a_main_loop = false;
+	m_button_down = false;
+	m_middle_button_down = false;
 	m_just_one = false;
 }
 
@@ -115,6 +117,7 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 	{
 		button_down_point = wxPoint(event.GetX(), event.GetY());
 		CurrentPoint = button_down_point;
+		m_button_down = true;
 
 		if(wxGetApp().m_dragging_moves_objects)
 		{
@@ -157,7 +160,15 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 						from[0] = wxGetApp().grip_from.X();
 						from[1] = wxGetApp().grip_from.Y();
 						from[2] = wxGetApp().grip_from.Z();
-						wxGetApp().drag_gripper->OnGripperGrabbed(wxGetApp().m_marked_list->list(), true, from);
+
+						std::list<HeeksObj*> selected_objects;
+						for(std::list<HeeksObj*>::iterator It = wxGetApp().m_marked_list->list().begin(); It != wxGetApp().m_marked_list->list().end(); It++)
+						{
+							HeeksObj* object = *It;
+							if(object->CanBeDragged())selected_objects.push_back(object);
+						}
+
+						wxGetApp().drag_gripper->OnGripperGrabbed(selected_objects, true, from);
 						wxGetApp().grip_from = gp_Pnt(from[0], from[1], from[2]);
 						wxGetApp().m_current_viewport->EndDrawFront();
 						return;
@@ -170,13 +181,26 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 
 	if(event.MiddleDown())
 	{
+		m_middle_button_down = true;
 		button_down_point = wxPoint(event.GetX(), event.GetY());
 		CurrentPoint = button_down_point;
 		wxGetApp().m_current_viewport->StoreViewPoint();
 		wxGetApp().m_current_viewport->m_view_point.SetStartMousePoint(button_down_point);
 	}
 
+	bool dragging = event.Dragging() && (m_button_down || m_middle_button_down);
+	bool moving = event.Moving() || (event.Dragging() && (!(m_button_down || m_middle_button_down)));
+	bool left_up = false;
+
 	if(event.LeftUp())
+	{
+		if(m_button_down)left_up = true;
+		m_button_down = false;
+	}
+
+	if(event.MiddleUp())m_middle_button_down = false;
+
+	if(left_up)
 	{
 		if(wxGetApp().drag_gripper)
 		{
@@ -301,12 +325,16 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 					double ray_start[3], ray_direction[3];
 					extract(ray.Location(), ray_start);
 					extract(ray.Direction(), ray_direction);
-					object->SetClickMarkPoint(&marked_object, ray_start, ray_direction);
+					marked_object.GetFirstOfTopOnly();
+					object->SetClickMarkPoint(marked_object.GetCurrent(), ray_start, ray_direction);
 				}
 			}
 			else
 			{
-				wxGetApp().m_marked_list->Clear(true);
+				if(!event.ShiftDown() && !event.ControlDown())
+				{
+					wxGetApp().m_marked_list->Clear(true);
+				}
 			}
 		}
 
@@ -325,7 +353,7 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 		wxGetApp().FindMarkedObject(wxPoint(event.GetX(), event.GetY()), &marked_object);
 		wxGetApp().DoDropDownMenu(wxGetApp().m_frame->m_graphics, wxPoint(event.GetX(), event.GetY()), &marked_object, false, event.ControlDown());
 	}
-	else if(event.Dragging())
+	else if(dragging)
 	{
 		if(event.MiddleIsDown())
 		{
@@ -372,7 +400,11 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 
 					if(	wxGetApp().m_marked_list->list().size() > 0)
 					{
-						selected_objects_dragged = wxGetApp().m_marked_list->list();
+						for(std::list<HeeksObj*>::iterator It = wxGetApp().m_marked_list->list().begin(); It != wxGetApp().m_marked_list->list().end(); It++)
+						{
+							HeeksObj* object = *It;
+							if(object->CanBeDragged())selected_objects_dragged.push_back(object);
+						}
 					}
 					else
 					{
@@ -384,11 +416,14 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 							HeeksObj* closest_object = NULL;
 							while(object)
 							{
-								double depth = marked_object.GetDepth();
-								if(closest_object == NULL || depth<min_depth)
+								if(object->CanBeDragged())
 								{
-									min_depth = depth;
-									closest_object = object;
+									double depth = marked_object.GetDepth();
+									if(closest_object == NULL || depth<min_depth)
+									{
+										min_depth = depth;
+										closest_object = object;
+									}
 								}
 								object = marked_object.Increment();
 							}
@@ -441,7 +476,7 @@ void CSelectMode::OnMouse( wxMouseEvent& event )
 		}
 		CurrentPoint = wxPoint(event.GetX(), event.GetY());
 	}
-	else if(event.Moving())
+	else if(moving)
 	{
 		CurrentPoint = wxPoint(event.GetX(), event.GetY());
 	}

@@ -23,6 +23,7 @@
 #include "../interface/PropertyVertex.h"
 #include "../interface/PropertyCheck.h"
 #include <locale.h>
+#include <BRepBuilderAPI_MakeSolid.hxx>
 
 // static member variable
 bool CShape::m_solids_found = false;
@@ -728,6 +729,14 @@ void CShape::FilletOrChamferEdges(std::list<HeeksObj*> &list, double radius, boo
 	wxGetApp().Repaint();
 }
 
+static double GetVolume(TopoDS_Shape shape)
+// http://www.opencascade.org/org/forum/thread_15471/
+{
+GProp_GProps System;
+BRepGProp::VolumeProperties(shape, System);
+return System.Mass();
+}
+
 bool CShape::ImportSolidsFile(const wxChar* filepath, std::map<int, CShapeData> *index_map, HeeksObj* paste_into)
 {
 	// only allow paste of solids at top level or to groups
@@ -810,44 +819,51 @@ bool CShape::ImportSolidsFile(const wxChar* filepath, std::map<int, CShapeData> 
 
 		if ( status == IFSelect_RetDone )
 		{
-			Reader.TransferRoots();
-			TopoDS_Shape shape = Reader.OneShape();
-			HeeksObj* new_object = MakeObject(shape, _("IGES shape"), SOLID_TYPE_UNKNOWN, HeeksColor(191, 191, 191), 1.0f);
-			add_to->Add(new_object, NULL);
-#if 0
-			Reader.TransferRoots();
-			int num_shapes = Reader.NbShapes();
-			if(num_shapes > 0)
+			int num = Reader.NbRootsForTransfer();
+			for(int i = 1; i<=num; i++)
 			{
-				BRepOffsetAPI_Sewing face_sewing (0.001);
+				Handle_Standard_Transient root = Reader.RootForTransfer(i);
+				Reader.TransferEntity(root);
+				TopoDS_Shape rShape = Reader.Shape(i);
+
 				int shapes_added_for_sewing = 0;
-				for(int j = 1; j<= num_shapes; j++)
+				BRepOffsetAPI_Sewing face_sewing (0.001);
+				for (TopExp_Explorer explorer(rShape, TopAbs_FACE); explorer.More(); explorer.Next())
 				{
-					TopoDS_Shape rShape = Reader.Shape(j);
-					if(rShape.ShapeType() == TopAbs_EDGE)
-					{
-						HeeksObj* new_object = new CEdge(TopoDS::Edge(rShape));
-						add_to->Add(new_object, NULL);
-					}
-					else
-					{
-						face_sewing.Add (rShape);
-						shapes_added_for_sewing++;
-					}
+					face_sewing.Add (explorer.Current());
+					shapes_added_for_sewing++;
 				}
 
-				if(shapes_added_for_sewing > 0)
-				{
-					face_sewing.Perform ();
-
-					if(!face_sewing.SewedShape().IsNull())
+				bool sewed_shape_added = false;
+				try{
+					if(shapes_added_for_sewing > 0)
 					{
-						HeeksObj* new_object = MakeObject(face_sewing.SewedShape(), _("sewed IGES solid"), SOLID_TYPE_UNKNOWN, HeeksColor(191, 191, 191));
-						add_to->Add(new_object, NULL);
+						face_sewing.Perform ();
+
+						if(!face_sewing.SewedShape().IsNull())
+						{
+							BRepBuilderAPI_MakeSolid solid_maker;
+							solid_maker.Add(TopoDS::Shell(face_sewing.SewedShape()));
+							TopoDS_Shape solid = solid_maker.Solid();
+
+							if (GetVolume(solid) < 0.0) solid.Reverse();
+
+							HeeksObj* new_object = MakeObject(solid, _("sewed IGES solid"), SOLID_TYPE_UNKNOWN, HeeksColor(191, 191, 191), 1.0f);
+							add_to->Add(new_object, NULL);
+							sewed_shape_added = true;
+						}
 					}
+				}
+				catch(...)
+				{
+				}
+				if(!sewed_shape_added)
+				{
+					// add the original
+					HeeksObj* new_object = MakeObject(rShape, _("IGES shape"), SOLID_TYPE_UNKNOWN, HeeksColor(191, 191, 191), 1.0f);
+					add_to->Add(new_object, NULL);
 				}
 			}
-#endif
 
 		}
 		else{
