@@ -166,7 +166,9 @@ CDxfRead::CDxfRead(const char* filepath)
 	// start the file
 	memset( m_unused_line, '\0', sizeof(m_unused_line) );
 	m_fail = false;
+	m_aci = 0;
 	m_eUnits = eMillimeters;
+	m_measurement_inch = false;
 	strcpy(m_layer_name, "0");	// Default layer name
 	m_ignore_errors = true;
 
@@ -185,8 +187,13 @@ CDxfRead::~CDxfRead()
 	delete m_ifs;
 }
 
-double CDxfRead::mm( const double & value ) const
+double CDxfRead::mm( double value ) const
 {
+	if(m_measurement_inch)
+	{
+		value *= 0.0393700787401575;
+	}
+
 	switch(m_eUnits)
 	{
 		case eUnspecified:	return(value * 1.0);	// We don't know any better.
@@ -219,6 +226,7 @@ bool CDxfRead::ReadLine()
 {
 	double s[3] = {0, 0, 0};
 	double e[3] = {0, 0, 0};
+	bool hidden = false;
 
 	while(!((*m_ifs).eof()))
 	{
@@ -237,12 +245,18 @@ bool CDxfRead::ReadLine()
 			case 0:
 				// next item found, so finish with line
 			        DerefACI();
-			        OnReadLine(s, e);
+			        OnReadLine(s, e, hidden);
+					hidden = false;
 				return true;
 
 			case 8: // Layer name follows
 				get_line();
 				strcpy(m_layer_name, m_str);
+				break;
+
+			case 6: // line style name follows
+				get_line();
+				if(m_str[0] == 'h' || m_str[0] == 'H')hidden = true;
 				break;
 
 			case 10:
@@ -298,7 +312,7 @@ bool CDxfRead::ReadLine()
 
 	try {
 	    DerefACI();
-	    OnReadLine(s, e);
+	    OnReadLine(s, e, false);
 	}
 	catch(...)
 	{
@@ -394,6 +408,7 @@ bool CDxfRead::ReadArc()
 	double radius = 0.0;
 	double c[3]; // centre
     double z_extrusion_dir = 1.0;
+	bool hidden = false;
     
 	while(!((*m_ifs).eof()))
 	{
@@ -411,12 +426,18 @@ bool CDxfRead::ReadArc()
 			case 0:
 				// next item found, so finish with arc
 			        DerefACI();
-			        OnReadArc(start_angle, end_angle, radius, c,z_extrusion_dir);
+			        OnReadArc(start_angle, end_angle, radius, c,z_extrusion_dir, hidden);
+					hidden = false;
 			        return true;
 
 			case 8: // Layer name follows
 				get_line();
 				strcpy(m_layer_name, m_str);
+				break;
+
+			case 6: // line style name follows
+				get_line();
+				if(m_str[0] == 'h' || m_str[0] == 'H')hidden = true;
 				break;
 
 			case 10:
@@ -477,7 +498,7 @@ bool CDxfRead::ReadArc()
 		}
 	}
 	DerefACI();
-	OnReadArc(start_angle, end_angle, radius, c, z_extrusion_dir);
+	OnReadArc(start_angle, end_angle, radius, c, z_extrusion_dir, false);
 	return false;
 }
 
@@ -667,6 +688,7 @@ bool CDxfRead::ReadCircle()
 {
 	double radius = 0.0;
 	double c[3]; // centre
+	bool hidden = false;
 
 	while(!((*m_ifs).eof()))
 	{
@@ -682,9 +704,16 @@ bool CDxfRead::ReadCircle()
 		switch(n){
 			case 0:
 				// next item found, so finish with Circle
-			        DerefACI();
-				OnReadCircle(c, radius);
+			    DerefACI();
+				OnReadCircle(c, radius, hidden);
+				hidden = false;
 				return true;
+
+			case 6: // line style name follows
+				get_line();
+				if(m_str[0] == 'h' || m_str[0] == 'H')hidden = true;
+				break;
+
 			case 8: // Layer name follows
 				get_line();
 				strcpy(m_layer_name, m_str);
@@ -731,7 +760,7 @@ bool CDxfRead::ReadCircle()
 		}
 	}
 	DerefACI();
-	OnReadCircle(c, radius);
+	OnReadCircle(c, radius, false);
 	return false;
 }
 
@@ -939,7 +968,7 @@ static void AddPolyLinePoint(CDxfRead* dxf_read, double x, double y, double z, b
 				double ps[3] = {poly_prev_x, poly_prev_y, poly_prev_z};
 				double pe[3] = {x, y, z};
 				double pc[3] = {cx, cy, (poly_prev_z + z)/2.0};
-				dxf_read->OnReadArc(ps, pe, pc, poly_prev_bulge >= 0);
+				dxf_read->OnReadArc(ps, pe, pc, poly_prev_bulge >= 0, false);
 				arc_done = true;
 			}
 
@@ -947,7 +976,7 @@ static void AddPolyLinePoint(CDxfRead* dxf_read, double x, double y, double z, b
 			{
 				double s[3] = {poly_prev_x, poly_prev_y, poly_prev_z};
 				double e[3] = {x, y, z};
-				dxf_read->OnReadLine(s, e);
+				dxf_read->OnReadLine(s, e, false);
 			}
 		}
 
@@ -1228,7 +1257,7 @@ bool CDxfRead::ReadPolyLine()
 	return false;
 }
 
-void CDxfRead::OnReadArc(double start_angle, double end_angle, double radius, const double* c, double z_extrusion_dir){
+void CDxfRead::OnReadArc(double start_angle, double end_angle, double radius, const double* c, double z_extrusion_dir, bool hidden){
 	double s[3], e[3], temp[3] ;
     if (z_extrusion_dir==1.0)
   {
@@ -1256,17 +1285,17 @@ void CDxfRead::OnReadArc(double start_angle, double end_angle, double radius, co
 	s[2] = c[2];
 
     }
-	OnReadArc(s, e, temp, true);
+	OnReadArc(s, e, temp, true, hidden);
 }
 
-void CDxfRead::OnReadCircle(const double* c, double radius){
+void CDxfRead::OnReadCircle(const double* c, double radius, bool hidden){
 	double s[3];
     double start_angle = 0;
 	s[0] = c[0] + radius * cos(start_angle * Pi/180);
 	s[1] = c[1] + radius * sin(start_angle * Pi/180);
 	s[2] = c[2];
 
-	OnReadCircle(s, c, false); //false to change direction because otherwise the arc length is zero
+	OnReadCircle(s, c, false, hidden); //false to change direction because otherwise the arc length is zero
 }
 
 void CDxfRead::OnReadEllipse(const double* c, const double* m, double ratio, double start_angle, double end_angle){
@@ -1404,6 +1433,17 @@ void CDxfRead::DoRead(const bool ignore_errors /* = false */ )
 	{
 		if (!strcmp( m_str, "$INSUNITS" )){
 			if (!ReadUnits())return;
+			continue;
+		} // End if - then
+
+		if (!strcmp( m_str, "$MEASUREMENT" )){
+			get_line();
+			get_line();
+			int n = 1;
+			if(sscanf(m_str, "%d", &n) == 1)
+			{
+				if(n == 0)m_measurement_inch = true;
+			}
 			continue;
 		} // End if - then
 
@@ -1558,4 +1598,3 @@ std::string CDxfRead::LayerName() const
 
     return(result);
 }
-

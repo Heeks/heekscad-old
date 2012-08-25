@@ -807,17 +807,7 @@ static void OnRedoButton( wxCommandEvent& event )
 
 static void OnNewButton( wxCommandEvent& event )
 {
-	int res = wxGetApp().CheckForModifiedDoc();
-	if(res != wxCANCEL)
-	{
-		wxGetApp().OnBeforeNewOrOpen(false, res);
-		wxGetApp().Reset();
-		wxGetApp().OnNewOrOpen(false, res);
-		wxGetApp().ClearHistory();
-		wxGetApp().SetLikeNewFile();
-		wxGetApp().SetFrameTitle();
-		wxGetApp().Repaint();
-	}
+	wxGetApp().OnNewButton();
 }
 
 static void OnCutButton( wxCommandEvent& event )
@@ -951,6 +941,14 @@ static void OnRevolveButton( wxCommandEvent& event )
 	if(!wxGetApp().CheckForNOrMore(wxGetApp().m_marked_list->list(), 1, SketchType, FaceType, CircleType, wxString(_("Pick one or more sketches, faces or circles, to create a revolved body from")) + _T("\n( ") + _( "hold down Ctrl key to select more than one solid") + _T(" )"), _("Extrude")))return;
 	wxGetApp().CreateUndoPoint();
 	PickCreateRevolution();
+	wxGetApp().Changed();
+}
+
+static void OnSweepButton( wxCommandEvent& event )
+{
+	if(!wxGetApp().CheckForNOrMore(wxGetApp().m_marked_list->list(), 1, SketchType, FaceType, CircleType, wxString(_("Pick one or more sketches, faces or circles, to sweep")) + _T("\n( ") + _( "hold down Ctrl key to select more than one solid") + _T(" )"), _("Extrude")))return;
+	wxGetApp().CreateUndoPoint();
+	PickCreateSweep();
 	wxGetApp().Changed();
 }
 
@@ -1734,6 +1732,7 @@ void CHeeksFrame::MakeMenus()
 	AddMenuItem(solids_menu, _("Loft two sketches"), ToolImage(_T("ruled")), OnRuledSurfaceButton);
 	AddMenuItem(solids_menu, _("Extrude a sketch"), ToolImage(_T("extrude")), OnExtrudeButton);
 	AddMenuItem(solids_menu, _("Revolve a sketch"), ToolImage(_T("revolve")), OnRevolveButton);
+	AddMenuItem(solids_menu, _("Sweep objects along a sketch"), ToolImage(_T("sweep")), OnSweepButton);
 	solids_menu->AppendSeparator();
 	AddMenuItem(solids_menu, _("Cut"), ToolImage(_T("subtract")), OnSubtractButton);
 	AddMenuItem(solids_menu, _("Fuse"), ToolImage(_T("fuse")), OnFuseButton);
@@ -1898,6 +1897,7 @@ void CHeeksFrame::AddToolBars()
 			flyout_list.m_list.push_back(CFlyOutItem(_T("Ruled Surface"), ToolImage(_T("ruled")), _("Create a lofted face"), OnRuledSurfaceButton));
 			flyout_list.m_list.push_back(CFlyOutItem(_T("Extrude"), ToolImage(_T("extrude")), _("Extrude a wire or face"), OnExtrudeButton));
 			flyout_list.m_list.push_back(CFlyOutItem(_T("Revolve"), ToolImage(_T("revolve")), _("Revolve a wire or face"), OnRevolveButton));
+			flyout_list.m_list.push_back(CFlyOutItem(_T("Sweep"), ToolImage(_T("sweep")), _("Sweep a wire or face"), OnSweepButton));
 			AddToolBarFlyout(m_solidBar, flyout_list);
 		}
 

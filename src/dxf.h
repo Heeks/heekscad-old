@@ -99,6 +99,7 @@ private:
 	char m_str[1024];
 	char m_unused_line[1024];
 	eDxfUnits_t m_eUnits;
+	bool m_measurement_inch;
 	char m_layer_name[1024];
 	char m_section_name[1024];
 	char m_block_name[1024];
@@ -120,8 +121,8 @@ private:
 	bool ReadLwPolyLine();
 	bool ReadPolyLine();
 	bool ReadVertex(double *pVertex, bool *bulge_found, double *bulge);
-	void OnReadArc(double start_angle, double end_angle, double radius, const double* c, double z_extrusion_dir);
-	void OnReadCircle(const double* c, double radius);
+	void OnReadArc(double start_angle, double end_angle, double radius, const double* c, double z_extrusion_dir, bool hidden);
+	void OnReadCircle(const double* c, double radius, bool hidden);
     void OnReadEllipse(const double* c, const double* m, double ratio, double start_angle, double end_angle);
 
 	void get_line();
@@ -138,15 +139,15 @@ public:
 	bool Failed(){return m_fail;}
 	void DoRead(const bool ignore_errors = false); // this reads the file and calls the following functions
 
-	double mm( const double & value ) const;
+	double mm( double value ) const;
 
 	bool IgnoreErrors() const { return(m_ignore_errors); }
 
-	virtual void OnReadLine(const double* s, const double* e){}
+	virtual void OnReadLine(const double* s, const double* e, bool hidden){}
 	virtual void OnReadPoint(const double* s){}
 	virtual void OnReadText(const double* point, const double height, const char* text){}
-	virtual void OnReadArc(const double* s, const double* e, const double* c, bool dir){}
-	virtual void OnReadCircle(const double* s, const double* c, bool dir){}
+	virtual void OnReadArc(const double* s, const double* e, const double* c, bool dir, bool hidden){}
+	virtual void OnReadCircle(const double* s, const double* c, bool dir, bool hidden){}
 	virtual void OnReadEllipse(const double* c, double major_radius, double minor_radius, double rotation, double start_angle, double end_angle, bool dir){}
 	virtual void OnReadSpline(struct SplineData& sd){}
 	virtual void AddGraphics() const { }

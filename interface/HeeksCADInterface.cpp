@@ -53,6 +53,8 @@
 #include "ViewZooming.h"
 #include "ViewPanning.h"
 #include "Sectioning.h"
+#include "../libarea/Area.h"
+#include "HArea.h"
 
 double CHeeksCADInterface::GetTolerance()
 {
@@ -288,6 +290,11 @@ bool CHeeksCADInterface::GetArcAxis(HeeksObj* object, double* a)
 {
 	extract(((HArc*)object)->m_axis.Direction(), a);
 	return true;
+}
+
+double CHeeksCADInterface::GetArcIncludedAngle(HeeksObj* object)
+{
+	return ((HArc*)object)->IncludedAngle();
 }
 
 double CHeeksCADInterface::CircleGetRadius(HeeksObj* object)
@@ -864,9 +871,9 @@ void CHeeksCADInterface::XYZView(bool recalculate_gl_lists )
 	wxGetApp().m_frame->m_graphics->OnMagXYZ(recalculate_gl_lists);
 }
 
-void CHeeksCADInterface::SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance, double *scale)
+void CHeeksCADInterface::SaveSTLFile(const std::list<HeeksObj*>& objects, const wxChar *filepath, double facet_tolerance, double *scale, bool binary)
 {
-	wxGetApp().SaveSTLFile(objects, filepath, facet_tolerance, scale);
+	wxGetApp().SaveSTLFile(objects, filepath, facet_tolerance, scale, binary);
 }
 
 SketchOrderType CHeeksCADInterface::GetSketchOrder(HeeksObj* sketch)
@@ -1364,7 +1371,7 @@ void CHeeksCADInterface::VertexGetPoint(HeeksObj* vertex, double *d3)
 	switch (vertex->GetType())
 	{
 	case VertexType:
-		memcpy(d3, ((CVertex*)vertex)->m_point, 3*sizeof(double));
+		memcpy(d3, ((HVertex*)vertex)->m_point, 3*sizeof(double));
 		break;
 
 	case PointType:
@@ -1377,12 +1384,12 @@ void CHeeksCADInterface::VertexGetPoint(HeeksObj* vertex, double *d3)
 
 HeeksObj* CHeeksCADInterface::VertexGetFirstEdge(HeeksObj* vertex)
 {
-	return ((CVertex*)vertex)->GetFirstEdge();
+	return ((HVertex*)vertex)->GetFirstEdge();
 }
 
 HeeksObj* CHeeksCADInterface::VertexGetNextEdge(HeeksObj* vertex)
 {
-	return ((CVertex*)vertex)->GetNextEdge();
+	return ((HVertex*)vertex)->GetNextEdge();
 }
 
 const wxChar* CHeeksCADInterface::GetRevisionNumber()
@@ -1604,6 +1611,7 @@ double CHeeksCADInterface::GetViewUnits()
 void CHeeksCADInterface::SetViewUnits(double units, bool write_to_config)
 {
 	wxGetApp().m_view_units = units;
+	wxGetApp().OnChangeViewUnits(wxGetApp().m_view_units);
 	if(write_to_config)
 	{
 		HeeksConfig config;
@@ -1614,6 +1622,11 @@ void CHeeksCADInterface::SetViewUnits(double units, bool write_to_config)
 void CHeeksCADInterface::SplineToBiarcs(HeeksObj* spline, std::list<HeeksObj*> &new_spans, double tolerance)
 {
 	((HSpline*)spline)->ToBiarcs(new_spans, tolerance);
+}
+
+HeeksObj* CHeeksCADInterface::SketchSplineToBiarcs(HeeksObj* sketch, double tolerance)
+{
+	return ((CSketch*)sketch)->SplineToBiarcs(tolerance);
 }
 
 HeeksObj* CHeeksCADInterface::NewSplineFromPoints(unsigned int num_points, const double* d3)
@@ -2040,4 +2053,52 @@ unsigned int CHeeksCADInterface::GetIndex(HeeksObj *object) {
 
 void CHeeksCADInterface::ReleaseIndex(unsigned int index) {
 	wxGetApp().ReleaseIndex(index);
+}
+
+void CHeeksCADInterface::Exit()
+{
+	exit(0);
+}
+
+void CHeeksCADInterface::SetAlternativeFileOpenWildCardString(const wxChar* s)
+{
+	wxGetApp().m_alternative_open_wild_card_string = wxString(s);
+}
+
+void CHeeksCADInterface::ObjectAreaString(HeeksObj* object, wxString &s)
+{
+
+	switch(object->GetType())
+	{
+	case CircleType:
+		{
+			double c[2] = {((HCircle*)object)->C->m_p.X(), ((HCircle*)object)->C->m_p.Y()};
+			double radius = ((HCircle*)object)->m_radius;
+			s << _T("a = area.Area()\n");
+			s << _T("c = area.Curve()\n");
+			s << _T("c.append(area.Point(") << c[0] + radius << _T(", ") << c[1] << _T("))\n");
+			s << _T("c.append(area.Vertex(1, area.Point(") << c[0] - radius << _T(", ") << c[1] << _T("), area.Point(") << c[0] << _T(", ") << c[1] << _T(")))\n");
+			s << _T("c.append(area.Vertex(1, area.Point(") << c[0] + radius << _T(", ") << c[1] << _T("), area.Point(") << c[0] << _T(", ") << c[1] << _T(")))\n");
+			s << _T("a.append(c)\n");
+		}
+		break;
+	case AreaType:
+		{
+			s << _T("a = area.Area()\n");
+			CArea &a = ((HArea*)object)->m_area;
+			for(std::list<CCurve>::iterator It = a.m_curves.begin(); It != a.m_curves.end(); It++)
+			{
+				CCurve &c = *It;
+				s << _T("c = area.Curve()\n");
+				for(std::list<CVertex>::iterator VIt = c.m_vertices.begin(); VIt != c.m_vertices.end(); VIt++)
+				{
+					CVertex &v = *VIt;
+					if(v.m_type == 0)s << _T("c.append(area.Point(") << v.m_p.x << _T(", ") << v.m_p.y << _T("))\n");
+					else s << _T("c.append(area.Vertex(") << v.m_type << _T(", area.Point(") << v.m_p.x << _T(", ") << v.m_p.y << _T("), area.Point(") << v.m_c.x << _T(", ") << v.m_c.y << _T(")))\n");
+				}
+				s << _T("a.append(c)\n");
+			}
+		}
+		break;
+	}
 }

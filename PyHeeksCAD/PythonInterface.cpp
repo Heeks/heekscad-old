@@ -399,69 +399,9 @@ static CFace* BodyGetFirstFace(CShape* body)
 	return (CFace*)(body->m_faces->GetFirstChild());
 }
 
-static void StartPickObjects(const char* str, long marking_filter, bool m_just_one)
+static int PickObjects(const char* str, long marking_filter, bool m_just_one)
 {
-	wxGetApp().StartPickObjects(Ctt(str), marking_filter, m_just_one);
-}
-
-static int EndPickObjects(const char* str, long marking_filter, bool m_just_one)
-{
-	return wxGetApp().EndPickObjects();
-}
-
-static void StartPickFaces()
-{
-	// Allows the user to pick multiple faces
-	wxGetApp().StartPickObjects(_("Select Faces"), MARKING_FILTER_FACE);
-}
-
-PyObject* ExitMainLoop_callback = NULL;
-
-static void SetExitMainLoop(PyObject* callback)
-{
-	ExitMainLoop_callback = callback;
-}
-
-void ExitMainLoop()
-{
-	if(ExitMainLoop_callback)
-	{
-		boost::python::call<void>(ExitMainLoop_callback);
-	}
-	else
-	{
-		wxGetApp().ExitMainLoop();
-	}
-}
-
-static boost::python::list EndPickFaces()
-{
-	// returns a python list of faces
-
-	wxGetApp().EndPickObjects();
-
-	boost::python::list face_list;
-
-	PyObject* pList = PyList_New(0);
-	for(std::list<HeeksObj*>::iterator It = wxGetApp().m_marked_list->list().begin(); It != wxGetApp().m_marked_list->list().end(); It++)
-	{
-		HeeksObj* object = *It;
-		if(object->GetType() == FaceType){
-			bool save_pi = object->m_preserving_id;
-			object->m_preserving_id = true;
-			face_list.append((CFace*)object);
-			object->m_preserving_id = save_pi;
-		}
-	}
-
-    int n = boost::python::extract<int>(face_list.attr("__len__")());
-    for ( int i = 0; i < n; i++ ){
-        CFace* val = (boost::python::extract<CFace*>(face_list[i]));
-		int here =0;
-		here = 2;
-    }
-
-	return face_list;
+	return wxGetApp().PickObjects(Ctt(str), marking_filter, m_just_one);
 }
 
 static void PyOnOpenButton()
@@ -530,17 +470,14 @@ BOOST_PYTHON_MODULE(HeeksCAD)
         .def(bp::init<unsigned char, unsigned char, unsigned char>())
 	;
 
-	bp::class_<HeeksObj>("HeeksObj", bp::no_init)
-	;
-
-	bp::class_<CStlSolid>("StlSolid", bp::no_init) 
+	bp::class_<CStlSolid>("StlSolid") 
         .def(bp::init<const std::wstring&>())
 		.def("glCommands", &CStlSolidglCommands)
 		.def("GetBox", &CStlSolid::GetBox)
 	;
 
-	bp::class_<CFace>("Face", bp::no_init)
-		.def("GetID", &CFace::GetID)
+	bp::class_<CFace>("Face")
+        .def(bp::init<CFace>())
 	;
 
 	bp::class_<CShape>("Body")
@@ -578,11 +515,7 @@ BOOST_PYTHON_MODULE(HeeksCAD)
     bp::def("glColor3ub", GLColor3ub);
     bp::def("GetFirstBody", GetFirstBody, bp::return_value_policy<bp::reference_existing_object>());
     bp::def("GetNextBody", GetNextBody, bp::return_value_policy<bp::reference_existing_object>());
-	bp::def("StartPickObjects", StartPickObjects);
-	bp::def("EndPickObjects", EndPickObjects);
-	bp::def("StartPickFaces", StartPickFaces);
-	bp::def("EndPickFaces", EndPickFaces);
+	bp::def("PickObjects", PickObjects);
 	bp::def("OnOpenButton", PyOnOpenButton);
 	bp::def("OpenFile", PyOpenFile);
-	bp::def("SetExitMainLoopCallback", SetExitMainLoop);
 }

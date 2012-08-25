@@ -14,7 +14,6 @@
 #include "GraphicsCanvas.h"
 #include "HeeksFrame.h"
 #include "ConversionTools.h"
-#include "ConstraintTools.h"
 #include "SketchTools.h"
 #include "SolidTools.h"
 #include "MenuSeparator.h"
@@ -117,7 +116,6 @@ void MarkedList::ObjectsInWindow( wxRect window, MarkedObject* marked_object, bo
 	int buffer_length = 16384;
 	GLuint *data = (GLuint *)malloc( buffer_length * sizeof(GLuint) );
 	if(data == NULL)return;
-	int i, j;
 	int half_window_width = 0;
 	wxPoint window_centre;
 	if(single_picking){
@@ -157,7 +155,7 @@ void MarkedList::ObjectsInWindow( wxRect window, MarkedObject* marked_object, bo
 		}
 		int pos = 0;
 		bool added = false;
-		for(i=0; i<num_hits; i++)
+		for(unsigned i=0; i<(unsigned int)num_hits; i++)
 		{
 			unsigned int names = data[pos];
 			if(names == 0)break;
@@ -166,19 +164,28 @@ void MarkedList::ObjectsInWindow( wxRect window, MarkedObject* marked_object, bo
 			pos+=2;
 			MarkedObject* current_found_object = marked_object;
 			bool ignore_coords_only_found = false;
-			for(j=0; j<(int)names; j++, pos++){
+			for(unsigned int j=0; j<names; j++, pos++){
+				HeeksObj *object = m_name_index.find(data[pos]);
+				bool custom_names = object->UsesCustomSubNames();
 				if(!ignore_coords_only_found && current_found_object != NULL){
-					HeeksObj *object = m_name_index.find(data[pos]);
+
+
 					if(ignore_coords_only && wxGetApp().m_digitizing->OnlyCoords(object)){
 						ignore_coords_only_found = true;
 					}
 					else{
 						if((object->GetType() == GripperType) || ((object->GetMarkingMask() & m_filter) && (object->GetMarkingMask() != 0))){
 							int window_size = window.width;
-							current_found_object = current_found_object->Add(object, min_depth, window_size);
+							current_found_object = current_found_object->Add(object, min_depth, window_size, custom_names ? (names - 1 - j) : 0, custom_names ? (&data[pos+1]):NULL);
 							added = true;
 						}
 					}
+
+				}
+				if(custom_names)
+				{
+					pos+=(names-j);
+					break;
 				}
 			}
 		}
@@ -337,9 +344,6 @@ void MarkedList::GetTools(MarkedObject* clicked_object, std::list<Tool*>& t_list
 	}
 
 	GetConversionMenuTools(&t_list);
-#ifdef MULTIPLE_OWNERS
-	GetConstraintMenuTools(&t_list);
-#endif
 	GetSketchMenuTools(&t_list);
 	GetSolidMenuTools(&t_list);
 
