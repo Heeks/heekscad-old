@@ -22,4 +22,7 @@ _CPack_Packages/
 #ignore the Doxygen generated files
 DOC/
 
+# plugin directories, as long as they're not git submodules
+libarea/
+heekscnc/
 
