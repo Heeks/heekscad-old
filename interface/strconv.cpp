@@ -22,8 +22,8 @@ static wxString::size_type find_first_of( const wxString line, const wxString de
 	bool offset_value_set = false;
 	for (wxString::size_type delimiter = 0; delimiter < delimiters.Length(); delimiter++)
 	{
-		wxString::size_type here = line.Find( delimiters[delimiter] );
-		if (here >= 0)
+		int here = line.Find( delimiters[delimiter] );
+		if (here != wxNOT_FOUND)
 		{
 			if (offset_value_set == false) { offset = here; offset_value_set = true; }
 			if (here < offset) offset = here;
