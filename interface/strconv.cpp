@@ -39,26 +39,28 @@ static wxString::size_type find_first_of( const wxString line, const wxString de
  */
 std::vector<wxString> Tokens( const wxString wxLine, const wxString wxDelimiters )
 {
-	std::vector<wxString> tokens;
-	wxString line(wxLine);	// non-const copy
+    std::vector<wxString> tokens;
+    wxString line(wxLine);    // non-const copy
 
-	wxString::size_type offset;
-	while ((offset = find_first_of( line, wxDelimiters )) != line.npos)
-	{
-		if (offset > 0)
-		{
-			tokens.push_back( line.substr(0, offset) );
-		} // End if - then
+    wxString::size_type offset;
+    while ((offset = find_first_of( line, wxDelimiters )) != line.npos)
+    {
+        if (offset > 0)
+        {
+            tokens.push_back( line.substr(0, offset) );
+        } // End if - then
+        else
+            break;
 
-		line.Remove(0, offset+1);
-	} // End while
+        line.Remove(0, offset+1);
+    } // End while
 
-	if (line.size() > 0)
-	{
-		tokens.push_back( line );
-	} // End if - then
+    if (line.size() > 0)
+    {
+        tokens.push_back( line );
+    } // End if - then
 
-	return(tokens);
+    return(tokens);
 
 } // End Tokens() method
 
