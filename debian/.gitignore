@@ -1,0 +1,6 @@
+files
+heekscad.debhelper.log
+heekscad.postinst.debhelper
+heekscad.postrm.debhelper
+heekscad.substvars
+heekscad/
